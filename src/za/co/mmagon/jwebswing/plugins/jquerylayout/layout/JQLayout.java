@@ -21,6 +21,7 @@ import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
 import za.co.mmagon.jwebswing.base.html.Div;
 import za.co.mmagon.jwebswing.base.html.attributes.GlobalAttributes;
+import za.co.mmagon.jwebswing.plugins.ComponentInformation;
 import za.co.mmagon.jwebswing.plugins.pools.jquerylayout.JQLayoutReferencePool;
 import za.co.mmagon.logger.LogFactory;
 
@@ -31,6 +32,8 @@ import za.co.mmagon.logger.LogFactory;
  * @since 16 Jul 2013
  * @version 1.0
  */
+@ComponentInformation(name = "JQuery UI Layout", description = "?The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.",
+        url = "http://layout.jquery-dev.com/")
 public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQLayout
 {
 
@@ -45,11 +48,25 @@ public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQL
      * The set of options
      */
     private JQLayoutOptions options;
-
+    /**
+     * The center div
+     */
     private JQLayoutDiv center;
+    /**
+     * The north div
+     */
     private JQLayoutDiv north;
+    /**
+     * The east div
+     */
     private JQLayoutDiv east;
+    /**
+     * The west div
+     */
     private JQLayoutDiv west;
+    /**
+     * The south div
+     */
     private JQLayoutDiv south;
 
     /**
