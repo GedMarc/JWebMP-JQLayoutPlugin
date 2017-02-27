@@ -30,11 +30,11 @@ import za.co.mmagon.jwebswing.plugins.PluginInformation;
 @PluginInformation(pluginName = "JQuery UI Layout", pluginUniqueName = "jquery-layout",
         pluginDescription = "The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.",
         pluginVersion = "1.5.13",
-        pluginDependancyUniqueIDs = "", pluginCategories = "fonts, icons",
+        pluginDependancyUniqueIDs = "", pluginCategories = "jquery, layouts,border layout, jwebswing",
         pluginSubtitle = "The Ultimate Page Layout Manager",
-        pluginGitUrl = "https://github.com/GedMarc/JWebSwing-IoniconsPlugin",
-        pluginSourceUrl = "",
-        pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-IoniconsPlugin/wiki",
+        pluginGitUrl = "https://github.com/GedMarc/JWebSwing-JQLayoutPlugin",
+        pluginSourceUrl = "https://github.com/GedMarc/layout",
+        pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-JQLayoutPlugin/wiki",
         pluginOriginalHomepage = "http://layout.jquery-dev.com/")
 public class JQLayoutPageConfigurator extends PageConfigurator
 {
