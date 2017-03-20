@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ import za.co.mmagon.jwebswing.plugins.PluginInformation;
                    pluginUniqueName = "jquery-layout",
                    pluginDescription = "The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.",
                    pluginVersion = "1.5.13",
-                   pluginDependancyUniqueIDs = "jquery",
+                   pluginDependancyUniqueIDs = "jquery,jquery-easing",
                    pluginCategories = "jquery, layouts,border layout, jwebswing",
                    pluginSubtitle = "The Ultimate Page Layout Manager",
                    pluginGitUrl = "https://github.com/GedMarc/JWebSwing-JQLayoutPlugin",
