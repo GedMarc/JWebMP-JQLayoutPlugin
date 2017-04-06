@@ -29,8 +29,8 @@ import za.co.mmagon.jwebswing.base.servlets.interfaces.ReferencePool;
 public enum JQLayoutReferencePool implements ReferencePool
 {
 
-    JQueryLayout(new JavascriptReference("JQUILayoutJS", 1.45, "bower_components/jquery-layout-latest-1-5/jquery.layout_and_plugins.js", "http://layout.jquery-dev.com/lib/js/jquery.layout-latest.js"),
-                 new CSSReference("JQUILayoutCSS", 1.45, "bower_components/jquery-layout-latest-1-5/layout-default.css"), 10),
+    JQueryLayout(new JavascriptReference("JQUILayoutJS", 1.45, "bower_components/jquery-layout-latest-1-5/jquery.layout_and_plugins.min.js", "http://layout.jquery-dev.com/lib/js/jquery.layout-latest.min.js"),
+                 new CSSReference("JQUILayoutCSS", 1.45, "bower_components/jquery-layout-latest-1-5/layout-default.min.css"), 10),
     JQueryLayoutResizer(new JavascriptReference("layoutResizer", 1.0, "bower_components/jquery-layout-latest-1-5/jquery.layout_customresizer.js"), null, 9),;
     //JQueryLayoutCallbacks(new JWLayoutCallbacksJavascriptReference(), null, 10),;
 

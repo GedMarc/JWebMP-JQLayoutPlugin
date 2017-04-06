@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,12 +17,13 @@
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 
 import java.util.logging.*;
+import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
 import za.co.mmagon.jwebswing.base.html.Div;
 import za.co.mmagon.jwebswing.base.html.attributes.GlobalAttributes;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
-import za.co.mmagon.jwebswing.plugins.pools.jquerylayout.JQLayoutReferencePool;
+import za.co.mmagon.jwebswing.plugins.jquery.JQueryPageConfigurator;
 import za.co.mmagon.logger.LogFactory;
 
 /**
@@ -33,7 +34,7 @@ import za.co.mmagon.logger.LogFactory;
  * @version 1.0
  */
 @ComponentInformation(name = "JQuery UI Layout", description = "?The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.",
-        url = "http://layout.jquery-dev.com/")
+                      url = "http://layout.jquery-dev.com/")
 public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQLayout
 {
 
@@ -89,9 +90,6 @@ public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQL
         super("JQLayout");
         setComponent(component);
         getComponent().addFeature(this);
-        getJavascriptReferences().add(JQLayoutReferencePool.JQueryLayout.getJavaScriptReference());
-        getJavascriptReferences().add(JQLayoutReferencePool.JQueryLayoutResizer.getJavaScriptReference());
-        getCssReferences().add(JQLayoutReferencePool.JQueryLayout.getCssReference());
         setVariableID(component.getID());
         getComponent().addAttribute(GlobalAttributes.JWType, "layout");
         getCenter();
@@ -109,8 +107,7 @@ public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQL
         }
         if (!isConfigured())
         {
-            getComponent().getProperties().put("jquery-enabled", "true");
-            getComponent().getProperties().put("jquery-ui-enabled", "true");
+            JQueryPageConfigurator.setRequired((Component) getComponent(), true);
         }
         super.preConfigure();
     }

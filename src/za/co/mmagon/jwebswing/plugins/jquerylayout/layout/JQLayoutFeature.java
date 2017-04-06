@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.logging.*;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
-import za.co.mmagon.jwebswing.plugins.pools.jquerylayout.JQLayoutReferencePool;
 import za.co.mmagon.logger.LogFactory;
 
 /**
@@ -46,16 +45,13 @@ public class JQLayoutFeature extends Feature<JQLayoutOptions, JQLayoutFeature>
         myComponent = onComponent;
         setComponent(myComponent.getComponent());
         setVariableID(myComponent.getComponent());
-        getJavascriptReferences().add(JQLayoutReferencePool.JQueryLayout.getJavaScriptReference());
-        getJavascriptReferences().add(JQLayoutReferencePool.JQueryLayoutResizer.getJavaScriptReference());
-        getCssReferences().add(JQLayoutReferencePool.JQueryLayout.getCssReference());
     }
 
     @Override
     public void assignFunctionsToComponent()
     {
         //Config for the layout options from the divs
-        StringBuilder sb = new StringBuilder(variableID + " = $('#" + this.layoutID + "').layout(" + getNewLine());
+        StringBuilder sb = new StringBuilder(variableID + " = $('#" + this.layoutID + "').layout(");
         sb.append(getOptions());
         sb.append(");");
         addQuery(sb.toString());

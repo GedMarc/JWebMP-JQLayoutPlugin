@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -73,6 +73,32 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
     @JsonIgnore
     private JQLayout layout;
 
+    @Override
+    public void init()
+    {
+        if (!isInitialized())
+        {
+            if (!getHeaders().isEmpty())
+            {
+                for (int i = getHeaders().size(); i >= 0; i--)
+                {
+                    Div get = getHeaders().get(i);
+                    getChildren().add(0, get);
+                    get.preConfigure();
+                }
+            }
+            if (!getFooters().isEmpty())
+            {
+                for (Component footer : getFooters())
+                {
+                    getChildren().add(footer);
+                    footer.preConfigure();
+                }
+            }
+        }
+        super.init();
+    }
+
     /**
      * Returns a clean version of this components options
      *
@@ -86,8 +112,8 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
     /**
      * Constructs a new Border Layout Div
      * <p>
-     * @param layout The layout applying to
-     * @param area The area this div is for
+     * @param layout     The layout applying to
+     * @param area       The area this div is for
      * @param contentDiv The content div. Never null please
      */
     public JQLayoutDiv(JQLayout layout, JQLayoutArea area, Div contentDiv)
@@ -123,7 +149,7 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
     {
         getHeaders().add(headerDiv);
         headerDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Header.toString());
-        getChildren().add(headers.size() - 1, headerDiv);
+        //getChildren().add(headers.size() - 1, headerDiv);
     }
 
     /**
@@ -240,7 +266,7 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
         headerDiv.add(footerDivString);
         headerDiv.addClass("ui-layout-footer");
         getFooters().add(headerDiv);
-        getChildren().add(headerDiv);
+        //getChildren().add(headerDiv);
     }
 
     /**
@@ -255,7 +281,7 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
         headerDiv.add(footerDivString);
         headerDiv.addClass("ui-layout-footer");
         getFooters().add(headerDiv);
-        getChildren().add(headerDiv);
+        //getChildren().add(headerDiv);
     }
 
     /**
