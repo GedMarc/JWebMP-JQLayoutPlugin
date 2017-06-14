@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,36 +16,37 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events;
 
-import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 
 /**
+ * This maps an Open Div feature to a component
  *
  * @author MMagon
  * @since 23 Sep 2013
  * @version 1.0
  */
-public class AddToggleButtonFeature extends Feature<JavaScriptPart, Feature>
+public class JQLayoutCloseLayoutDivFeature extends Feature<JavaScriptPart, JQLayoutCloseLayoutDivFeature>
 {
 
     private static final long serialVersionUID = 1L;
 
-    private final JQLayoutDiv divToOpen;
-    private final Component pinButton;
+    private final JQLayoutDiv divToClose;
 
-    public AddToggleButtonFeature(JQLayoutDiv layoutDiv, Component pinButton)
+    public JQLayoutCloseLayoutDivFeature(JQLayoutDiv layoutDiv)
     {
-        super("JWLayoutPinButtonFeature");
-        this.pinButton = pinButton;
-        divToOpen = layoutDiv;
+        super("JWLayoutOpenDiv");
+        divToClose = layoutDiv;
+
     }
 
     @Override
     public void assignFunctionsToComponent()
     {
-        String openDivFunction = divToOpen.getLayout().getVariableID() + ".addToggleBtn('#" + pinButton.getID() + "',\"" + divToOpen.getArea().toString().toLowerCase() + "\");" + getNewLine();
+
+        String openDivFunction = divToClose.getLayout().getVariableID() + ".close('" + divToClose.getArea().name().toLowerCase() + "');";
         addQuery(openDivFunction);
+
     }
 }

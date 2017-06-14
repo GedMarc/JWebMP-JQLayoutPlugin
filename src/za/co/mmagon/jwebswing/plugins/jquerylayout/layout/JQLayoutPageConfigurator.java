@@ -22,6 +22,7 @@ import za.co.mmagon.jwebswing.plugins.PluginInformation;
 import za.co.mmagon.jwebswing.plugins.pools.jquerylayout.JQLayoutReferencePool;
 
 /**
+ * The page configuration for UI Layout enablement
  *
  * @author GedMarc
  * @since 27 Feb 2017

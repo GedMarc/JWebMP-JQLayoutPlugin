@@ -1,6 +1,6 @@
 /**
  * @preserve
- * jquery.layout 1.4.4
+ * jquery.layout 1.5.12
  * $Date: 2014-11-29 08:00:00 (Sat, 29 November 2014) $
  * $Rev: 1.0404 $
  *
@@ -28,7 +28,7 @@
  * {number=} optional parameter
  * {*}   ALL types
  */
-/* TODO for jQ 2.x 
+/* TODO for jQ 2.x
  * check $.fn.disableSelection - this is in jQuery UI 1.9.x
  */
 
@@ -73,7 +73,7 @@
                 // $.layout.browser REPLACES $.browser
         , browser: {} // set below
 
-        // *PREDEFINED* EFFECTS & DEFAULTS 
+        // *PREDEFINED* EFFECTS & DEFAULTS
         // MUST list effect here - OR MUST set an fxSettings option (can be an empty hash: {})
         , effects: {
             // Pane Open/Close Animations
@@ -740,10 +740,9 @@
                 md: 768,
                 sm: 576,
                 xs: 0
-            }
-
+            }, responsiveAnimate: false
             , closable: true  // pane can open & close
-            , resizable: true  // when open, pane can be resized 
+            , resizable: true  // when open, pane can be resized
             , slidable: true  // when closed, pane can 'slide open' over other panes - closes on mouse-out
             , initClosed: false  // true = init pane as 'closed'
             , initHidden: false   // true = init pane as 'hidden' - no resizer-bar/spacing
@@ -770,7 +769,7 @@
             , togglerContent_open: ""   // text or HTML to put INSIDE the toggler
             , togglerContent_closed: ""   // ditto
                     // RESIZING OPTIONS
-            , resizerDblClickToggle: true  // 
+            , resizerDblClickToggle: true  //
             , autoResize: true  // IF size is 'auto' or a percentage, then recalc 'pixel size' whenever the layout resizes
             , autoReopen: true  // IF a pane was auto-closed due to noRoom, reopen it when there is room? False = leave it closed
             , resizerDragOpacity: 1   // option for ui.draggable
@@ -1010,7 +1009,7 @@
                 , i = 0, k, undef;
                 for (; i < c; i++) { // skip the last key (data)
                     k = a[i];
-                    if (D.branch[ k ] == undefined) { // child-key does not exist
+                    if (D.branch[ k ] === undefined) { // child-key does not exist
                         if (create) {
                             D.branch = D.branch[ k ] = {}; // create child-branch
                         } else // can't go any farther
@@ -1181,7 +1180,7 @@
                     // convert function name (string) to function object
                     if (isStr(fn)) {
                         if (fn.match(/,/)) {
-                            // function name cannot contain a comma, 
+                            // function name cannot contain a comma,
                             // so must be a function name AND a parameter to pass
                             args = fn.split(",")
                                     , fn = eval(args[0]);
@@ -1618,6 +1617,23 @@
             delete s.creatingLayout;
 
             resizeAll();
+
+            $.each(["south", "north", "east", "west"], function (i, pane) {
+                if (!$Ps[pane])
+                    return; // no pane - SKIP
+                o = options[pane];
+                s = state[pane];
+
+                $P = $Ps[pane];
+                if (o.initHidden)
+                {
+                    hide(pane);
+                } else if (o.initClosed)
+                {
+                    close(pane);
+                }
+            });
+
             return state.initialized;
         }
 
@@ -2251,7 +2267,7 @@
          * @param {Object=}  evt
          */
         , initPanes = function (evt) {
-            // stopPropagation if called by trigger("layoutinitpanes") - use evtPane utility 
+            // stopPropagation if called by trigger("layoutinitpanes") - use evtPane utility
             evtPane(evt);
 
             // NOTE: do north & south FIRST so we can measure their height - do center LAST
@@ -2274,7 +2290,7 @@
             sizeMidPanes("center");
 
             // Chrome/Webkit sometimes fires callbacks BEFORE it completes resizing!
-            // Before RC30.3, there was a 10ms delay here, but that caused layout 
+            // Before RC30.3, there was a 10ms delay here, but that caused layout
             // to load asynchrously, which is BAD, so try skipping delay for now
 
             // process pane contents and callbacks, and init/resize child-layout if exists
@@ -2413,7 +2429,7 @@
             // init pane positioning
             setPanePosition(pane);
 
-            // if pane is not visible, 
+            // if pane is not visible,
             if (dir === "horz") // north or south pane
                 CSS.height = cssH($P, size);
             else if (dir === "vert") // east or west pane
@@ -3070,7 +3086,7 @@
             $(document).unbind("." + sID); // keyDown (hotkeys)
 
             if (typeof evt_or_destroyChildren === "object")
-                // stopPropagation if called by trigger("layoutdestroy") - use evtPane utility 
+                // stopPropagation if called by trigger("layoutdestroy") - use evtPane utility
                 evtPane(evt_or_destroyChildren);
             else // no event, so transfer 1st param to destroyChildren param
                 destroyChildren = evt_or_destroyChildren;
@@ -3289,7 +3305,7 @@
          * The pane is not actually 'removed' from the source, so can use 'show' to un-hide it
          *
          * @param {(string|Object)} evt_or_pane   The pane being hidden, ie: north, south, east, or west
-         * @param {boolean=}   [noAnimation=false] 
+         * @param {boolean=}   [noAnimation=false]
          */
         , hide = function (evt_or_pane, noAnimation) {
             if (!isInitialized())
@@ -3547,9 +3563,9 @@
                     .removeClass(rClass + _sliding + " " + rClass + _pane + _sliding)
                     .addClass(rClass + _closed + " " + rClass + _pane + _closed)
                     ;
-            // handle already-hidden panes in case called by swap() or a similar method 
+            // handle already-hidden panes in case called by swap() or a similar method
             if (s.isHidden)
-                $R.hide(); // hide resizer-bar 
+                $R.hide(); // hide resizer-bar
 
             // DISABLE 'resizing' when closed - do this BEFORE bindStartSlidingEvents?
             if (o.resizable && $.layout.plugins.draggable)
@@ -3985,7 +4001,7 @@
             if (!enable)
                 timer.clear(pane + "_closeSlider");
             else if (evtName === "click" && !o.resizable) {
-                // IF pane is not resizable (which already has a cursor and tip) 
+                // IF pane is not resizable (which already has a cursor and tip)
                 // then set the a cursor & title/tip on resizer when sliding
                 $R.css("cursor", enable ? o.sliderCursor : "default");
                 $R.attr("title", enable ? o.tips.Close : ""); // use Toggler-tip, eg: "Close Pane"
@@ -4182,7 +4198,7 @@
                 } else { // no animation
                     $P.css(dimName, newSize); // resize pane
                     delete s.newSize;
-                    // if pane is visible, then 
+                    // if pane is visible, then
                     if ($P.is(":visible"))
                         sizePane_2(); // continue
                     else {
@@ -4324,7 +4340,7 @@
                     CSS = newCenter;
                     s.newWidth = CSS.width;
                     s.newHeight = CSS.height;
-                    // convert OUTER width/height to CSS width/height 
+                    // convert OUTER width/height to CSS width/height
                     CSS.width = cssW($P, CSS.width);
                     // NEW - allow pane to extend 'below' visible area rather than hide it
                     CSS.height = cssH($P, CSS.height);
@@ -4439,7 +4455,7 @@
             var oldW = sC.innerWidth
                     , oldH = sC.innerHeight
                     ;
-            // stopPropagation if called by trigger("layoutdestroy") - use evtPane utility 
+            // stopPropagation if called by trigger("layoutdestroy") - use evtPane utility
             evtPane(evt_or_refresh);
 
             // cannot size layout when 'container' is hidden or collapsed
@@ -4475,6 +4491,9 @@
                     , shrunkW = (sC.innerWidth < oldW)
                     , $P, o, s
                     ;
+
+            var shrunk = shrunkH || shrunkW;
+
             // NOTE special order for sizing: S-N-E-W
             $.each(["south", "north", "east", "west"], function (i, pane) {
                 if (!$Ps[pane])
@@ -4483,6 +4502,7 @@
                 s = state[pane];
 
                 var paneResponsive = false;
+                var paneRespondedState = false;
                 var windowWidth = $(window).width();
 
                 if ((o !== null && o !== 'undefined') && o.responsive)
@@ -4495,7 +4515,6 @@
                         } else
                         {
                             paneResponsive = true;
-                            ;
                         }
 
                     //if(s.size >= o.responsiveSizes.md)
@@ -4528,25 +4547,29 @@
                             paneResponsive = true; //hide
                         }
                 }
-                if (s.autoResize && s.size != o.size) // resize pane to original size set in options
+                if (s.autoResize && s.size !== o.size) // resize pane to original size set in options
                 {
-                    if (paneResponsive)
+                    if (paneResponsive && s.isVisible)
                     {
                         if (o.closable)
                         {
-                            close(pane, true, true); // true = force, true = noAnimation
+                            close(pane, true, !o.responsiveAnimate); // true = force, true = noAnimation
                         } else
                         {
-                            hide(pane, true); // true = noAnimation
+                            hide(pane, !o.responsiveAnimate); // true = noAnimation
                         }
+                        s.responded = true;
                     } else
                     {
-                        if (o.closable)
-                        {
-                            open(pane, true, true,true); // true = force, true = noAnimation
-                        } else
-                        {
-                            show(pane, true,true,true); // true = open/NoAnimation/NoAlert
+                        if (s.responded) {
+                            if (o.closable)
+                            {
+                                open(pane, false, !o.responsiveAnimate); // true = force, true = noAnimation
+                            } else
+                            {
+                                show(pane, true, !o.responsiveAnimate); // true = open/NoAnimation/NoAlert
+                            }
+                            s.responded = false;
                         }
                     }
                     sizePane(pane, o.size, true, true, true); // true=skipCallback/noAnimation/forceResize
@@ -4556,19 +4579,23 @@
                     {
                         if (o.closable)
                         {
-                            close(pane, true, true); // true = force, true = noAnimation
+                            close(pane, true, !o.responsiveAnimate); // true = force, true = noAnimation
                         } else
                         {
-                            hide(pane, true); // true = noAnimation
+                            hide(pane, !o.responsiveAnimate); // true = noAnimation
                         }
+                        s.responded = true;
                     } else
                     {
-                        if (o.closable)
-                        {
-                            open(pane, true, true,true); // true = force, true = noAnimation
-                        } else
-                        {
-                            show(pane, true,true,true); // true = open/NoAnimation/NoAlert
+                        if (s.responded) {
+                            if (o.closable)
+                            {
+                                open(pane, false, !o.responsiveAnimate); // true = force, true = noAnimation
+                            } else
+                            {
+                                show(pane, true, !o.responsiveAnimate); // true = open/NoAnimation/NoAlert
+                            }
+                            s.responded = false;
                         }
                     }
                     makePaneFit(pane, false, true, true); // true=skipCallback/forceResize
@@ -4751,7 +4778,7 @@
 
                 // Resizer Bar is ALWAYS same width/height of pane it is attached to
                 if (dir === "horz") { // north/south
-                    //paneLen = $P.outerWidth(); // s.outerWidth || 
+                    //paneLen = $P.outerWidth(); // s.outerWidth ||
                     paneLen = sC.innerWidth; // handle offscreen-panes
                     s.resizerLength = paneLen;
                     left = $.layout.cssNum($P, "left")
@@ -4761,7 +4788,7 @@
                         , left: left > -9999 ? left : sC.inset.left // handle offscreen-panes
                     });
                 } else { // east/west
-                    paneLen = $P.outerHeight(); // s.outerHeight || 
+                    paneLen = $P.outerHeight(); // s.outerHeight ||
                     s.resizerLength = paneLen;
                     $R.css({
                         height: cssH($R, paneLen) // account for borders & padding
@@ -5234,7 +5261,7 @@
                     ;
 
             // if pane is already raised, then reset it before doing it again!
-            // this would happen if allowOverflow is attached to BOTH the pane and an element 
+            // this would happen if allowOverflow is attached to BOTH the pane and an element
             if (s.cssSaved)
                 resetOverflow(pane); // reset previous CSS before continuing
 
@@ -5486,7 +5513,7 @@ jQuery.cookie = function (name, value, options) {
  * jquery.layout.state 1.2
  * $Date: 2014-08-30 08:00:00 (Sat, 30 Aug 2014) $
  *
- * Copyright (c) 2014 
+ * Copyright (c) 2014
  *   Kevin Dalman (http://allpro.net)
  *
  * Dual licensed under the GPL (http://www.gnu.org/licenses/gpl.html)
@@ -5511,7 +5538,7 @@ jQuery.cookie = function (name, value, options) {
      * This creates $.ui.cookie so Layout does not need the cookie.jquery.js plugin
      * NOTE: This utility is REQUIRED by the layout.state plugin
      *
-     * Cookie methods in Layout are created as part of State Management 
+     * Cookie methods in Layout are created as part of State Management
      */
     if (!$.ui)
         $.ui = {};
@@ -5995,7 +6022,7 @@ jQuery.cookie = function (name, value, options) {
  * @preserve jquery.layout.buttons 1.0
  * $Date: 2011-07-16 08:00:00 (Sat, 16 July 2011) $
  *
- * Copyright (c) 2011 
+ * Copyright (c) 2011
  *   Kevin Dalman (http://allpro.net)
  *
  * Dual licensed under the GPL (http://www.gnu.org/licenses/gpl.html)
@@ -6291,7 +6318,7 @@ jQuery.cookie = function (name, value, options) {
  * jquery.layout.browserZoom 1.0
  * $Date: 2011-12-29 08:00:00 (Thu, 29 Dec 2011) $
  *
- * Copyright (c) 2012 
+ * Copyright (c) 2012
  *   Kevin Dalman (http://allpro.net)
  *
  * Dual licensed under the GPL (http://www.gnu.org/licenses/gpl.html)
@@ -6388,7 +6415,7 @@ jQuery.cookie = function (name, value, options) {
 /**
  * UI Layout Plugin: Slide-Offscreen Animation
  *
- * Prevent panes from being 'hidden' so that an iframes/objects 
+ * Prevent panes from being 'hidden' so that an iframes/objects
  * does not reload/refresh when pane 'opens' again.
  * This plug-in adds a new animation called "slideOffscreen".
  * It is identical to the normal "slide" effect, but avoids hiding the element

@@ -16,10 +16,10 @@
  */
 package za.co.mmagon.jwebswing.components.jqueryLayout.layout;
 
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayout;
 import org.junit.Test;
 import za.co.mmagon.BaseTestClass;
 import za.co.mmagon.jwebswing.Page;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayout;
 
 /**
  *
@@ -39,7 +39,7 @@ public class JQLayoutTest extends BaseTestClass
         JQLayout layout = new JQLayout(p.getBody());
 
         System.out.println(p.toString(true));
-        System.out.println(p);
+//        System.out.println(p);
     }
 
 }

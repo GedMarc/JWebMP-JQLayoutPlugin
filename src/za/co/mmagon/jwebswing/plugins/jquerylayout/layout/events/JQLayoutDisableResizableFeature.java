@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,35 +16,44 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events;
 
+import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 
 /**
- * This maps an Open Div feature to a component
+ * Will disable resizing on a pane layout
  *
  * @author MMagon
  * @since 23 Sep 2013
  * @version 1.0
  */
-public class CloseLayoutDivFeature extends Feature<JavaScriptPart, CloseLayoutDivFeature>
+public class JQLayoutDisableResizableFeature extends Feature<JavaScriptPart, Feature>
 {
 
-    private JQLayoutDiv divToClose;
+    private static final long serialVersionUID = 1L;
+    /**
+     * The layout div to open
+     */
+    private final JQLayoutDiv divToOpen;
 
-    public CloseLayoutDivFeature(JQLayoutDiv layoutDiv)
+    /**
+     * Adds a pin button for the layout side to the given component
+     *
+     * @param layoutDiv
+     * @param pinButton
+     */
+    public JQLayoutDisableResizableFeature(JQLayoutDiv layoutDiv, Component pinButton)
     {
-        super("JWLayoutOpenDiv");
-        divToClose = layoutDiv;
+        super("JQLayoutDisableResizableFeature");
+        divToOpen = layoutDiv;
 
     }
 
     @Override
     public void assignFunctionsToComponent()
     {
-
-        String openDivFunction = divToClose.getLayout().getVariableID() + ".close('" + divToClose.getArea().name().toLowerCase() + "');";
+        String openDivFunction = divToOpen.getLayout().getVariableID() + ".disableResizable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
         addQuery(openDivFunction);
-
     }
 }

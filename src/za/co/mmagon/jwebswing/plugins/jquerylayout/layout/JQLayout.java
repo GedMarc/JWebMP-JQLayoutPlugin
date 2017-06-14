@@ -16,7 +16,7 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 
-import java.util.logging.*;
+import java.util.logging.Logger;
 import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
@@ -24,10 +24,14 @@ import za.co.mmagon.jwebswing.base.html.Div;
 import za.co.mmagon.jwebswing.base.html.attributes.GlobalAttributes;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
 import za.co.mmagon.jwebswing.plugins.jquery.JQueryPageConfigurator;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddPinButtonFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddToggleButtonFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutCloseLayoutDivFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
 import za.co.mmagon.logger.LogFactory;
 
 /**
- * This class is essentially the Border Layout. Each child div controls it's own settings, access via getRegionLayoutDiv()
+ * This is a Layout Pane and can be applied to any div to turn it into a border layout
  *
  * @author MMagon
  * @since 16 Jul 2013
@@ -89,10 +93,10 @@ public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQL
     {
         super("JQLayout");
         setComponent(component);
-        getComponent().addFeature(this);
         setVariableID(component.getID());
         getComponent().addAttribute(GlobalAttributes.JWType, "layout");
         getCenter();
+        getComponent().addFeature(this);
     }
 
     /**
@@ -118,8 +122,7 @@ public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQL
     @Override
     public void assignFunctionsToComponent()
     {
-        StringBuilder sb = new StringBuilder("var lay_"
-                + getComponent().getID()
+        StringBuilder sb = new StringBuilder(getVariableID()
                 + " = "
                 + getComponent().getJQueryID()
                 + "layout(" + getNewLine());
@@ -173,7 +176,7 @@ public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQL
      * @return A Layout pane on the center div
      */
     @Override
-    public JQLayoutDiv getCenter()
+    public final JQLayoutDiv getCenter()
     {
         if (this.center == null)
         {
@@ -321,4 +324,107 @@ public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQL
             getComponent().add(this.east);
         }
     }
+
+    /**
+     * Gets the layout div for a pane
+     *
+     * @param area
+     * @return
+     */
+    public JQLayoutDiv getPane(JQLayoutArea area)
+    {
+        switch (area)
+        {
+            case North:
+            {
+                return getNorth();
+            }
+            case West:
+            {
+                return getWest();
+            }
+            case South:
+            {
+                return getSouth();
+            }
+            case East:
+            {
+                return getEast();
+            }
+            case Center:
+            {
+                return getCenter();
+            }
+            default:
+            {
+                log.warning("Unknown pane found? - " + area);
+                return null;
+            }
+        }
+    }
+
+    /**
+     * Creates a toggle button for the given pane on the component.
+     * <p>
+     * The feature is added to the component
+     *
+     * @param component
+     * @param pane
+     * @return
+     */
+    public JQLayoutAddToggleButtonFeature createToggleButton(Component component, JQLayoutArea pane)
+    {
+        JQLayoutAddToggleButtonFeature atfb = new JQLayoutAddToggleButtonFeature(getPane(pane), component);
+        component.addFeature(atfb);
+        return atfb;
+    }
+
+    /**
+     * Creates a toggle button for the given pane on the component.
+     * <p>
+     * The feature is added to the component
+     *
+     * @param component
+     * @param pane
+     * @return
+     */
+    public JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane)
+    {
+        JQLayoutAddPinButtonFeature atfb = new JQLayoutAddPinButtonFeature(getPane(pane), component);
+        component.addFeature(atfb);
+        return atfb;
+    }
+
+    /**
+     * Creates a toggle button for the given pane on the component.
+     * <p>
+     * The feature is added to the component
+     *
+     * @param component
+     * @param pane
+     * @return
+     */
+    public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane)
+    {
+        JQLayoutCloseLayoutDivFeature atfb = new JQLayoutCloseLayoutDivFeature(getPane(pane));
+        component.addFeature(atfb);
+        return atfb;
+    }
+
+    /**
+     * Creates a toggle button for the given pane on the component.
+     * <p>
+     * The feature is added to the component
+     *
+     * @param component
+     * @param pane
+     * @return
+     */
+    public JQLayoutOpenLayoutDivFeature createOpenButton(Component component, JQLayoutArea pane)
+    {
+        JQLayoutOpenLayoutDivFeature atfb = new JQLayoutOpenLayoutDivFeature(getPane(pane));
+        component.addFeature(atfb);
+        return atfb;
+    }
+
 }

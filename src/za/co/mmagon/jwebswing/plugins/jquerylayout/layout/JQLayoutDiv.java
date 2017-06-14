@@ -28,10 +28,10 @@ import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalFeatures;
 import za.co.mmagon.jwebswing.base.html.interfaces.children.BodyChildren;
 import za.co.mmagon.jwebswing.base.html.interfaces.events.GlobalEvents;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.AddPinButtonFeature;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.AddToggleButtonFeature;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.CloseLayoutDivFeature;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.OpenLayoutDivFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddPinButtonFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddToggleButtonFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutCloseLayoutDivFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces.JWLayoutDivChildren;
 
 /**
@@ -187,7 +187,7 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
     @Override
     public Component addPin(Component component)
     {
-        component.addFeature(new AddPinButtonFeature(this, component));
+        component.addFeature(new JQLayoutAddPinButtonFeature(this, component));
         return component;
     }
 
@@ -199,7 +199,7 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
     @Override
     public void addCloseButton(Component button)
     {
-        button.addFeature(new CloseLayoutDivFeature(this));
+        button.addFeature(new JQLayoutCloseLayoutDivFeature(this));
     }
 
     /**
@@ -210,7 +210,7 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
     @Override
     public void addOpenButton(Component button)
     {
-        button.addFeature(new OpenLayoutDivFeature(this));
+        button.addFeature(new JQLayoutOpenLayoutDivFeature(this));
     }
 
     /**
@@ -221,7 +221,7 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
     @Override
     public void addToggleButton(Component button)
     {
-        button.addFeature(new AddToggleButtonFeature(this, button));
+        button.addFeature(new JQLayoutAddToggleButtonFeature(this, button));
     }
 
     /**

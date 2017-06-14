@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,32 +16,44 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events;
 
+import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 
 /**
- * This maps an Open Div feature to a component
+ * Disables closing the pane
  *
  * @author MMagon
  * @since 23 Sep 2013
  * @version 1.0
  */
-public class OpenLayoutDivFeature extends Feature<JavaScriptPart, OpenLayoutDivFeature>
+public class JQLayoutDisableClosableFeature extends Feature<JavaScriptPart, Feature>
 {
 
-    private JQLayoutDiv divToOpen;
+    private static final long serialVersionUID = 1L;
+    /**
+     * The layout div to open
+     */
+    private final JQLayoutDiv divToOpen;
 
-    public OpenLayoutDivFeature(JQLayoutDiv layoutDiv)
+    /**
+     * Adds a pin button for the layout side to the given component
+     *
+     * @param layoutDiv
+     * @param pinButton
+     */
+    public JQLayoutDisableClosableFeature(JQLayoutDiv layoutDiv, Component pinButton)
     {
-        super("JWLayoutOpenDiv");
+        super("JQLayoutDisableClosableFeature");
         divToOpen = layoutDiv;
+
     }
 
     @Override
     public void assignFunctionsToComponent()
     {
-        String openDivFunction = divToOpen.getLayout().getVariableID() + ".open('" + divToOpen.getArea().name().toLowerCase() + "');";
+        String openDivFunction = divToOpen.getLayout().getVariableID() + ".disableClosable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
         addQuery(openDivFunction);
     }
 }

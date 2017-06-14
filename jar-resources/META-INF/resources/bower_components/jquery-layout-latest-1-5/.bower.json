@@ -1,6 +1,6 @@
 {
   "name": "jquery-layout-latest-1-5",
-  "version": "1.5.13",
+  "version": "1.5.14",
   "authors": [
     "Copyright (c) 2014 Kevin Dalman (http://jquery-dev.com) Based on work by Fabrizio Balliano (http://www.fabrizioballiano.net)"
   ],
@@ -24,13 +24,13 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^2.0.0"
+    "jquery": "^3.0.0"
   },
-  "_release": "1.5.13",
+  "_release": "1.5.14",
   "_resolution": {
     "type": "version",
-    "tag": "v1.5.13",
-    "commit": "7b3ff9d6001bd918c58b7512669d2d58262b39e7"
+    "tag": "v1.5.14",
+    "commit": "1bee1b0a01bc9807b78c49c1c1e76772e36bc655"
   },
   "_source": "git://git.code.sf.net/p/jwebswing/jquery-ui-layout-jw",
   "_target": "^1.5.12",

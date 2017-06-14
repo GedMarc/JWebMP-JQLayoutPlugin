@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,11 +16,16 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 
-import za.co.mmagon.jwebswing.base.html.interfaces.*;
+import za.co.mmagon.jwebswing.Component;
+import za.co.mmagon.jwebswing.base.html.interfaces.LayoutHandler;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddPinButtonFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddToggleButtonFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutCloseLayoutDivFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
 
 /**
  * A Clean Interface for the JQLayout Component
- * 
+ *
  * @author GedMarc
  * @since Oct 30, 2016
  * @version 1.0
@@ -120,5 +125,49 @@ public interface IJQLayout extends LayoutHandler
      * @param westDiv The new center panel
      */
     void setWest(JQLayoutDiv westDiv);
-    
+
+    /**
+     * Creates a toggle button for the given pane on the component.
+     * <p>
+     * The feature is added to the component
+     *
+     * @param component
+     * @param pane
+     * @return
+     */
+    public JQLayoutAddToggleButtonFeature createToggleButton(Component component, JQLayoutArea pane);
+
+    /**
+     * Creates a toggle button for the given pane on the component.
+     * <p>
+     * The feature is added to the component
+     *
+     * @param component
+     * @param pane
+     * @return
+     */
+    public JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane);
+
+    /**
+     * Makes the component a close pane button
+     * <p>
+     * The feature is added to the component
+     *
+     * @param component
+     * @param pane
+     * @return
+     */
+    public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane);
+
+    /**
+     * Makes the component an open pane button
+     * <p>
+     * The feature is added to the component
+     *
+     * @param component
+     * @param pane
+     * @return
+     */
+    public JQLayoutOpenLayoutDivFeature createOpenButton(Component component, JQLayoutArea pane);
+
 }
