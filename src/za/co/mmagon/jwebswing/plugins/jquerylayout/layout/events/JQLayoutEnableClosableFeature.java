@@ -28,7 +28,7 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  * @since 23 Sep 2013
  * @version 1.0
  */
-public class JQLayoutEnableClosableFeature extends Feature<JavaScriptPart, Feature>
+public class JQLayoutEnableClosableFeature extends Feature<JavaScriptPart, JQLayoutEnableClosableFeature>
 {
 
     private static final long serialVersionUID = 1L;
