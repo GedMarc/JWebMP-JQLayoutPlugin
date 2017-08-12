@@ -27,147 +27,151 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutOpenLay
  * A Clean Interface for the JQLayout Component
  *
  * @author GedMarc
- * @since Oct 30, 2016
  * @version 1.0
- *
+ * @since Oct 30, 2016
  */
 public interface IJQLayout extends LayoutHandler
 {
 
-    /**
-     * Returns the center pane
-     *
-     * @return A Layout pane on the center div
-     */
-    JQLayoutDiv getCenter();
+	/**
+	 * Returns the center pane
+	 *
+	 * @return A Layout pane on the center div
+	 */
+	JQLayoutDiv getCenter();
 
-    /**
-     * Sets the center pane
-     *
-     * @param centerDiv The new center panel
-     */
-    void setCenter(JQLayoutDiv centerDiv);
+	/**
+	 * Sets the center pane
+	 *
+	 * @param centerDiv The new center panel
+	 */
+	void setCenter(JQLayoutDiv centerDiv);
 
-    /**
-     * Returns the center pane
-     *
-     * @return A Layout pane on the center div
-     */
-    JQLayoutDiv getEast();
+	/**
+	 * Returns the center pane
+	 *
+	 * @return A Layout pane on the center div
+	 */
+	JQLayoutDiv getEast();
 
-    /**
-     * Sets the center pane
-     *
-     * @param eastDiv The new center panel
-     */
-    void setEast(JQLayoutDiv eastDiv);
+	/**
+	 * Sets the center pane
+	 *
+	 * @param eastDiv The new center panel
+	 */
+	void setEast(JQLayoutDiv eastDiv);
 
-    /**
-     * Returns the center pane
-     *
-     * @return A Layout pane on the center div
-     */
-    JQLayoutDiv getNorth();
+	/**
+	 * Returns the center pane
+	 *
+	 * @return A Layout pane on the center div
+	 */
+	JQLayoutDiv getNorth();
 
-    /**
-     * Sets the north pane
-     *
-     * @param centerDiv The new center panel
-     */
-    void setNorth(JQLayoutDiv centerDiv);
+	/**
+	 * Sets the north pane
+	 *
+	 * @param centerDiv The new center panel
+	 */
+	void setNorth(JQLayoutDiv centerDiv);
 
-    /**
-     * Returns the layout options
-     * <p>
-     * @return
-     */
-    JQLayoutOptions getOptions();
+	/**
+	 * Returns the layout options
+	 * <p>
+	 *
+	 * @return
+	 */
+	JQLayoutOptions getOptions();
 
-    /**
-     * Returns the south pane
-     *
-     * @return A Layout pane on the center div
-     */
-    JQLayoutDiv getSouth();
+	/**
+	 * Returns the south pane
+	 *
+	 * @return A Layout pane on the center div
+	 */
+	JQLayoutDiv getSouth();
 
-    /**
-     * Sets the south pane
-     *
-     * @param southDiv The new center panel
-     */
-    void setSouth(JQLayoutDiv southDiv);
+	/**
+	 * Sets the south pane
+	 *
+	 * @param southDiv The new center panel
+	 */
+	void setSouth(JQLayoutDiv southDiv);
 
-    /**
-     * Returns the variable ID
-     *
-     * @return
-     */
-    String getVariableID();
+	/**
+	 * Returns the variable ID
+	 *
+	 * @return
+	 */
+	String getVariableID();
 
-    /**
-     * Sets the variable ID.
-     * Adds 'lay_' in front and takes all hyphens (-) into underscores (_)
-     *
-     * @param variableID
-     */
-    void setVariableID(String variableID);
+	/**
+	 * Sets the variable ID.
+	 * Adds 'lay_' in front and takes all hyphens (-) into underscores (_)
+	 *
+	 * @param variableID
+	 */
+	void setVariableID(String variableID);
 
-    /**
-     * Returns the center pane
-     *
-     * @return A Layout pane on the center div
-     */
-    JQLayoutDiv getWest();
+	/**
+	 * Returns the center pane
+	 *
+	 * @return A Layout pane on the center div
+	 */
+	JQLayoutDiv getWest();
 
-    /**
-     * Sets the center pane
-     *
-     * @param westDiv The new center panel
-     */
-    void setWest(JQLayoutDiv westDiv);
+	/**
+	 * Sets the center pane
+	 *
+	 * @param westDiv The new center panel
+	 */
+	void setWest(JQLayoutDiv westDiv);
 
-    /**
-     * Creates a toggle button for the given pane on the component.
-     * <p>
-     * The feature is added to the component
-     *
-     * @param component
-     * @param pane
-     * @return
-     */
-    public JQLayoutAddToggleButtonFeature createToggleButton(Component component, JQLayoutArea pane);
+	/**
+	 * Creates a toggle button for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
+	 */
+	public JQLayoutAddToggleButtonFeature createToggleButton(Component component, JQLayoutArea pane);
 
-    /**
-     * Creates a toggle button for the given pane on the component.
-     * <p>
-     * The feature is added to the component
-     *
-     * @param component
-     * @param pane
-     * @return
-     */
-    public JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane);
+	/**
+	 * Creates a toggle button for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
+	 */
+	public JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane);
 
-    /**
-     * Makes the component a close pane button
-     * <p>
-     * The feature is added to the component
-     *
-     * @param component
-     * @param pane
-     * @return
-     */
-    public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane);
+	/**
+	 * Makes the component a close pane button
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
+	 */
+	public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane);
 
-    /**
-     * Makes the component an open pane button
-     * <p>
-     * The feature is added to the component
-     *
-     * @param component
-     * @param pane
-     * @return
-     */
-    public JQLayoutOpenLayoutDivFeature createOpenButton(Component component, JQLayoutArea pane);
+	/**
+	 * Makes the component an open pane button
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
+	 */
+	public JQLayoutOpenLayoutDivFeature createOpenButton(Component component, JQLayoutArea pane);
 
 }

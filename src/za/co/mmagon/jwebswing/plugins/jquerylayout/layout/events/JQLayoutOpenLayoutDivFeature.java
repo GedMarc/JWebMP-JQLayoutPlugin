@@ -17,31 +17,31 @@
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events;
 
 import za.co.mmagon.jwebswing.Feature;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 
 /**
  * This maps an Open Div feature to a component
  *
  * @author MMagon
- * @since 23 Sep 2013
  * @version 1.0
+ * @since 23 Sep 2013
  */
 public class JQLayoutOpenLayoutDivFeature extends Feature<JavaScriptPart, JQLayoutOpenLayoutDivFeature>
 {
 
-    private JQLayoutDiv divToOpen;
+	private JQLayoutDiv divToOpen;
 
-    public JQLayoutOpenLayoutDivFeature(JQLayoutDiv layoutDiv)
-    {
-        super("JWLayoutOpenDiv");
-        divToOpen = layoutDiv;
-    }
+	public JQLayoutOpenLayoutDivFeature(JQLayoutDiv layoutDiv)
+	{
+		super("JWLayoutOpenDiv");
+		divToOpen = layoutDiv;
+	}
 
-    @Override
-    public void assignFunctionsToComponent()
-    {
-        String openDivFunction = divToOpen.getLayout().getVariableID() + ".open('" + divToOpen.getArea().name().toLowerCase() + "');";
-        addQuery(openDivFunction);
-    }
+	@Override
+	public void assignFunctionsToComponent()
+	{
+		String openDivFunction = divToOpen.getLayout().getVariableID() + ".open('" + divToOpen.getArea().name().toLowerCase() + "');";
+		addQuery(openDivFunction);
+	}
 }

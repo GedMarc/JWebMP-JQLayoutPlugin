@@ -25,35 +25,35 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  * Will enable resizing on a pane layout
  *
  * @author MMagon
- * @since 23 Sep 2013
  * @version 1.0
+ * @since 23 Sep 2013
  */
 public class JQLayoutEnableResizableFeature extends Feature<JavaScriptPart, JQLayoutEnableResizableFeature>
 {
 
-    private static final long serialVersionUID = 1L;
-    /**
-     * The layout div to open
-     */
-    private final JQLayoutDiv divToOpen;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * The layout div to open
+	 */
+	private final JQLayoutDiv divToOpen;
 
-    /**
-     * Adds a pin button for the layout side to the given component
-     *
-     * @param layoutDiv
-     * @param pinButton
-     */
-    public JQLayoutEnableResizableFeature(JQLayoutDiv layoutDiv, Component pinButton)
-    {
-        super("JQLayoutEnableResizableFeature");
-        divToOpen = layoutDiv;
+	/**
+	 * Adds a pin button for the layout side to the given component
+	 *
+	 * @param layoutDiv
+	 * @param pinButton
+	 */
+	public JQLayoutEnableResizableFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	{
+		super("JQLayoutEnableResizableFeature");
+		divToOpen = layoutDiv;
 
-    }
+	}
 
-    @Override
-    public void assignFunctionsToComponent()
-    {
-        String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableResizable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
-        addQuery(openDivFunction);
-    }
+	@Override
+	public void assignFunctionsToComponent()
+	{
+		String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableResizable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
+		addQuery(openDivFunction);
+	}
 }

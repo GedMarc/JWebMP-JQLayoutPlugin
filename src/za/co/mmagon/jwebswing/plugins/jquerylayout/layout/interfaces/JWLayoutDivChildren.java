@@ -19,10 +19,9 @@ package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
 
 /**
- *
  * @author GedMarc
  */
 public interface JWLayoutDivChildren extends GlobalChildren
 {
-    
+
 }

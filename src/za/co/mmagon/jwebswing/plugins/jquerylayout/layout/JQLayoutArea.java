@@ -20,75 +20,75 @@ package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
  * All the panes of a border layout
  *
  * @author MMagon
- * @since 16 Jul 2013
  * @version 1.0
+ * @since 16 Jul 2013
  */
 public enum JQLayoutArea
 {
-    /**
-     * The bottom pane Known issue with IOS 5 and a floating pane. Global issue, blame IOS
-     */
-    South(JQLayoutCSSThemeBlockNames.UI_Layout_South),
-    /**
-     * The north pane
-     */
-    North(JQLayoutCSSThemeBlockNames.UI_Layout_North),
-    /**
-     * The east pane
-     */
-    East(JQLayoutCSSThemeBlockNames.UI_Layout_East),
-    /**
-     * The west pane
-     */
-    West(JQLayoutCSSThemeBlockNames.UI_Layout_West),
-    /**
-     * The center pane
-     */
-    Center(JQLayoutCSSThemeBlockNames.UI_Layout_Center);
+	/**
+	 * The bottom pane Known issue with IOS 5 and a floating pane. Global issue, blame IOS
+	 */
+	South(JQLayoutCSSThemeBlockNames.UI_Layout_South),
+	/**
+	 * The north pane
+	 */
+	North(JQLayoutCSSThemeBlockNames.UI_Layout_North),
+	/**
+	 * The east pane
+	 */
+	East(JQLayoutCSSThemeBlockNames.UI_Layout_East),
+	/**
+	 * The west pane
+	 */
+	West(JQLayoutCSSThemeBlockNames.UI_Layout_West),
+	/**
+	 * The center pane
+	 */
+	Center(JQLayoutCSSThemeBlockNames.UI_Layout_Center);
 
-    /**
-     * The area class
-     */
-    private JQLayoutCSSThemeBlockNames areaClass;
+	/**
+	 * The area class
+	 */
+	private JQLayoutCSSThemeBlockNames areaClass;
 
-    /**
-     * Constructs a new Layout Area
-     *
-     * @param areaClass
-     */
-    private JQLayoutArea(JQLayoutCSSThemeBlockNames areaClass)
-    {
-        this.areaClass = areaClass;
-    }
+	/**
+	 * Constructs a new Layout Area
+	 *
+	 * @param areaClass
+	 */
+	private JQLayoutArea(JQLayoutCSSThemeBlockNames areaClass)
+	{
+		this.areaClass = areaClass;
+	}
 
-    /**
-     * Sets the class
-     *
-     * @param areaClass
-     */
-    public void setAreaClass(JQLayoutCSSThemeBlockNames areaClass)
-    {
-        this.areaClass = areaClass;
-    }
+	/**
+	 * Returns the actual class for the div
+	 *
+	 * @return
+	 */
+	public JQLayoutCSSThemeBlockNames getAreaClass()
+	{
+		return areaClass;
+	}
 
-    /**
-     * Returns the actual class for the div
-     *
-     * @return
-     */
-    public JQLayoutCSSThemeBlockNames getAreaClass()
-    {
-        return areaClass;
-    }
+	/**
+	 * Sets the class
+	 *
+	 * @param areaClass
+	 */
+	public void setAreaClass(JQLayoutCSSThemeBlockNames areaClass)
+	{
+		this.areaClass = areaClass;
+	}
 
-    /**
-     * The north lowercase
-     *
-     * @return
-     */
-    @Override
-    public String toString()
-    {
-        return name().toLowerCase();
-    }
+	/**
+	 * The north lowercase
+	 *
+	 * @return
+	 */
+	@Override
+	public String toString()
+	{
+		return name().toLowerCase();
+	}
 }

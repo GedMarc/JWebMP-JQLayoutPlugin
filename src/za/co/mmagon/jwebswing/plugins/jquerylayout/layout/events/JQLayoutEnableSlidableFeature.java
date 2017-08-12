@@ -25,35 +25,35 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  * Adds a pin button for the layout side to the given component
  *
  * @author MMagon
- * @since 23 Sep 2013
  * @version 1.0
+ * @since 23 Sep 2013
  */
 public class JQLayoutEnableSlidableFeature extends Feature<JavaScriptPart, JQLayoutEnableSlidableFeature>
 {
 
-    private static final long serialVersionUID = 1L;
-    /**
-     * The layout div to open
-     */
-    private final JQLayoutDiv divToOpen;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * The layout div to open
+	 */
+	private final JQLayoutDiv divToOpen;
 
-    /**
-     * Adds a pin button for the layout side to the given component
-     *
-     * @param layoutDiv
-     * @param pinButton
-     */
-    public JQLayoutEnableSlidableFeature(JQLayoutDiv layoutDiv, Component pinButton)
-    {
-        super("JQLayoutEnableSlidableFeature");
-        setComponent(pinButton);
-        divToOpen = layoutDiv;
-    }
+	/**
+	 * Adds a pin button for the layout side to the given component
+	 *
+	 * @param layoutDiv
+	 * @param pinButton
+	 */
+	public JQLayoutEnableSlidableFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	{
+		super("JQLayoutEnableSlidableFeature");
+		setComponent(pinButton);
+		divToOpen = layoutDiv;
+	}
 
-    @Override
-    public void assignFunctionsToComponent()
-    {
-        String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableSlidable(\"" + divToOpen.getArea().toString().toLowerCase() + "\");" + getNewLine();
-        addQuery(openDivFunction);
-    }
+	@Override
+	public void assignFunctionsToComponent()
+	{
+		String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableSlidable(\"" + divToOpen.getArea().toString().toLowerCase() + "\");" + getNewLine();
+		addQuery(openDivFunction);
+	}
 }

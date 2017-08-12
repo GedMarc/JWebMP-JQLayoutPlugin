@@ -18,11 +18,12 @@ package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 
 /**
  * Defines all the attributes allowed on the JWLayout component
+ *
  * @author MMagon
- * @since 23 Sep 2013
  * @version 1.0
+ * @since 23 Sep 2013
  */
-public enum JQLayoutAttributes 
+public enum JQLayoutAttributes
 {
-    JWType;
+	JWType;
 }

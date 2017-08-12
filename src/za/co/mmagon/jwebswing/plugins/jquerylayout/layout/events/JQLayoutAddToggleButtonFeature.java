@@ -25,27 +25,27 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  * Sets the given component as a button that will toggle the open close state of the layout
  *
  * @author MMagon
- * @since 23 Sep 2013
  * @version 1.0
+ * @since 23 Sep 2013
  */
 public class JQLayoutAddToggleButtonFeature extends Feature<JavaScriptPart, JQLayoutAddToggleButtonFeature>
 {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private final JQLayoutDiv divToOpen;
+	private final JQLayoutDiv divToOpen;
 
-    public JQLayoutAddToggleButtonFeature(JQLayoutDiv layoutDiv, Component pinButton)
-    {
-        super("JWLayoutPinButtonFeature");
-        setComponent(pinButton);
-        divToOpen = layoutDiv;
-    }
+	public JQLayoutAddToggleButtonFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	{
+		super("JWLayoutPinButtonFeature");
+		setComponent(pinButton);
+		divToOpen = layoutDiv;
+	}
 
-    @Override
-    public void assignFunctionsToComponent()
-    {
-        String openDivFunction = divToOpen.getLayout().getVariableID() + ".addToggleBtn('#" + getComponent().getID() + "',\"" + divToOpen.getArea().toString().toLowerCase() + "\");" + getNewLine();
-        addQuery(openDivFunction);
-    }
+	@Override
+	public void assignFunctionsToComponent()
+	{
+		String openDivFunction = divToOpen.getLayout().getVariableID() + ".addToggleBtn('#" + getComponent().getID() + "',\"" + divToOpen.getArea().toString().toLowerCase() + "\");" + getNewLine();
+		addQuery(openDivFunction);
+	}
 }

@@ -21,7 +21,7 @@ package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces;
  *
  * @author mmagon
  * @since 2013/07/17
- *
  */
-public interface JWLayoutChildren {
+public interface JWLayoutChildren
+{
 }

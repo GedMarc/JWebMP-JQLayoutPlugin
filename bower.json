@@ -17,6 +17,6 @@
     "tests"
   ],
   "dependencies": {
-	"jquery-layout-latest-1-5": "jquery-ui-latest-jwebswing#^1.5.12"
+    "jquery-layout-latest-1-5": "jquery-ui-latest-jwebswing#^1.5.12"
   }
 }

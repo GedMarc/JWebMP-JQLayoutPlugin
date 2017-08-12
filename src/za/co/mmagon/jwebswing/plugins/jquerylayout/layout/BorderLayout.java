@@ -20,21 +20,23 @@ import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
 
 /**
  * Another name for the JQuery UI Layout
+ *
  * @author GedMarc
- * @since 22 Dec 2016
  * @version 1.0
- * 
+ * @since 22 Dec 2016
  */
 public class BorderLayout extends JQLayout
 {
 
-    private static final long serialVersionUID = 1L;
-    /**
-     * Sets a component as a border layout container
-     * @param component 
-     */
-    public BorderLayout (ComponentHierarchyBase component)
-    {
-        super(component);
-    }
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Sets a component as a border layout container
+	 *
+	 * @param component
+	 */
+	public BorderLayout(ComponentHierarchyBase component)
+	{
+		super(component);
+	}
 }

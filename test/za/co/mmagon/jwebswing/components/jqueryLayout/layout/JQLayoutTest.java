@@ -22,24 +22,23 @@ import za.co.mmagon.jwebswing.Page;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayout;
 
 /**
- *
  * @author ged_m
  */
 public class JQLayoutTest extends BaseTestClass
 {
 
-    public JQLayoutTest()
-    {
-    }
+	public JQLayoutTest()
+	{
+	}
 
-    @Test
-    public void testJQLayout()
-    {
-        Page p = getPage();
-        JQLayout layout = new JQLayout(p.getBody());
+	@Test
+	public void testJQLayout()
+	{
+		Page p = getPage();
+		JQLayout layout = new JQLayout(p.getBody());
 
-        System.out.println(p.toString(true));
+		System.out.println(p.toString(true));
 //        System.out.println(p);
-    }
+	}
 
 }

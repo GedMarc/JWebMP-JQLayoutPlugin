@@ -25,35 +25,35 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  * Adds a pin button for the layout side to the given component
  *
  * @author MMagon
- * @since 23 Sep 2013
  * @version 1.0
+ * @since 23 Sep 2013
  */
 public class JQLayoutEnableClosableFeature extends Feature<JavaScriptPart, JQLayoutEnableClosableFeature>
 {
 
-    private static final long serialVersionUID = 1L;
-    /**
-     * The layout div to open
-     */
-    private final JQLayoutDiv divToOpen;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * The layout div to open
+	 */
+	private final JQLayoutDiv divToOpen;
 
-    /**
-     * Adds a pin button for the layout side to the given component
-     *
-     * @param layoutDiv
-     * @param pinButton
-     */
-    public JQLayoutEnableClosableFeature(JQLayoutDiv layoutDiv, Component pinButton)
-    {
-        super("JQLayoutEnableClosableFeature");
-        divToOpen = layoutDiv;
+	/**
+	 * Adds a pin button for the layout side to the given component
+	 *
+	 * @param layoutDiv
+	 * @param pinButton
+	 */
+	public JQLayoutEnableClosableFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	{
+		super("JQLayoutEnableClosableFeature");
+		divToOpen = layoutDiv;
 
-    }
+	}
 
-    @Override
-    public void assignFunctionsToComponent()
-    {
-        String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableClosable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
-        addQuery(openDivFunction);
-    }
+	@Override
+	public void assignFunctionsToComponent()
+	{
+		String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableClosable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
+		addQuery(openDivFunction);
+	}
 }
