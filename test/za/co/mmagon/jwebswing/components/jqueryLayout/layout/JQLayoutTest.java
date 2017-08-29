@@ -36,7 +36,6 @@ public class JQLayoutTest extends BaseTestClass
 	{
 		Page p = getPage();
 		JQLayout layout = new JQLayout(p.getBody());
-
 		System.out.println(p.toString(true));
 //        System.out.println(p);
 	}
