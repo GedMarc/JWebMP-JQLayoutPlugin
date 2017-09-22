@@ -129,6 +129,7 @@ public class JQLayoutDefaultOptions extends JavaScriptPart
 	@JsonRawValue(value = true)
 	@JsonProperty(value = "onresizeall_end")
 	private String onResize;
+	
 	/**
 	 * Constructs a new Layout Options object
 	 * <p>
