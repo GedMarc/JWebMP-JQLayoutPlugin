@@ -2848,7 +2848,7 @@
 
         return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 
-    };
+    }
     var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 
 
@@ -7880,8 +7880,8 @@
                     }
 
                     // If the element has a class name or if we're passed `false`,
-                    // then remove the whole classname (if there was one, the above saved it).
-                    // Otherwise bring back whatever was previously saved (if anything),
+                    // then remove the whole classname (if there was one, the above
+                    // Otherwise bring back whatever was previously
                     // falling back to the empty string if nothing was stored.
                     if (this.setAttribute) {
                         this.setAttribute("class",

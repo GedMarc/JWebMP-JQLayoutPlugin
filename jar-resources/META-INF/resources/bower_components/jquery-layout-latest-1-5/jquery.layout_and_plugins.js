@@ -3847,13 +3847,13 @@
                 if (pane === "center")
                     return; // validate
                 if (s.isClosed || s.isResizing)
-                    return; // skip if already closed OR in process of resizing
+                     // skip if already closed OR in process of resizing
                 else if (o.slideTrigger_close === "click")
                     close_NOW(); // close immediately onClick
                 else if (o.preventQuickSlideClose && s.isMoving)
-                    return; // handle Chrome quick-close on slide-open
+                     // handle Chrome quick-close on slide-open
                 else if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
-                    return; // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
+                     // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
                 else if (evt) // trigger = mouseleave - use a delay
                 // 1 sec delay if 'opening', else .3 sec
                     timer.set(pane + "_closeSlider", close_NOW, max(o.slideDelay_close, delay));
@@ -5040,7 +5040,7 @@
                 _runCallbacks("onswap_end", pane1);
                 _runCallbacks("onswap_end", pane2);
 
-                return;
+
 
                 function copy(n) { // n = pane
                     var
@@ -5237,7 +5237,7 @@
 
             // if pane is raised by sliding or resizing, or its closed, then abort
             if (s.isSliding || s.isResizing || s.isClosed) {
-                s.cssSaved = false;
+                s.css;
                 return;
             }
 
@@ -5263,7 +5263,7 @@
             }
 
             // save the current overflow settings - even if blank!
-            s.cssSaved = curCSS;
+            s.css;
 
             // apply new CSS to raise zIndex and, if necessary, make overflow 'visible'
             $P.css(newCSS);
@@ -5302,7 +5302,7 @@
             var
                 pane = $P.data("layoutEdge")
                 , s = state[pane]
-                , CSS = s.cssSaved || {}
+                , CSS = s.css
             ;
             // reset the zIndex
             if (!s.isSliding && !s.isResizing)
@@ -5312,7 +5312,7 @@
             $P.css(CSS);
 
             // clear var
-            s.cssSaved = false;
+            s.css
         }
 
         /*
@@ -5574,10 +5574,10 @@ jQuery.cookie = function (name, value, options) {
      * @example myLayout.loadCookie();
      * @example myLayout.deleteCookie();
      * @example var JSON = myLayout.readState(); // CURRENT Layout State
-     * @example var JSON = myLayout.readCookie(); // SAVED Layout State (from cookie)
-     * @example var JSON = myLayout.state.stateData; // LAST LOADED Layout State (cookie saved in layout.state hash)
+     * @example var JSON = myLayout.readCookie(); //
+     * @example var JSON = myLayout.state.stateData; // LAST LOADED Layout State (cookie 
      *
-     * CUSTOM STATE-MANAGEMENT (eg, saved in a database)
+     * CUSTOM STATE-MANAGEMENT (eg, 
      * @example var JSON = myLayout.readState( "west.isClosed,north.size,south.isHidden" );
      * @example myLayout.loadState( JSON );
      */
@@ -5702,7 +5702,7 @@ jQuery.cookie = function (name, value, options) {
                     if (o[pane])
                         delete o[pane].children;
                 });
-                // update CURRENT layout-options with saved state data
+                // update CURRENT layout-options with 
                 $.extend(true, inst.options, o);
             } else {
                 /*

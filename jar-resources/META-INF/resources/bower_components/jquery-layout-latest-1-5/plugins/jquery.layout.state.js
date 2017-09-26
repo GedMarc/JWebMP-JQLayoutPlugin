@@ -34,10 +34,10 @@
  *	@example myLayout.loadCookie();
  *	@example myLayout.deleteCookie();
  *	@example var JSON = myLayout.readState();	// CURRENT Layout State
- *	@example var JSON = myLayout.readCookie();	// SAVED Layout State (from cookie)
- *	@example var JSON = myLayout.state.stateData;	// LAST LOADED Layout State (cookie saved in layout.state hash)
+ *	@example var JSON = myLayout.readCookie();	// 
+ *	@example var JSON = myLayout.state.stateData;	// LAST LOADED Layout State (cookie 
  *
- *	CUSTOM STATE-MANAGEMENT (eg, saved in a database)
+ *	CUSTOM STATE-MANAGEMENT (eg, 
  *	@example var JSON = myLayout.readState( "west.isClosed,north.size,south.isHidden" );
  *	@example myLayout.loadState( JSON );
  */
@@ -274,7 +274,7 @@
                     D[i++] = '"' + k + '":' + v;
                 }
                 return '{' + D.join(',') + '}';
-            };
+            }
         }
 
         /**
