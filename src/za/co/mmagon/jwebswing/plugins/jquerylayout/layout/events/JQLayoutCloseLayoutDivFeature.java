@@ -29,24 +29,51 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  */
 public class JQLayoutCloseLayoutDivFeature extends Feature<JavaScriptPart, JQLayoutCloseLayoutDivFeature>
 {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private final JQLayoutDiv divToClose;
-	
+
 	public JQLayoutCloseLayoutDivFeature(JQLayoutDiv layoutDiv)
 	{
 		super("JWLayoutOpenDiv");
 		divToClose = layoutDiv;
-		
+
 	}
-	
+
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		
 		String openDivFunction = divToClose.getLayout().getVariableID() + ".close('" + divToClose.getArea().name().toLowerCase() + "');";
 		addQuery(openDivFunction);
-		
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayoutCloseLayoutDivFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayoutCloseLayoutDivFeature that = (JQLayoutCloseLayoutDivFeature) o;
+
+		return divToClose != null ? divToClose.equals(that.divToClose) : that.divToClose == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (divToClose != null ? divToClose.hashCode() : 0);
+		return result;
 	}
 }

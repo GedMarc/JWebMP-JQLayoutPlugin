@@ -57,4 +57,33 @@ public class JQLayoutAddPinButtonFeature extends Feature<JavaScriptPart, JQLayou
 		String openDivFunction = divToOpen.getLayout().getVariableID() + ".addPinBtn('#" + getComponent().getID() + "','" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
 		addQuery(openDivFunction);
 	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayoutAddPinButtonFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayoutAddPinButtonFeature that = (JQLayoutAddPinButtonFeature) o;
+
+		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
+		return result;
+	}
 }

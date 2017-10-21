@@ -16,7 +16,6 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events;
 
-import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
@@ -28,6 +27,7 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  * @version 1.0
  * @since 23 Sep 2013
  */
+@SuppressWarnings("unused")
 public class JQLayoutEnableResizableFeature extends Feature<JavaScriptPart, JQLayoutEnableResizableFeature>
 {
 
@@ -43,7 +43,7 @@ public class JQLayoutEnableResizableFeature extends Feature<JavaScriptPart, JQLa
 	 * @param layoutDiv
 	 * @param pinButton
 	 */
-	public JQLayoutEnableResizableFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	public JQLayoutEnableResizableFeature(JQLayoutDiv layoutDiv)
 	{
 		super("JQLayoutEnableResizableFeature");
 		divToOpen = layoutDiv;
@@ -55,5 +55,34 @@ public class JQLayoutEnableResizableFeature extends Feature<JavaScriptPart, JQLa
 	{
 		String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableResizable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
 		addQuery(openDivFunction);
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayoutEnableResizableFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayoutEnableResizableFeature that = (JQLayoutEnableResizableFeature) o;
+
+		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
+		return result;
 	}
 }

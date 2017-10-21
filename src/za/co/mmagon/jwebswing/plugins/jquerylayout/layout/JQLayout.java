@@ -27,6 +27,7 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddPinB
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddToggleButtonFeature;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutCloseLayoutDivFeature;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces.IJQLayout;
 import za.co.mmagon.logger.LogFactory;
 
 import java.util.logging.Logger;
@@ -40,7 +41,7 @@ import java.util.logging.Logger;
  */
 @ComponentInformation(name = "JQuery UI Layout", description = "?The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.",
 		url = "http://layout.jquery-dev.com/")
-public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQLayout
+public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J> implements IJQLayout
 {
 
 	private static final Logger log = LogFactory.getInstance().getLogger("JWLayout");
@@ -435,4 +436,62 @@ public class JQLayout extends Feature<JQLayoutOptions, JQLayout> implements IJQL
 		return atfb;
 	}
 
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayout))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayout<?> jqLayout = (JQLayout<?>) o;
+
+		if (getVariableID() != null ? !getVariableID().equals(jqLayout.getVariableID()) : jqLayout.getVariableID() != null)
+		{
+			return false;
+		}
+		if (getOptions() != null ? !getOptions().equals(jqLayout.getOptions()) : jqLayout.getOptions() != null)
+		{
+			return false;
+		}
+		if (getCenter() != null ? !getCenter().equals(jqLayout.getCenter()) : jqLayout.getCenter() != null)
+		{
+			return false;
+		}
+		if (getNorth() != null ? !getNorth().equals(jqLayout.getNorth()) : jqLayout.getNorth() != null)
+		{
+			return false;
+		}
+		if (getEast() != null ? !getEast().equals(jqLayout.getEast()) : jqLayout.getEast() != null)
+		{
+			return false;
+		}
+		if (getWest() != null ? !getWest().equals(jqLayout.getWest()) : jqLayout.getWest() != null)
+		{
+			return false;
+		}
+		return getSouth() != null ? getSouth().equals(jqLayout.getSouth()) : jqLayout.getSouth() == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (getVariableID() != null ? getVariableID().hashCode() : 0);
+		result = 31 * result + (getOptions() != null ? getOptions().hashCode() : 0);
+		result = 31 * result + (getCenter() != null ? getCenter().hashCode() : 0);
+		result = 31 * result + (getNorth() != null ? getNorth().hashCode() : 0);
+		result = 31 * result + (getEast() != null ? getEast().hashCode() : 0);
+		result = 31 * result + (getWest() != null ? getWest().hashCode() : 0);
+		result = 31 * result + (getSouth() != null ? getSouth().hashCode() : 0);
+		return result;
+	}
 }

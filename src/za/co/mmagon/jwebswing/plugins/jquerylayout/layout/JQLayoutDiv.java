@@ -30,6 +30,7 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddPinB
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddToggleButtonFeature;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutCloseLayoutDivFeature;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces.IJQLayoutDiv;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces.JWLayoutDivChildren;
 
 import java.util.ArrayList;
@@ -50,6 +51,9 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 * Version 1
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private static final String UiFooterString = "ui-layout-footer";
+
 	/**
 	 * The layout area of this particular Layout Div
 	 */
@@ -78,9 +82,12 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 * Constructs a new Border Layout Div
 	 * <p>
 	 *
-	 * @param layout     The layout applying to
-	 * @param area       The area this div is for
-	 * @param contentDiv The content div. Never null please
+	 * @param layout
+	 * 		The layout applying to
+	 * @param area
+	 * 		The area this div is for
+	 * @param contentDiv
+	 * 		The content div. Never null please
 	 */
 	public JQLayoutDiv(JQLayout layout, JQLayoutArea area, Div contentDiv)
 	{
@@ -136,7 +143,6 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	{
 		getHeaders().add(headerDiv);
 		headerDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Header.toString());
-		//getChildren().add(headers.size() - 1, headerDiv);
 	}
 
 	/**
@@ -183,39 +189,29 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	}
 
 	/**
-	 * Adds the close event to the component
-	 * <p>
-	 *
-	 * @param button The button to add a close event to
-	 */
-	@Override
-	public void addCloseButton(Component button)
-	{
-		button.addFeature(new JQLayoutCloseLayoutDivFeature(this));
-	}
-
-	/**
 	 * Adds the open event to a component
 	 * <p>
 	 *
-	 * @param button The component to add the open event to
-	 */
-	@Override
-	public void addOpenButton(Component button)
-	{
-		button.addFeature(new JQLayoutOpenLayoutDivFeature(this));
-	}
-
-	/**
-	 * Adds the open event to a component
-	 * <p>
-	 *
-	 * @param button The component to add the open event to
+	 * @param button
+	 * 		The component to add the open event to
 	 */
 	@Override
 	public void addToggleButton(Component button)
 	{
 		button.addFeature(new JQLayoutAddToggleButtonFeature(this, button));
+	}
+
+	/**
+	 * Adds the close event to the component
+	 * <p>
+	 *
+	 * @param button
+	 * 		The button to add a close event to
+	 */
+	@Override
+	public void addCloseButton(Component button)
+	{
+		button.addFeature(new JQLayoutCloseLayoutDivFeature(this));
 	}
 
 	/**
@@ -230,8 +226,23 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 		if (footerDiv != null)
 		{
 			getFooters().add(footerDiv);
-			footerDiv.addClass("ui-layout-footer");
+			footerDiv.addClass(UiFooterString);
 		}
+	}
+
+	/**
+	 * Adds the footer
+	 * <p>
+	 *
+	 * @param footerDivString
+	 */
+	@Override
+	public void addFooter(String footerDivString)
+	{
+		Div headerDiv = new Div();
+		headerDiv.add(footerDivString);
+		headerDiv.addClass(UiFooterString);
+		getFooters().add(headerDiv);
 	}
 
 	/**
@@ -250,39 +261,6 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	}
 
 	/**
-	 * Sets the footer collection
-	 *
-	 * @param footers
-	 */
-	public void setFooters(List<Component> footers)
-	{
-		this.footers = footers;
-		if (footers != null)
-		{
-			footers.forEach(next ->
-			                {
-				                next.addClass("ui-layout-footer");
-			                });
-		}
-	}
-
-	/**
-	 * Adds the footer
-	 * <p>
-	 *
-	 * @param footerDivString
-	 */
-	@Override
-	public void addFooter(String footerDivString)
-	{
-		Div headerDiv = new Div();
-		headerDiv.add(footerDivString);
-		headerDiv.addClass("ui-layout-footer");
-		getFooters().add(headerDiv);
-		//getChildren().add(headerDiv);
-	}
-
-	/**
 	 * Adds the footer header
 	 * <p>
 	 *
@@ -293,9 +271,35 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	{
 		Div headerDiv = new Div();
 		headerDiv.add(footerDivString);
-		headerDiv.addClass("ui-layout-footer");
+		headerDiv.addClass(UiFooterString);
 		getFooters().add(headerDiv);
-		//getChildren().add(headerDiv);
+	}
+
+	/**
+	 * Adds the open event to a component
+	 * <p>
+	 *
+	 * @param button
+	 * 		The component to add the open event to
+	 */
+	@Override
+	public void addOpenButton(Component button)
+	{
+		button.addFeature(new JQLayoutOpenLayoutDivFeature(this));
+	}
+
+	/**
+	 * Sets the footer collection
+	 *
+	 * @param footers
+	 */
+	public void setFooters(List<Component> footers)
+	{
+		this.footers = footers;
+		if (footers != null)
+		{
+			footers.forEach(next -> next.addClass(UiFooterString));
+		}
 	}
 
 	/**
@@ -437,6 +441,55 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	}
 
 	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayoutDiv))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayoutDiv that = (JQLayoutDiv) o;
+
+		if (getArea() != that.getArea())
+		{
+			return false;
+		}
+		if (getHeaders() != null ? !getHeaders().equals(that.getHeaders()) : that.getHeaders() != null)
+		{
+			return false;
+		}
+		if (getFooters() != null ? !getFooters().equals(that.getFooters()) : that.getFooters() != null)
+		{
+			return false;
+		}
+		if (getContentDiv() != null ? !getContentDiv().equals(that.getContentDiv()) : that.getContentDiv() != null)
+		{
+			return false;
+		}
+		return getLayout() != null ? getLayout().equals(that.getLayout()) : that.getLayout() == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (getArea() != null ? getArea().hashCode() : 0);
+		result = 31 * result + (getHeaders() != null ? getHeaders().hashCode() : 0);
+		result = 31 * result + (getFooters() != null ? getFooters().hashCode() : 0);
+		result = 31 * result + (getContentDiv() != null ? getContentDiv().hashCode() : 0);
+		result = 31 * result + (getLayout() != null ? getLayout().hashCode() : 0);
+		return result;
+	}
+
+	@Override
 	public JQLayoutDefaultOptions getOptions()
 	{
 		switch (this.getArea())
@@ -455,4 +508,6 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 				return getLayout().getOptions().getCenter();
 		}
 	}
+
+
 }

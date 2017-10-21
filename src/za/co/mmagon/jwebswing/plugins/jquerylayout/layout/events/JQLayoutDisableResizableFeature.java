@@ -16,7 +16,6 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events;
 
-import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
@@ -41,9 +40,8 @@ public class JQLayoutDisableResizableFeature extends Feature<JavaScriptPart, JQL
 	 * Adds a pin button for the layout side to the given component
 	 *
 	 * @param layoutDiv
-	 * @param pinButton
 	 */
-	public JQLayoutDisableResizableFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	public JQLayoutDisableResizableFeature(JQLayoutDiv layoutDiv)
 	{
 		super("JQLayoutDisableResizableFeature");
 		divToOpen = layoutDiv;
@@ -55,5 +53,34 @@ public class JQLayoutDisableResizableFeature extends Feature<JavaScriptPart, JQL
 	{
 		String openDivFunction = divToOpen.getLayout().getVariableID() + ".disableResizable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
 		addQuery(openDivFunction);
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayoutDisableResizableFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayoutDisableResizableFeature that = (JQLayoutDisableResizableFeature) o;
+
+		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
+		return result;
 	}
 }

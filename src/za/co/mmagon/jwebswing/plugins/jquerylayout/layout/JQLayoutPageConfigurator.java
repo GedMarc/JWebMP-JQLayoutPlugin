@@ -48,9 +48,12 @@ public class JQLayoutPageConfigurator extends PageConfigurator
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Configures the page
+	 */
 	public JQLayoutPageConfigurator()
 	{
-
+		//Nothing Needed
 	}
 
 	@Override

@@ -27,13 +27,33 @@ public class JQLayoutOptions extends JavaScriptPart
 {
 
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * The name of the layout
+	 */
 	private String name;
+	/**
+	 * The global defaults
+	 */
 	private JQLayoutDefaultOptions defaults;
+	/**
+	 * The west entry
+	 */
 	private JQLayoutDefaultOptions west;
+	/**
+	 * The north entry
+	 */
 	private JQLayoutDefaultOptions north;
+	/**
+	 * The east entry
+	 */
 	private JQLayoutDefaultOptions east;
+	/**
+	 * The south entry
+	 */
 	private JQLayoutDefaultOptions south;
+	/**
+	 * The center entry
+	 */
 	private JQLayoutDefaultOptions center;
 
 	/**
@@ -41,7 +61,7 @@ public class JQLayoutOptions extends JavaScriptPart
 	 */
 	public JQLayoutOptions()
 	{
-
+		//Nothing needed
 	}
 
 	/**
@@ -94,7 +114,6 @@ public class JQLayoutOptions extends JavaScriptPart
 		{
 			west = new JQLayoutDefaultOptions();
 		}
-		getDefaults().setOnResize("$.layout.callbacks.resizeJQuery");
 		return west;
 	}
 
@@ -121,7 +140,6 @@ public class JQLayoutOptions extends JavaScriptPart
 		{
 			north = new JQLayoutDefaultOptions();
 		}
-		getDefaults().setOnResize("$.layout.callbacks.resizeJQuery");
 		return north;
 	}
 
@@ -148,7 +166,6 @@ public class JQLayoutOptions extends JavaScriptPart
 		{
 			east = new JQLayoutDefaultOptions();
 		}
-		getDefaults().setOnResize("$.layout.callbacks.resizeJQuery");
 		return east;
 	}
 
@@ -175,7 +192,6 @@ public class JQLayoutOptions extends JavaScriptPart
 		{
 			south = new JQLayoutDefaultOptions();
 		}
-		getDefaults().setOnResize("$.layout.callbacks.resizeJQuery");
 		return south;
 	}
 
@@ -202,7 +218,6 @@ public class JQLayoutOptions extends JavaScriptPart
 		{
 			center = new JQLayoutDefaultOptions();
 		}
-		getDefaults().setOnResize("$.layout.callbacks.resizeJQuery");
 		return center;
 	}
 

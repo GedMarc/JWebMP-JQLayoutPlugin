@@ -28,6 +28,7 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  * @version 1.0
  * @since 23 Sep 2013
  */
+@SuppressWarnings("unused")
 public class JQLayoutDisableSlidableFeature extends Feature<JavaScriptPart, JQLayoutDisableSlidableFeature>
 {
 
@@ -55,5 +56,34 @@ public class JQLayoutDisableSlidableFeature extends Feature<JavaScriptPart, JQLa
 	{
 		String openDivFunction = divToOpen.getLayout().getVariableID() + ".disableSlidable(\"" + divToOpen.getArea().toString().toLowerCase() + "\");" + getNewLine();
 		addQuery(openDivFunction);
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayoutDisableSlidableFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayoutDisableSlidableFeature that = (JQLayoutDisableSlidableFeature) o;
+
+		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
+		return result;
 	}
 }

@@ -27,6 +27,7 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  * @version 1.0
  * @since 23 Sep 2013
  */
+@SuppressWarnings("unused")
 public class JQLayoutOpenLayoutDivFeature extends Feature<JavaScriptPart, JQLayoutOpenLayoutDivFeature>
 {
 
@@ -43,5 +44,34 @@ public class JQLayoutOpenLayoutDivFeature extends Feature<JavaScriptPart, JQLayo
 	{
 		String openDivFunction = divToOpen.getLayout().getVariableID() + ".open('" + divToOpen.getArea().name().toLowerCase() + "');";
 		addQuery(openDivFunction);
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayoutOpenLayoutDivFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayoutOpenLayoutDivFeature that = (JQLayoutOpenLayoutDivFeature) o;
+
+		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
+		return result;
 	}
 }

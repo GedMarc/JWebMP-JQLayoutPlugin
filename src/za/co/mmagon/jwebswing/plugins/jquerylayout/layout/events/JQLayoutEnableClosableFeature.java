@@ -16,7 +16,6 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events;
 
-import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
@@ -28,6 +27,7 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
  * @version 1.0
  * @since 23 Sep 2013
  */
+@SuppressWarnings("unused")
 public class JQLayoutEnableClosableFeature extends Feature<JavaScriptPart, JQLayoutEnableClosableFeature>
 {
 
@@ -43,7 +43,7 @@ public class JQLayoutEnableClosableFeature extends Feature<JavaScriptPart, JQLay
 	 * @param layoutDiv
 	 * @param pinButton
 	 */
-	public JQLayoutEnableClosableFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	public JQLayoutEnableClosableFeature(JQLayoutDiv layoutDiv)
 	{
 		super("JQLayoutEnableClosableFeature");
 		divToOpen = layoutDiv;
@@ -55,5 +55,34 @@ public class JQLayoutEnableClosableFeature extends Feature<JavaScriptPart, JQLay
 	{
 		String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableClosable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
 		addQuery(openDivFunction);
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayoutEnableClosableFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayoutEnableClosableFeature that = (JQLayoutEnableClosableFeature) o;
+
+		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
+		return result;
 	}
 }

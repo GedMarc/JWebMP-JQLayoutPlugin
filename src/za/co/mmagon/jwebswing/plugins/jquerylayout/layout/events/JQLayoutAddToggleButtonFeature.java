@@ -48,4 +48,33 @@ public class JQLayoutAddToggleButtonFeature extends Feature<JavaScriptPart, JQLa
 		String openDivFunction = divToOpen.getLayout().getVariableID() + ".addToggleBtn('#" + getComponent().getID() + "',\"" + divToOpen.getArea().toString().toLowerCase() + "\");" + getNewLine();
 		addQuery(openDivFunction);
 	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayoutAddToggleButtonFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayoutAddToggleButtonFeature that = (JQLayoutAddToggleButtonFeature) o;
+
+		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
+		return result;
+	}
 }

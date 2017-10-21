@@ -29,39 +29,45 @@ import za.co.mmagon.jwebswing.base.servlets.interfaces.ReferencePool;
  */
 public enum JQLayoutReferencePool implements ReferencePool
 {
-	
+
 	JQueryLayout(new JavascriptReference("JQUILayoutJS", 1.45, "bower_components/jquery-layout-latest-1-5/jquery.layout_and_plugins.min.js", "http://layout.jquery-dev.com/lib/js/jquery.layout-latest.min.js"),
 	             new CSSReference("JQUILayoutCSS", 1.45, "bower_components/jquery-layout-latest-1-5/layout-default.min.css"), 10),
-	JQueryLayoutResizer(new JavascriptReference("layoutResizer", 1.0, "bower_components/jquery-layout-latest-1-5/jquery.layout_customresizer.js"), null, 9),;
-	//JQueryLayoutCallbacks(new JWLayoutCallbacksJavascriptReference(), null, 10),;
-	
+	JQueryLayoutResizer(new JavascriptReference("layoutResizer", 1.0, "bower_components/jquery-layout-latest-1-5/jquery.layout_customresizer.js"), null, 9);
+
 	private JavascriptReference javaScriptReference;
 	private CSSReference cssReference;
-	
+
+	/**
+	 * The configures
+	 *
+	 * @param javaScriptReference
+	 * @param cssReference
+	 * @param sortOrder
+	 */
 	private JQLayoutReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference, int sortOrder)
 	{
 		this.javaScriptReference = javaScriptReference;
 		this.cssReference = cssReference;
 	}
-	
+
 	@Override
 	public JavascriptReference getJavaScriptReference()
 	{
 		return javaScriptReference;
 	}
-	
+
 	@Override
 	public void setJavaScriptReference(JavascriptReference javaScriptReference)
 	{
 		this.javaScriptReference = javaScriptReference;
 	}
-	
+
 	@Override
 	public CSSReference getCssReference()
 	{
 		return cssReference;
 	}
-	
+
 	@Override
 	public void setCssReference(CSSReference cssReference)
 	{
