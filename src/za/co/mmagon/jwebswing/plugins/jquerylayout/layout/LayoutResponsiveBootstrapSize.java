@@ -69,17 +69,12 @@ public enum LayoutResponsiveBootstrapSize
 	private String name;
 	private Integer size;
 
-	private LayoutResponsiveBootstrapSize()
+	LayoutResponsiveBootstrapSize()
 	{
 
 	}
 
-	private LayoutResponsiveBootstrapSize(String name)
-	{
-		this.name = name;
-	}
-
-	private LayoutResponsiveBootstrapSize(String name, Integer size)
+	LayoutResponsiveBootstrapSize(String name, Integer size)
 	{
 		this.name = name;
 		this.size = size;
