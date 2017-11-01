@@ -48,6 +48,14 @@ public enum JQLayoutReferencePool implements ReferencePool
 	{
 		this.javaScriptReference = javaScriptReference;
 		this.cssReference = cssReference;
+		if (this.javaScriptReference != null)
+		{
+			this.javaScriptReference.setSortOrder(sortOrder);
+		}
+		if (this.cssReference != null)
+		{
+			this.cssReference.setSortOrder(sortOrder);
+		}
 	}
 
 	@Override
