@@ -16,6 +16,8 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 
+import za.co.mmagon.jwebswing.utilities.StaticStrings;
+
 /**
  * @author MMagon
  * @version 1.0
@@ -59,7 +61,7 @@ public enum JQLayoutCSSThemeBlockNames
 	@Override
 	public String toString()
 	{
-		return name().toLowerCase().replace('_', '-');
+		return name().toLowerCase().replace(StaticStrings.CHAR_UNDERSCORE, '-');
 	}
 	
 }

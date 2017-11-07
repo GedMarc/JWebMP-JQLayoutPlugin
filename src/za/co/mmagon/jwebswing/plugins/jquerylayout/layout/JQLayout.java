@@ -32,6 +32,8 @@ import za.co.mmagon.logger.LogFactory;
 
 import java.util.logging.Logger;
 
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_UNDERSCORE;
+
 /**
  * This is a Layout Pane and can be applied to any div to turn it into a border layout
  *
@@ -153,7 +155,7 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@Override
 	public final void setVariableID(String variableID)
 	{
-		this.variableID = "lay_" + variableID.replace('-', '_');
+		this.variableID = "lay_" + variableID.replace('-', CHAR_UNDERSCORE);
 		getComponent().addVariable(this.variableID);
 	}
 
