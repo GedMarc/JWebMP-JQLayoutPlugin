@@ -160,17 +160,19 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	}
 
 	/**
-	 * Adds the header to the layout div
+	 * Adds the footer header
 	 * <p>
 	 *
-	 * @param headerDivString
+	 * @param footerDivString
 	 */
 	@Override
-	public void addHeader(HeaderText headerDivString)
+	@SuppressWarnings("unchecked")
+	public void addFooter(HeaderText footerDivString)
 	{
 		Div headerDiv = new Div();
-		headerDiv.add(headerDivString);
-		addHeader(headerDiv);
+		headerDiv.add(footerDivString);
+		headerDiv.addClass(UiFooterString);
+		getFooters().add(headerDiv);
 	}
 
 	/**
@@ -261,18 +263,18 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	}
 
 	/**
-	 * Adds the footer header
+	 * Adds the header to the layout div
 	 * <p>
 	 *
-	 * @param footerDivString
+	 * @param headerDivString
 	 */
 	@Override
-	public void addFooter(HeaderText footerDivString)
+	@SuppressWarnings("unchecked")
+	public void addHeader(HeaderText headerDivString)
 	{
 		Div headerDiv = new Div();
-		headerDiv.add(footerDivString);
-		headerDiv.addClass(UiFooterString);
-		getFooters().add(headerDiv);
+		headerDiv.add(headerDivString);
+		addHeader(headerDiv);
 	}
 
 	/**
@@ -480,13 +482,7 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	@Override
 	public int hashCode()
 	{
-		int result = super.hashCode();
-		result = 31 * result + (getArea() != null ? getArea().hashCode() : 0);
-		result = 31 * result + (getHeaders() != null ? getHeaders().hashCode() : 0);
-		result = 31 * result + (getFooters() != null ? getFooters().hashCode() : 0);
-		result = 31 * result + (getContentDiv() != null ? getContentDiv().hashCode() : 0);
-		result = 31 * result + (getLayout() != null ? getLayout().hashCode() : 0);
-		return result;
+		return super.hashCode();
 	}
 
 	@Override
