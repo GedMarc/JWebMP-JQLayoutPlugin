@@ -106,7 +106,7 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 				for (int i = getHeaders().size(); i >= 0; i--)
 				{
 					Div get = getHeaders().get(i);
-					getChildren().add(0, get);
+					getChildren().add(get);
 					get.preConfigure();
 				}
 			}
