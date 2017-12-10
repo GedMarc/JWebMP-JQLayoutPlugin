@@ -41,7 +41,6 @@ public class JQLayoutEnableClosableFeature extends Feature<JavaScriptPart, JQLay
 	 * Adds a pin button for the layout side to the given component
 	 *
 	 * @param layoutDiv
-	 * @param pinButton
 	 */
 	public JQLayoutEnableClosableFeature(JQLayoutDiv layoutDiv)
 	{

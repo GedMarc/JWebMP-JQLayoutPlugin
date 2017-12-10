@@ -41,7 +41,6 @@ public class JQLayoutEnableResizableFeature extends Feature<JavaScriptPart, JQLa
 	 * Adds a pin button for the layout side to the given component
 	 *
 	 * @param layoutDiv
-	 * @param pinButton
 	 */
 	public JQLayoutEnableResizableFeature(JQLayoutDiv layoutDiv)
 	{
