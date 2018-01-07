@@ -117,7 +117,7 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 		}
 		if (!isConfigured())
 		{
-			JQueryPageConfigurator.setRequired((Component) getComponent(), true);
+			JQueryPageConfigurator.setRequired(true);
 		}
 		super.preConfigure();
 	}
