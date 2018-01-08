@@ -19,6 +19,7 @@ package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 import za.co.mmagon.jwebswing.Page;
 import za.co.mmagon.jwebswing.PageConfigurator;
 import za.co.mmagon.jwebswing.plugins.PluginInformation;
+import za.co.mmagon.jwebswing.plugins.jquery.JQueryPageConfigurator;
 import za.co.mmagon.jwebswing.plugins.pools.jquerylayout.JQLayoutReferencePool;
 
 /**
@@ -61,6 +62,7 @@ public class JQLayoutPageConfigurator extends PageConfigurator
 	{
 		if (!page.isConfigured())
 		{
+			JQueryPageConfigurator.setRequired(true);
 			page.getBody().getJavascriptReferences().add(JQLayoutReferencePool.JQueryLayout.getJavaScriptReference());
 			page.getBody().getCssReferences().add(JQLayoutReferencePool.JQueryLayout.getCssReference());
 		}
