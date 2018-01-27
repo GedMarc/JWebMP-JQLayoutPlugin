@@ -1,23 +1,7 @@
-/*
- * Copyright (C) 2017 Marc Magon
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces;
 
 import za.co.mmagon.jwebswing.Component;
-import za.co.mmagon.jwebswing.base.html.interfaces.LayoutHandler;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayout;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutArea;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutOptions;
@@ -26,57 +10,129 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutAddTogg
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutCloseLayoutDivFeature;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
 
-/**
- * A Clean Interface for the JQLayout Component
- *
- * @author GedMarc
- * @version 1.0
- * @since Oct 30, 2016
- */
-public interface IJQLayout extends LayoutHandler
-{
+import javax.validation.constraints.NotNull;
 
+public interface IJQLayout<J extends JQLayout<J>>
+{
 	/**
 	 * Returns the center pane
 	 *
 	 * @return A Layout pane on the center div
 	 */
+
+	@SuppressWarnings("unchecked")
+	@NotNull
 	JQLayoutDiv getCenter();
 
 	/**
 	 * Sets the center pane
 	 *
-	 * @param centerDiv The new center panel
+	 * @param centerDiv
+	 * 		The new center panel
 	 */
-	void setCenter(JQLayoutDiv centerDiv);
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	J setCenter(JQLayoutDiv centerDiv);
+
+	/**
+	 * Creates a toggle button for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	JQLayoutAddToggleButtonFeature createToggleButton(Component component, JQLayoutArea pane);
+
+	/**
+	 * Gets the layout div for a pane
+	 *
+	 * @param area
+	 *
+	 * @return
+	 */
+	JQLayoutDiv getPane(JQLayoutArea area);
 
 	/**
 	 * Returns the center pane
 	 *
 	 * @return A Layout pane on the center div
 	 */
-	JQLayoutDiv getEast();
 
-	/**
-	 * Sets the center pane
-	 *
-	 * @param eastDiv The new center panel
-	 */
-	void setEast(JQLayoutDiv eastDiv);
-
-	/**
-	 * Returns the center pane
-	 *
-	 * @return A Layout pane on the center div
-	 */
 	JQLayoutDiv getNorth();
 
 	/**
 	 * Sets the north pane
 	 *
-	 * @param centerDiv The new center panel
+	 * @param centerDiv
+	 * 		The new center panel
 	 */
-	void setNorth(JQLayoutDiv centerDiv);
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	J setNorth(JQLayoutDiv centerDiv);
+
+	/**
+	 * Returns the center pane
+	 *
+	 * @return A Layout pane on the center div
+	 */
+	@NotNull
+	JQLayoutDiv getWest();
+
+	/**
+	 * Returns the south pane
+	 *
+	 * @return A Layout pane on the center div
+	 */
+
+	JQLayoutDiv getSouth();
+
+	/**
+	 * Returns the center pane
+	 *
+	 * @return A Layout pane on the center div
+	 */
+
+	@NotNull
+	JQLayoutDiv getEast();
+
+	/**
+	 * Sets the center pane
+	 *
+	 * @param eastDiv
+	 * 		The new center panel
+	 */
+
+	@SuppressWarnings("unchecked")
+	J setEast(JQLayoutDiv eastDiv);
+
+	/**
+	 * Sets the south pane
+	 *
+	 * @param southDiv
+	 * 		The new center panel
+	 */
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	J setSouth(JQLayoutDiv southDiv);
+
+	/**
+	 * Sets the center pane
+	 *
+	 * @param westDiv
+	 * 		The new center panel
+	 */
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	J setWest(JQLayoutDiv westDiv);
 
 	/**
 	 * Returns the layout options
@@ -84,97 +140,65 @@ public interface IJQLayout extends LayoutHandler
 	 *
 	 * @return
 	 */
+
+	@NotNull
 	JQLayoutOptions getOptions();
 
 	/**
-	 * Returns the south pane
+	 * Creates a toggle button for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
 	 *
-	 * @return A Layout pane on the center div
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
 	 */
-	JQLayoutDiv getSouth();
+	@SuppressWarnings("unchecked")
+	@NotNull
+	JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane);
 
 	/**
-	 * Sets the south pane
+	 * Creates a toggle button for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
 	 *
-	 * @param southDiv The new center panel
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
 	 */
-	void setSouth(JQLayoutDiv southDiv);
+	@SuppressWarnings("unchecked")
+	@NotNull
+	JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane);
+
+	/**
+	 * Creates a toggle button for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	JQLayoutOpenLayoutDivFeature createOpenButton(Component component, JQLayoutArea pane);
 
 	/**
 	 * Returns the variable ID
 	 *
 	 * @return
 	 */
+	@NotNull
 	String getVariableID();
 
 	/**
-	 * Sets the variable ID.
-	 * Adds 'lay_' in front and takes all hyphens (-) into underscores (_)
+	 * Sets the variable ID. Adds 'lay_' in front and takes all hyphens (-) into underscores (_)
 	 *
 	 * @param variableID
 	 */
-	void setVariableID(String variableID);
-
-	/**
-	 * Returns the center pane
-	 *
-	 * @return A Layout pane on the center div
-	 */
-	JQLayoutDiv getWest();
-
-	/**
-	 * Sets the center pane
-	 *
-	 * @param westDiv The new center panel
-	 */
-	void setWest(JQLayoutDiv westDiv);
-
-	/**
-	 * Creates a toggle button for the given pane on the component.
-	 * <p>
-	 * The feature is added to the component
-	 *
-	 * @param component
-	 * @param pane
-	 *
-	 * @return
-	 */
-	public JQLayoutAddToggleButtonFeature createToggleButton(Component component, JQLayoutArea pane);
-
-	/**
-	 * Creates a toggle button for the given pane on the component.
-	 * <p>
-	 * The feature is added to the component
-	 *
-	 * @param component
-	 * @param pane
-	 *
-	 * @return
-	 */
-	public JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane);
-
-	/**
-	 * Makes the component a close pane button
-	 * <p>
-	 * The feature is added to the component
-	 *
-	 * @param component
-	 * @param pane
-	 *
-	 * @return
-	 */
-	public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane);
-
-	/**
-	 * Makes the component an open pane button
-	 * <p>
-	 * The feature is added to the component
-	 *
-	 * @param component
-	 * @param pane
-	 *
-	 * @return
-	 */
-	public JQLayoutOpenLayoutDivFeature createOpenButton(Component component, JQLayoutArea pane);
-
+	@SuppressWarnings("unchecked")
+	J setVariableID(@NotNull String variableID);
 }

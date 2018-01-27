@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
+package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.options;
 
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -43,12 +43,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @version 1.0
  * @since Oct 30, 2016
  */
-public enum LayoutResponsiveBootstrapSize
+public enum LayoutResponsiveSize
 {
 	/**
 	 * Extra large devices (large desktops, 1200px and up)
 	 */
-	ExtraLarge("lg", 1200),
+	ExtraLarge("xl", 1140),
 	/**
 	 * Large devices (desktops, 992px and up)
 	 */
@@ -60,7 +60,7 @@ public enum LayoutResponsiveBootstrapSize
 	/**
 	 * Small devices (landscape phones, 544px and up)
 	 */
-	Small("sm", 544),
+	Small("sm", 576),
 	/**
 	 * Starting at the bottom
 	 */
@@ -69,26 +69,15 @@ public enum LayoutResponsiveBootstrapSize
 	private String name;
 	private Integer size;
 
-	LayoutResponsiveBootstrapSize()
+	LayoutResponsiveSize()
 	{
 
 	}
 
-	LayoutResponsiveBootstrapSize(String name, Integer size)
+	LayoutResponsiveSize(String name, Integer size)
 	{
 		this.name = name;
 		this.size = size;
-	}
-
-	@JsonValue
-	public String getName()
-	{
-		return name;
-	}
-
-	public void setName(String name)
-	{
-		this.name = name;
 	}
 
 	/**
@@ -115,5 +104,16 @@ public enum LayoutResponsiveBootstrapSize
 	public String toString()
 	{
 		return getName();
+	}
+
+	@JsonValue
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 }

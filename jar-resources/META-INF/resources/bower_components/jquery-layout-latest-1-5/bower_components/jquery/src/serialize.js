@@ -30,7 +30,7 @@ define([
 
                     // Item is non-scalar (array or object), encode its numeric index.
                     buildParams(
-                        prefix + "[" + ( typeof v === "object" && v != null ? i : "" ) + "]",
+                        prefix + "[" + (typeof v === "object" && v != null ? i : "") + "]",
                         v,
                         traditional,
                         add
@@ -69,7 +69,7 @@ define([
             };
 
         // If an array was passed in, assume that it is an array of form elements.
-        if (Array.isArray(a) || ( a.jquery && !jQuery.isPlainObject(a) )) {
+        if (Array.isArray(a) || (a.jquery && !jQuery.isPlainObject(a))) {
 
             // Serialize the form elements
             jQuery.each(a, function () {
@@ -106,7 +106,7 @@ define([
                     // Use .is( ":disabled" ) so that fieldset[disabled] works
                     return this.name && !jQuery(this).is(":disabled") &&
                         rsubmittable.test(this.nodeName) && !rsubmitterTypes.test(type) &&
-                        ( this.checked || !rcheckableType.test(type) );
+                        (this.checked || !rcheckableType.test(type));
                 })
                 .map(function (i, elem) {
                     var val = jQuery(this).val();

@@ -89,7 +89,7 @@ define([
             };
 
             // Use same guid so caller can remove using origFn
-            fn.guid = origFn.guid || ( origFn.guid = jQuery.guid++ );
+            fn.guid = origFn.guid || (origFn.guid = jQuery.guid++);
         }
         return elem.each(function () {
             jQuery.event.add(this, types, fn, data, selector);
@@ -135,10 +135,10 @@ define([
             }
 
             // Init the element's event structure and main handler, if this is the first
-            if (!( events = elemData.events )) {
+            if (!(events = elemData.events)) {
                 events = elemData.events = {};
             }
-            if (!( eventHandle = elemData.handle )) {
+            if (!(eventHandle = elemData.handle)) {
                 eventHandle = elemData.handle = function (e) {
 
                     // Discard the second event of a jQuery.event.trigger() and
@@ -149,12 +149,12 @@ define([
             }
 
             // Handle multiple events separated by a space
-            types = ( types || "" ).match(rnothtmlwhite) || [""];
+            types = (types || "").match(rnothtmlwhite) || [""];
             t = types.length;
             while (t--) {
                 tmp = rtypenamespace.exec(types[t]) || [];
                 type = origType = tmp[1];
-                namespaces = ( tmp[2] || "" ).split(".").sort();
+                namespaces = (tmp[2] || "").split(".").sort();
 
                 // There *must* be a type, no attaching namespace-only handlers
                 if (!type) {
@@ -165,7 +165,7 @@ define([
                 special = jQuery.event.special[type] || {};
 
                 // If selector defined, determine special event api type, otherwise given type
-                type = ( selector ? special.delegateType : special.bindType ) || type;
+                type = (selector ? special.delegateType : special.bindType) || type;
 
                 // Update special based on newly reset type
                 special = jQuery.event.special[type] || {};
@@ -183,7 +183,7 @@ define([
                 }, handleObjIn);
 
                 // Init the event handler queue if we're the first
-                if (!( handlers = events[type] )) {
+                if (!(handlers = events[type])) {
                     handlers = events[type] = [];
                     handlers.delegateCount = 0;
 
@@ -226,17 +226,17 @@ define([
                 special, handlers, type, namespaces, origType,
                 elemData = dataPriv.hasData(elem) && dataPriv.get(elem);
 
-            if (!elemData || !( events = elemData.events )) {
+            if (!elemData || !(events = elemData.events)) {
                 return;
             }
 
             // Once for each type.namespace in types; type may be omitted
-            types = ( types || "" ).match(rnothtmlwhite) || [""];
+            types = (types || "").match(rnothtmlwhite) || [""];
             t = types.length;
             while (t--) {
                 tmp = rtypenamespace.exec(types[t]) || [];
                 type = origType = tmp[1];
-                namespaces = ( tmp[2] || "" ).split(".").sort();
+                namespaces = (tmp[2] || "").split(".").sort();
 
                 // Unbind all events (on this namespace, if provided) for the element
                 if (!type) {
@@ -247,7 +247,7 @@ define([
                 }
 
                 special = jQuery.event.special[type] || {};
-                type = ( selector ? special.delegateType : special.bindType ) || type;
+                type = (selector ? special.delegateType : special.bindType) || type;
                 handlers = events[type] || [];
                 tmp = tmp[2] &&
                     new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)");
@@ -257,11 +257,11 @@ define([
                 while (j--) {
                     handleObj = handlers[j];
 
-                    if (( mappedTypes || origType === handleObj.origType ) &&
-                        ( !handler || handler.guid === handleObj.guid ) &&
-                        ( !tmp || tmp.test(handleObj.namespace) ) &&
-                        ( !selector || selector === handleObj.selector ||
-                            selector === "**" && handleObj.selector )) {
+                    if ((mappedTypes || origType === handleObj.origType) &&
+                        (!handler || handler.guid === handleObj.guid) &&
+                        (!tmp || tmp.test(handleObj.namespace)) &&
+                        (!selector || selector === handleObj.selector ||
+                            selector === "**" && handleObj.selector)) {
                         handlers.splice(j, 1);
 
                         if (handleObj.selector) {
@@ -299,7 +299,7 @@ define([
 
             var i, j, ret, matched, handleObj, handlerQueue,
                 args = new Array(arguments.length),
-                handlers = ( dataPriv.get(this, "events") || {} )[event.type] || [],
+                handlers = (dataPriv.get(this, "events") || {})[event.type] || [],
                 special = jQuery.event.special[event.type] || {};
 
             // Use the fix-ed jQuery.Event rather than the (read-only) native event
@@ -321,11 +321,11 @@ define([
 
             // Run delegates first; they may want to stop propagation beneath us
             i = 0;
-            while (( matched = handlerQueue[i++] ) && !event.isPropagationStopped()) {
+            while ((matched = handlerQueue[i++]) && !event.isPropagationStopped()) {
                 event.currentTarget = matched.elem;
 
                 j = 0;
-                while (( handleObj = matched.handlers[j++] ) &&
+                while ((handleObj = matched.handlers[j++]) &&
                 !event.isImmediatePropagationStopped()) {
 
                     // Triggered event must either 1) have no namespace, or 2) have namespace(s)
@@ -335,11 +335,11 @@ define([
                         event.handleObj = handleObj;
                         event.data = handleObj.data;
 
-                        ret = ( ( jQuery.event.special[handleObj.origType] || {} ).handle ||
-                            handleObj.handler ).apply(matched.elem, args);
+                        ret = ((jQuery.event.special[handleObj.origType] || {}).handle ||
+                            handleObj.handler).apply(matched.elem, args);
 
                         if (ret !== undefined) {
-                            if (( event.result = ret ) === false) {
+                            if ((event.result = ret) === false) {
                                 event.preventDefault();
                                 event.stopPropagation();
                             }
@@ -374,13 +374,13 @@ define([
                 // https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
                 // Support: IE 11 only
                 // ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
-                !( event.type === "click" && event.button >= 1 )) {
+                !(event.type === "click" && event.button >= 1)) {
 
                 for (; cur !== this; cur = cur.parentNode || this) {
 
                     // Don't check non-elements (#13208)
                     // Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
-                    if (cur.nodeType === 1 && !( event.type === "click" && cur.disabled === true )) {
+                    if (cur.nodeType === 1 && !(event.type === "click" && cur.disabled === true)) {
                         matchedHandlers = [];
                         matchedSelectors = {};
                         for (i = 0; i < delegateCount; i++) {
@@ -514,7 +514,7 @@ define([
     jQuery.Event = function (src, props) {
 
         // Allow instantiation without the 'new' keyword
-        if (!( this instanceof jQuery.Event )) {
+        if (!(this instanceof jQuery.Event)) {
             return new jQuery.Event(src, props);
         }
 
@@ -536,7 +536,7 @@ define([
             // Create target properties
             // Support: Safari <=6 - 7 only
             // Target should not be a text node (#504, #13143)
-            this.target = ( src.target && src.target.nodeType === 3 ) ?
+            this.target = (src.target && src.target.nodeType === 3) ?
                 src.target.parentNode :
                 src.target;
 
@@ -687,7 +687,7 @@ define([
 
                 // For mouseenter/leave call the handler if related is outside the target.
                 // NB: No relatedTarget if the mouse left/entered the browser window
-                if (!related || ( related !== target && !jQuery.contains(target, related) )) {
+                if (!related || (related !== target && !jQuery.contains(target, related))) {
                     event.type = handleObj.origType;
                     ret = handleObj.handler.apply(this, arguments);
                     event.type = fix;

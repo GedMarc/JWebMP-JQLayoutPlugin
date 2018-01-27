@@ -113,7 +113,7 @@ define([
 
         eq: function (i) {
             var len = this.length,
-                j = +i + ( i < 0 ? len : 0 );
+                j = +i + (i < 0 ? len : 0);
             return this.pushStack(j >= 0 && j < len ? [this[j]] : []);
         },
 
@@ -158,7 +158,7 @@ define([
         for (; i < length; i++) {
 
             // Only deal with non-null/undefined values
-            if (( options = arguments[i] ) != null) {
+            if ((options = arguments[i]) != null) {
 
                 // Extend the base object
                 for (name in options) {
@@ -171,8 +171,8 @@ define([
                     }
 
                     // Recurse if we're merging plain objects or arrays
-                    if (deep && copy && ( jQuery.isPlainObject(copy) ||
-                            ( copyIsArray = Array.isArray(copy) ) )) {
+                    if (deep && copy && (jQuery.isPlainObject(copy) ||
+                            (copyIsArray = Array.isArray(copy)))) {
 
                         if (copyIsArray) {
                             copyIsArray = false;
@@ -200,7 +200,7 @@ define([
     jQuery.extend({
 
         // Unique for each copy of jQuery on the page
-        expando: "jQuery" + ( version + Math.random() ).replace(/\D/g, ""),
+        expando: "jQuery" + (version + Math.random()).replace(/\D/g, ""),
 
         // Assume jQuery is ready without the ready module
         isReady: true,
@@ -226,7 +226,7 @@ define([
             // strings and numbers (primitives or objects)
             // that can be coerced to finite numbers (gh-2662)
             var type = jQuery.type(obj);
-            return ( type === "number" || type === "string" ) &&
+            return (type === "number" || type === "string") &&
 
                 // parseFloat NaNs numeric-cast false positives ("")
                 // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
@@ -315,7 +315,7 @@ define([
         trim: function (text) {
             return text == null ?
                 "" :
-                ( text + "" ).replace(rtrim, "");
+                (text + "").replace(rtrim, "");
         },
 
         // results is for internal usage only
@@ -470,7 +470,7 @@ define([
         }
 
         return type === "array" || length === 0 ||
-            typeof length === "number" && length > 0 && ( length - 1 ) in obj;
+            typeof length === "number" && length > 0 && (length - 1) in obj;
     }
 
     return jQuery;

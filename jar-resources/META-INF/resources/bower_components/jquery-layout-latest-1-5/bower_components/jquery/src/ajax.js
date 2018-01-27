@@ -69,16 +69,16 @@ define([
             if (jQuery.isFunction(func)) {
 
                 // For each dataType in the dataTypeExpression
-                while (( dataType = dataTypes[i++] )) {
+                while ((dataType = dataTypes[i++])) {
 
                     // Prepend if requested
                     if (dataType[0] === "+") {
                         dataType = dataType.slice(1) || "*";
-                        ( structure[dataType] = structure[dataType] || [] ).unshift(func);
+                        (structure[dataType] = structure[dataType] || []).unshift(func);
 
                         // Otherwise append
                     } else {
-                        ( structure[dataType] = structure[dataType] || [] ).push(func);
+                        (structure[dataType] = structure[dataType] || []).push(func);
                     }
                 }
             }
@@ -89,7 +89,7 @@ define([
     function inspectPrefiltersOrTransports(structure, options, originalOptions, jqXHR) {
 
         var inspected = {},
-            seekingTransport = ( structure === transports );
+            seekingTransport = (structure === transports);
 
         function inspect(dataType) {
             var selected;
@@ -103,7 +103,7 @@ define([
                     inspect(dataTypeOrTransport);
                     return false;
                 } else if (seekingTransport) {
-                    return !( selected = dataTypeOrTransport );
+                    return !(selected = dataTypeOrTransport);
                 }
             });
             return selected;
@@ -121,7 +121,7 @@ define([
 
         for (key in src) {
             if (src[key] !== undefined) {
-                ( flatOptions[key] ? target : ( deep || ( deep = {} ) ) )[key] = src[key];
+                (flatOptions[key] ? target : (deep || (deep = {})))[key] = src[key];
             }
         }
         if (deep) {
@@ -429,7 +429,7 @@ define([
 
                 // Context for global events is callbackContext if it is a DOM node or jQuery collection
                 globalEventContext = s.context &&
-                ( callbackContext.nodeType || callbackContext.jquery ) ?
+                (callbackContext.nodeType || callbackContext.jquery) ?
                     jQuery(callbackContext) :
                     jQuery.event,
 
@@ -457,7 +457,7 @@ define([
                         if (completed) {
                             if (!responseHeaders) {
                                 responseHeaders = {};
-                                while (( match = rheaders.exec(responseHeadersString) )) {
+                                while ((match = rheaders.exec(responseHeadersString))) {
                                     responseHeaders[match[1].toLowerCase()] = match[2];
                                 }
                             }
@@ -525,14 +525,14 @@ define([
             // Add protocol if not provided (prefilters might expect it)
             // Handle falsy url in the settings object (#10093: consistency with old signature)
             // We also use the url parameter if available
-            s.url = ( ( url || s.url || location.href ) + "" )
+            s.url = ((url || s.url || location.href) + "")
                 .replace(rprotocol, location.protocol + "//");
 
             // Alias method option to type as per ticket #12004
             s.type = options.method || options.type || s.method || s.type;
 
             // Extract dataTypes list
-            s.dataTypes = ( s.dataType || "*" ).toLowerCase().match(rnothtmlwhite) || [""];
+            s.dataTypes = (s.dataType || "*").toLowerCase().match(rnothtmlwhite) || [""];
 
             // A cross-domain request is in order when the origin doesn't match the current origin.
             if (s.crossDomain == null) {
@@ -598,7 +598,7 @@ define([
 
                 // If data is available, append data to url
                 if (s.data) {
-                    cacheURL += ( rquery.test(cacheURL) ? "&" : "?" ) + s.data;
+                    cacheURL += (rquery.test(cacheURL) ? "&" : "?") + s.data;
 
                     // #9682: remove data so that it's not used in an eventual retry
                     delete s.data;
@@ -607,7 +607,7 @@ define([
                 // Add or update anti-cache param if needed
                 if (s.cache === false) {
                     cacheURL = cacheURL.replace(rantiCache, "$1");
-                    uncached = ( rquery.test(cacheURL) ? "&" : "?" ) + "_=" + ( nonce++ ) + uncached;
+                    uncached = (rquery.test(cacheURL) ? "&" : "?") + "_=" + (nonce++) + uncached;
                 }
 
                 // Put hash and anti-cache on the URL that will be requested (gh-1732)
@@ -615,7 +615,7 @@ define([
 
                 // Change '%20' to '+' if this is encoded form body content (gh-2658)
             } else if (s.data && s.processData &&
-                ( s.contentType || "" ).indexOf("application/x-www-form-urlencoded") === 0) {
+                (s.contentType || "").indexOf("application/x-www-form-urlencoded") === 0) {
                 s.data = s.data.replace(r20, "+");
             }
 
@@ -639,7 +639,7 @@ define([
                 "Accept",
                 s.dataTypes[0] && s.accepts[s.dataTypes[0]] ?
                     s.accepts[s.dataTypes[0]] +
-                    ( s.dataTypes[0] !== "*" ? ", " + allTypes + "; q=0.01" : "" ) :
+                    (s.dataTypes[0] !== "*" ? ", " + allTypes + "; q=0.01" : "") :
                     s.accepts["*"]
             );
 
@@ -650,7 +650,7 @@ define([
 
             // Allow custom headers/mimetypes and early abort
             if (s.beforeSend &&
-                ( s.beforeSend.call(callbackContext, jqXHR, s) === false || completed )) {
+                (s.beforeSend.call(callbackContext, jqXHR, s) === false || completed)) {
 
                 // Abort if not done already and return
                 return jqXHR.abort();
@@ -787,7 +787,7 @@ define([
 
                 // Set data for the fake xhr object
                 jqXHR.status = status;
-                jqXHR.statusText = ( nativeStatusText || statusText ) + "";
+                jqXHR.statusText = (nativeStatusText || statusText) + "";
 
                 // Success/Error
                 if (isSuccess) {
@@ -812,7 +812,7 @@ define([
                     globalEventContext.trigger("ajaxComplete", [jqXHR, s]);
 
                     // Handle the global AJAX counter
-                    if (!( --jQuery.active )) {
+                    if (!(--jQuery.active)) {
                         jQuery.event.trigger("ajaxStop");
                     }
                 }

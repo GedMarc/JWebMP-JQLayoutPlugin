@@ -250,7 +250,7 @@
                 if (val == undefined) continue;
                 if (key == "isClosed" && state[pane]["isSliding"])
                     val = true; // if sliding, then *really* isClosed
-                ( data[pane] || (data[pane] = {}) )[alt[key] ? alt[key] : key] = val;
+                (data[pane] || (data[pane] = {}))[alt[key] ? alt[key] : key] = val;
             }
             return data;
         }

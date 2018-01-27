@@ -44,7 +44,7 @@ define([
                 }
 
                 // Match html or make sure no context is specified for #id
-                if (match && ( match[1] || !context )) {
+                if (match && (match[1] || !context)) {
 
                     // HANDLE: $(html) -> $(array)
                     if (match[1]) {
@@ -90,7 +90,7 @@ define([
 
                     // HANDLE: $(expr, $(...))
                 } else if (!context || context.jquery) {
-                    return ( context || root ).find(selector);
+                    return (context || root).find(selector);
 
                     // HANDLE: $(expr, context)
                     // (which is just equivalent to: $(context).find(expr)

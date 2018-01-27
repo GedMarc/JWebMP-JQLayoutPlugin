@@ -52,7 +52,10 @@ public class JQLayoutEnableClosableFeature extends Feature<JavaScriptPart, JQLay
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableClosable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
+		String openDivFunction = divToOpen.getLayout()
+				                         .getVariableID() + ".enableClosable('" + divToOpen.getArea()
+						                                                                  .toString()
+						                                                                  .toLowerCase() + "');" + getNewLine();
 		addQuery(openDivFunction);
 	}
 

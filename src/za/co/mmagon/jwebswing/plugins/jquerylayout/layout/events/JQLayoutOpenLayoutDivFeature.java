@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,10 @@ public class JQLayoutOpenLayoutDivFeature extends Feature<JavaScriptPart, JQLayo
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		String openDivFunction = divToOpen.getLayout().getVariableID() + ".open('" + divToOpen.getArea().name().toLowerCase() + "');";
+		String openDivFunction = divToOpen.getLayout()
+				                         .getVariableID() + ".open('" + divToOpen.getArea()
+						                                                        .name()
+						                                                        .toLowerCase() + "');";
 		addQuery(openDivFunction);
 	}
 

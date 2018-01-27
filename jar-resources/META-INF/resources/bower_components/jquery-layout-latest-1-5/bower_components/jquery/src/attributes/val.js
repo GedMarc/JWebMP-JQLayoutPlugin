@@ -23,7 +23,7 @@ define([
 
                     if (hooks &&
                         "get" in hooks &&
-                        ( ret = hooks.get(elem, "value") ) !== undefined
+                        (ret = hooks.get(elem, "value")) !== undefined
                     ) {
                         return ret;
                     }
@@ -73,7 +73,7 @@ define([
                 hooks = jQuery.valHooks[this.type] || jQuery.valHooks[this.nodeName.toLowerCase()];
 
                 // If set returns undefined, fall back to normal setting
-                if (!hooks || !( "set" in hooks ) || hooks.set(this, val, "value") === undefined) {
+                if (!hooks || !("set" in hooks) || hooks.set(this, val, "value") === undefined) {
                     this.value = val;
                 }
             });
@@ -118,12 +118,12 @@ define([
 
                         // Support: IE <=9 only
                         // IE8-9 doesn't update selected after form reset (#2551)
-                        if (( option.selected || i === index ) &&
+                        if ((option.selected || i === index) &&
 
                             // Don't return options that are disabled or in a disabled optgroup
                             !option.disabled &&
-                            ( !option.parentNode.disabled ||
-                                !nodeName(option.parentNode, "optgroup") )) {
+                            (!option.parentNode.disabled ||
+                                !nodeName(option.parentNode, "optgroup"))) {
 
                             // Get the specific value for the option
                             value = jQuery(option).val();
@@ -176,7 +176,7 @@ define([
         jQuery.valHooks[this] = {
             set: function (elem, value) {
                 if (Array.isArray(value)) {
-                    return ( elem.checked = jQuery.inArray(jQuery(elem).val(), value) > -1 );
+                    return (elem.checked = jQuery.inArray(jQuery(elem).val(), value) > -1);
                 }
             }
         };

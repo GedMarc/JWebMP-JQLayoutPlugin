@@ -20,14 +20,14 @@ define([
         // Single element
         if (qualifier.nodeType) {
             return jQuery.grep(elements, function (elem) {
-                return ( elem === qualifier ) !== not;
+                return (elem === qualifier) !== not;
             });
         }
 
         // Arraylike of elements (jQuery, arguments, Array)
         if (typeof qualifier !== "string") {
             return jQuery.grep(elements, function (elem) {
-                return ( indexOf.call(qualifier, elem) > -1 ) !== not;
+                return (indexOf.call(qualifier, elem) > -1) !== not;
             });
         }
 
@@ -39,7 +39,7 @@ define([
         // Complex selector, compare the two sets, removing non-Elements
         qualifier = jQuery.filter(qualifier, elements);
         return jQuery.grep(elements, function (elem) {
-            return ( indexOf.call(qualifier, elem) > -1 ) !== not && elem.nodeType === 1;
+            return (indexOf.call(qualifier, elem) > -1) !== not && elem.nodeType === 1;
         });
     }
 

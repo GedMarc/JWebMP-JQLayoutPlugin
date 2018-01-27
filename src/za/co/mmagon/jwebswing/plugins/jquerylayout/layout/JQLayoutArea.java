@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -56,7 +56,7 @@ public enum JQLayoutArea
 	 *
 	 * @param areaClass
 	 */
-	private JQLayoutArea(JQLayoutCSSThemeBlockNames areaClass)
+	JQLayoutArea(JQLayoutCSSThemeBlockNames areaClass)
 	{
 		this.areaClass = areaClass;
 	}

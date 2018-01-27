@@ -61,7 +61,7 @@ define([
 
 // Replace/restore the type attribute of script elements for safe DOM manipulation
     function disableScript(elem) {
-        elem.type = ( elem.getAttribute("type") !== null ) + "/" + elem.type;
+        elem.type = (elem.getAttribute("type") !== null) + "/" + elem.type;
         return elem;
     }
 
@@ -139,8 +139,8 @@ define([
 
         // We can't cloneNode fragments that contain checked, in WebKit
         if (isFunction ||
-            ( l > 1 && typeof value === "string" &&
-                !support.checkClone && rchecked.test(value) )) {
+            (l > 1 && typeof value === "string" &&
+                !support.checkClone && rchecked.test(value))) {
             return collection.each(function (index) {
                 var self = collection.eq(index);
                 if (isFunction) {
@@ -220,7 +220,7 @@ define([
             nodes = selector ? jQuery.filter(selector, elem) : elem,
             i = 0;
 
-        for (; ( node = nodes[i] ) != null; i++) {
+        for (; (node = nodes[i]) != null; i++) {
             if (!keepData && node.nodeType === 1) {
                 jQuery.cleanData(getAll(node));
             }
@@ -247,7 +247,7 @@ define([
                 inPage = jQuery.contains(elem.ownerDocument, elem);
 
             // Fix IE cloning issues
-            if (!support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
+            if (!support.noCloneChecked && (elem.nodeType === 1 || elem.nodeType === 11) &&
                 !jQuery.isXMLDoc(elem)) {
 
                 // We eschew Sizzle here for performance reasons: https://jsperf.com/getall-vs-sizzle/2
@@ -288,9 +288,9 @@ define([
                 special = jQuery.event.special,
                 i = 0;
 
-            for (; ( elem = elems[i] ) !== undefined; i++) {
+            for (; (elem = elems[i]) !== undefined; i++) {
                 if (acceptData(elem)) {
-                    if (( data = elem[dataPriv.expando] )) {
+                    if ((data = elem[dataPriv.expando])) {
                         if (data.events) {
                             for (type in data.events) {
                                 if (special[type]) {
@@ -377,7 +377,7 @@ define([
             var elem,
                 i = 0;
 
-            for (; ( elem = this[i] ) != null; i++) {
+            for (; (elem = this[i]) != null; i++) {
                 if (elem.nodeType === 1) {
 
                     // Prevent memory leaks
@@ -412,7 +412,7 @@ define([
 
                 // See if we can take a shortcut and just use innerHTML
                 if (typeof value === "string" && !rnoInnerhtml.test(value) &&
-                    !wrapMap[( rtagName.exec(value) || ["", ""] )[1].toLowerCase()]) {
+                    !wrapMap[(rtagName.exec(value) || ["", ""])[1].toLowerCase()]) {
 
                     value = jQuery.htmlPrefilter(value);
 

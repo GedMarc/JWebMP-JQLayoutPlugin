@@ -19,7 +19,10 @@ package za.co.mmagon.jwebswing.components.jqueryLayout.layout;
 import org.junit.jupiter.api.Test;
 import za.co.mmagon.jwebswing.BaseTestClass;
 import za.co.mmagon.jwebswing.Page;
+import za.co.mmagon.jwebswing.base.angular.AngularPageConfigurator;
+import za.co.mmagon.jwebswing.plugins.jquery.JQueryPageConfigurator;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayout;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.options.LayoutResponsiveSize;
 
 /**
  * @author ged_m
@@ -34,10 +37,43 @@ public class JQLayoutTest extends BaseTestClass
 	@Test
 	public void testJQLayout()
 	{
+		JQueryPageConfigurator.setRequired(true);
+		AngularPageConfigurator.setRequired(false);
 		Page p = getPage();
 		JQLayout layout = new JQLayout(p.getBody());
 		System.out.println(p.toString(true));
-//        System.out.println(p);
+		System.out.println(layout.renderJavascript());
+
 	}
 
+	@Test
+	public void testResponsive()
+	{
+		JQueryPageConfigurator.setRequired(true);
+		AngularPageConfigurator.setRequired(false);
+		Page p = new Page();
+		JQLayout<?> layout = new JQLayout<>(p.getBody());
+
+		layout.getOptions()
+				.getDefaults()
+				.getResponsive()
+				.setEnabled(true);
+		System.out.println(layout.renderJavascript());
+	}
+
+	@Test
+	public void testResponsiveSizes()
+	{
+		JQueryPageConfigurator.setRequired(true);
+		AngularPageConfigurator.setRequired(false);
+		Page p = new Page();
+		JQLayout<?> layout = new JQLayout<>(p.getBody());
+		layout.getOptions()
+				.getDefaults()
+				.getResponsive()
+				.getSizes()
+				.put(LayoutResponsiveSize.ExtraLarge, 500);
+
+		System.out.println(layout.renderJavascript());
+	}
 }

@@ -51,12 +51,12 @@ define([
                     for (cur = this[i]; cur && cur !== context; cur = cur.parentNode) {
 
                         // Always skip document fragments
-                        if (cur.nodeType < 11 && ( targets ?
+                        if (cur.nodeType < 11 && (targets ?
                                 targets.index(cur) > -1 :
 
                                 // Don't pass non-elements to Sizzle
                                 cur.nodeType === 1 &&
-                                jQuery.find.matchesSelector(cur, selectors) )) {
+                                jQuery.find.matchesSelector(cur, selectors))) {
 
                             matched.push(cur);
                             break;
@@ -73,7 +73,7 @@ define([
 
             // No argument, return index in parent
             if (!elem) {
-                return ( this[0] && this[0].parentNode ) ? this.first().prevAll().length : -1;
+                return (this[0] && this[0].parentNode) ? this.first().prevAll().length : -1;
             }
 
             // Index in selector
@@ -105,7 +105,7 @@ define([
     });
 
     function sibling(cur, dir) {
-        while (( cur = cur[dir] ) && cur.nodeType !== 1) {
+        while ((cur = cur[dir]) && cur.nodeType !== 1) {
         }
         return cur;
     }
@@ -140,7 +140,7 @@ define([
             return dir(elem, "previousSibling", until);
         },
         siblings: function (elem) {
-            return siblings(( elem.parentNode || {} ).firstChild, elem);
+            return siblings((elem.parentNode || {}).firstChild, elem);
         },
         children: function (elem) {
             return siblings(elem.firstChild);

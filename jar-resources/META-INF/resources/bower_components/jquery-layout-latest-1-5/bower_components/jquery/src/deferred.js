@@ -20,11 +20,11 @@ define([
         try {
 
             // Check for promise aspect first to privilege synchronous behavior
-            if (value && jQuery.isFunction(( method = value.promise ))) {
+            if (value && jQuery.isFunction((method = value.promise))) {
                 method.call(value).done(resolve).fail(reject);
 
                 // Other thenables
-            } else if (value && jQuery.isFunction(( method = value.then ))) {
+            } else if (value && jQuery.isFunction((method = value.then))) {
                 method.call(value, resolve, reject);
 
                 // Other non-thenables
@@ -139,8 +139,8 @@ define([
                                             // Support: Promises/A+ section 2.3.4
                                             // https://promisesaplus.com/#point-64
                                             // Only check objects and functions for thenability
-                                            ( typeof returned === "object" ||
-                                                typeof returned === "function" ) &&
+                                            (typeof returned === "object" ||
+                                                typeof returned === "function") &&
                                             returned.then;
 
                                         // Handle a returned thenable
@@ -181,7 +181,7 @@ define([
 
                                             // Process the value(s)
                                             // Default process is resolve
-                                            ( special || deferred.resolveWith )(that, args);
+                                            (special || deferred.resolveWith)(that, args);
                                         }
                                     },
 
@@ -361,7 +361,7 @@ define([
                     return function (value) {
                         resolveContexts[i] = this;
                         resolveValues[i] = arguments.length > 1 ? slice.call(arguments) : value;
-                        if (!( --remaining )) {
+                        if (!(--remaining)) {
                             master.resolveWith(resolveContexts, resolveValues);
                         }
                     };

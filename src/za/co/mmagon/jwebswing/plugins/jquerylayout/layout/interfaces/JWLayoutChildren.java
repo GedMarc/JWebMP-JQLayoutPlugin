@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,5 +23,4 @@ package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces;
  * @since 2013/07/17
  */
 public interface JWLayoutChildren
-{
-}
+{}

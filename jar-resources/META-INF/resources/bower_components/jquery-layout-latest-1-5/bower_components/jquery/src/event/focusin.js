@@ -33,7 +33,7 @@ define([
                     if (!attaches) {
                         doc.addEventListener(orig, handler, true);
                     }
-                    dataPriv.access(doc, fix, ( attaches || 0 ) + 1);
+                    dataPriv.access(doc, fix, (attaches || 0) + 1);
                 },
                 teardown: function () {
                     var doc = this.ownerDocument || this,

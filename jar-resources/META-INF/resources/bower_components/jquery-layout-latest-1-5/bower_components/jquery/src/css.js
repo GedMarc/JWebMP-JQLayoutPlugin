@@ -76,7 +76,7 @@ define([
         return matches ?
 
             // Guard against undefined "subtract", e.g., when used as in cssHooks
-            Math.max(0, matches[2] - ( subtract || 0 )) + ( matches[3] || "px" ) :
+            Math.max(0, matches[2] - (subtract || 0)) + (matches[3] || "px") :
             value;
     }
 
@@ -85,7 +85,7 @@ define([
             val = 0;
 
         // If we already have the right measurement, avoid augmentation
-        if (extra === ( isBorderBox ? "border" : "content" )) {
+        if (extra === (isBorderBox ? "border" : "content")) {
             i = 4;
 
             // Otherwise initialize for horizontal or vertical properties
@@ -142,7 +142,7 @@ define([
         // Check for style in case a browser which returns unreliable values
         // for getComputedStyle silently falls back to the reliable elem.style
         valueIsBorderBox = isBorderBox &&
-            ( support.boxSizingReliable() || val === elem.style[name] );
+            (support.boxSizingReliable() || val === elem.style[name]);
 
         // Fall back to offsetWidth/Height when value is "auto"
         // This happens for inline elements with no explicit setting (gh-3571)
@@ -154,11 +154,11 @@ define([
         val = parseFloat(val) || 0;
 
         // Use the active box-sizing model to add/subtract irrelevant styles
-        return ( val +
+        return (val +
             augmentWidthOrHeight(
                 elem,
                 name,
-                extra || ( isBorderBox ? "border" : "content" ),
+                extra || (isBorderBox ? "border" : "content"),
                 valueIsBorderBox,
                 styles
             )
@@ -234,7 +234,7 @@ define([
                 type = typeof value;
 
                 // Convert "+=" or "-=" to relative numbers (#7345)
-                if (type === "string" && ( ret = rcssNum.exec(value) ) && ret[1]) {
+                if (type === "string" && (ret = rcssNum.exec(value)) && ret[1]) {
                     value = adjustCSS(elem, name, ret);
 
                     // Fixes bug #9237
@@ -248,7 +248,7 @@ define([
 
                 // If a number was passed in, add the unit (except for certain CSS properties)
                 if (type === "number") {
-                    value += ret && ret[3] || ( jQuery.cssNumber[origName] ? "" : "px" );
+                    value += ret && ret[3] || (jQuery.cssNumber[origName] ? "" : "px");
                 }
 
                 // background-* props affect original clone's values
@@ -257,8 +257,8 @@ define([
                 }
 
                 // If a hook was provided, use that value, otherwise just set the specified value
-                if (!hooks || !( "set" in hooks ) ||
-                    ( value = hooks.set(elem, value, extra) ) !== undefined) {
+                if (!hooks || !("set" in hooks) ||
+                    (value = hooks.set(elem, value, extra)) !== undefined) {
 
                     if (isCustomProp) {
                         style.setProperty(name, value);
@@ -271,7 +271,7 @@ define([
 
                 // If a hook was provided get the non-computed value from there
                 if (hooks && "get" in hooks &&
-                    ( ret = hooks.get(elem, false, extra) ) !== undefined) {
+                    (ret = hooks.get(elem, false, extra)) !== undefined) {
 
                     return ret;
                 }
@@ -336,7 +336,7 @@ define([
                     // Support: IE <=11 only
                     // Running getBoundingClientRect on a disconnected node
                     // in IE throws an error.
-                    ( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
+                    (!elem.getClientRects().length || !elem.getBoundingClientRect().width) ?
                         swap(elem, cssShow, function () {
                             return getWidthOrHeight(elem, name, extra);
                         }) :
@@ -356,8 +356,8 @@ define([
                     );
 
                 // Convert to pixels if value adjustment is needed
-                if (subtract && ( matches = rcssNum.exec(value) ) &&
-                    ( matches[3] || "px" ) !== "px") {
+                if (subtract && (matches = rcssNum.exec(value)) &&
+                    (matches[3] || "px") !== "px") {
 
                     elem.style[name] = value;
                     value = jQuery.css(elem, name);
@@ -371,7 +371,7 @@ define([
     jQuery.cssHooks.marginLeft = addGetHookIf(support.reliableMarginLeft,
         function (elem, computed) {
             if (computed) {
-                return ( parseFloat(curCSS(elem, "marginLeft")) ||
+                return (parseFloat(curCSS(elem, "marginLeft")) ||
                     elem.getBoundingClientRect().left -
                     swap(elem, {marginLeft: 0}, function () {
                         return elem.getBoundingClientRect().left;

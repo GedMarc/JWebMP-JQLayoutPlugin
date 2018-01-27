@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.base.html.Div;
 import za.co.mmagon.jwebswing.base.html.HeaderText;
-import za.co.mmagon.jwebswing.base.html.attributes.NoAttributes;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalChildren;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalFeatures;
 import za.co.mmagon.jwebswing.base.html.interfaces.children.BodyChildren;
@@ -32,9 +31,14 @@ import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutCloseLa
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces.IJQLayoutDiv;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces.JWLayoutDivChildren;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.options.JQLayoutDefaultOptions;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+
+import static za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutCSSThemeBlockNames.UI_Layout_Header;
 
 /**
  * This class makes sure only layout DIV's gets added to Layout's Also adds capability of headers and footers
@@ -43,8 +47,7 @@ import java.util.List;
  * @version 1.0
  * @since 16 Jul 2013
  */
-public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFeatures, GlobalEvents, JQLayoutDiv>
-		implements BodyChildren, GlobalChildren, IJQLayoutDiv
+public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J> implements BodyChildren, GlobalChildren, IJQLayoutDiv
 {
 
 	/**
@@ -96,17 +99,21 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 		setArea(area);
 	}
 
-	@Override
+
+	@SuppressWarnings("unchecked")
 	public void init()
 	{
 		if (!isInitialized())
 		{
 			if (!getHeaders().isEmpty())
 			{
-				for (int i = getHeaders().size(); i >= 0; i--)
+				for (int i = getHeaders().size() - 1, j = 0; i >= 0; i--, j++)
 				{
 					Div get = getHeaders().get(i);
-					getChildren().add(get);
+					get.addClass(UI_Layout_Header);
+					List list = new ArrayList(getChildren());
+					list.add(j, get);
+					setChildren(new LinkedHashSet<>(list));
 					get.preConfigure();
 				}
 			}
@@ -123,6 +130,64 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	}
 
 	/**
+	 * Returns a never empty list of header
+	 *
+	 * @return
+	 */
+	@NotNull
+	public List<Div> getHeaders()
+	{
+		if (headers == null)
+		{
+			headers = new ArrayList<>();
+		}
+		return headers;
+	}
+
+	/**
+	 * Returns the footers listing
+	 *
+	 * @return
+	 */
+	@NotNull
+	public List<Component> getFooters()
+	{
+		if (footers == null)
+		{
+			footers = new ArrayList<>();
+		}
+		return footers;
+	}
+
+	/**
+	 * Sets the footer collection
+	 *
+	 * @param footers
+	 */
+	@NotNull
+	public void setFooters(List<Component> footers)
+	{
+		this.footers = footers;
+		if (footers != null)
+		{
+			footers.forEach(next -> next.addClass(UiFooterString));
+		}
+	}
+
+	/**
+	 * Sets the headers
+	 *
+	 * @param headers
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public void setHeaders(List<Div> headers)
+	{
+		this.headers = headers;
+		headers.forEach(this::addHeader);
+	}
+
+	/**
 	 * Returns a clean version of this components options
 	 *
 	 * @return
@@ -133,25 +198,14 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	}
 
 	/**
-	 * Adds the Div as a header and applies the class Widget Header
-	 * <p>
-	 *
-	 * @param headerDiv
-	 */
-	@Override
-	public void addHeader(Div headerDiv)
-	{
-		getHeaders().add(headerDiv);
-		headerDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Header.toString());
-	}
-
-	/**
 	 * *
 	 * Adds a new header to the div and applies the Widget Header class
 	 * <p>
 	 *
 	 * @param headerDivString
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public void addHeader(String headerDivString)
 	{
 		Div headerDiv = new Div();
@@ -160,13 +214,30 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	}
 
 	/**
+	 * Adds the Div as a header and applies the class Widget Header
+	 * <p>
+	 *
+	 * @param headerDiv
+	 */
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J addHeader(Div headerDiv)
+	{
+		getHeaders().add(headerDiv);
+		headerDiv.addClass(UI_Layout_Header.toString());
+		return (J) this;
+	}
+
+	/**
 	 * Adds the footer header
 	 * <p>
 	 *
 	 * @param footerDivString
 	 */
-	@Override
+
 	@SuppressWarnings("unchecked")
+	@NotNull
 	public void addFooter(HeaderText footerDivString)
 	{
 		Div headerDiv = new Div();
@@ -181,9 +252,9 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 *
 	 * @param component
 	 *
-	 * @return The Span
+	 * @return The original component
 	 */
-	@Override
+
 	public Component addPin(Component component)
 	{
 		component.addFeature(new JQLayoutAddPinButtonFeature(this, component));
@@ -197,7 +268,8 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 * @param button
 	 * 		The component to add the open event to
 	 */
-	@Override
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public void addToggleButton(Component button)
 	{
 		button.addFeature(new JQLayoutAddToggleButtonFeature(this, button));
@@ -210,7 +282,8 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 * @param button
 	 * 		The button to add a close event to
 	 */
-	@Override
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public void addCloseButton(Component button)
 	{
 		button.addFeature(new JQLayoutCloseLayoutDivFeature(this));
@@ -222,7 +295,8 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 *
 	 * @param footerDiv
 	 */
-	@Override
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public void addFooter(Component footerDiv)
 	{
 		if (footerDiv != null)
@@ -238,7 +312,8 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 *
 	 * @param footerDivString
 	 */
-	@Override
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public void addFooter(String footerDivString)
 	{
 		Div headerDiv = new Div();
@@ -248,28 +323,14 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	}
 
 	/**
-	 * Returns the footers listing
-	 *
-	 * @return
-	 */
-	@Override
-	public List<Component> getFooters()
-	{
-		if (footers == null)
-		{
-			footers = new ArrayList<>();
-		}
-		return footers;
-	}
-
-	/**
 	 * Adds the header to the layout div
 	 * <p>
 	 *
 	 * @param headerDivString
 	 */
-	@Override
+
 	@SuppressWarnings("unchecked")
+	@NotNull
 	public void addHeader(HeaderText headerDivString)
 	{
 		Div headerDiv = new Div();
@@ -284,24 +345,10 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 * @param button
 	 * 		The component to add the open event to
 	 */
-	@Override
+
 	public void addOpenButton(Component button)
 	{
 		button.addFeature(new JQLayoutOpenLayoutDivFeature(this));
-	}
-
-	/**
-	 * Sets the footer collection
-	 *
-	 * @param footers
-	 */
-	public void setFooters(List<Component> footers)
-	{
-		this.footers = footers;
-		if (footers != null)
-		{
-			footers.forEach(next -> next.addClass(UiFooterString));
-		}
 	}
 
 	/**
@@ -310,7 +357,9 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 *
 	 * @param footerDiv
 	 */
-	@Override
+
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public void removeFooter(Div footerDiv)
 	{
 		getFooters().remove(footerDiv);
@@ -323,126 +372,14 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 	 *
 	 * @param headerDiv
 	 */
-	@Override
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public void removeHeader(Div headerDiv)
 	{
 		getHeaders().remove(headerDiv);
 		getChildren().remove(headerDiv);
 	}
 
-	/**
-	 * Returns a never empty list of header
-	 *
-	 * @return
-	 */
-	public List<Div> getHeaders()
-	{
-		if (headers == null)
-		{
-			headers = new ArrayList<>();
-		}
-		return headers;
-	}
-
-	/**
-	 * Sets the headers
-	 *
-	 * @param headers
-	 */
-	public void setHeaders(List<Div> headers)
-	{
-		this.headers = headers;
-		headers.forEach(this::addHeader);
-	}
-
-	/**
-	 * Gets the current assigned area
-	 * <p>
-	 *
-	 * @return
-	 */
-	public JQLayoutArea getArea()
-	{
-		return area;
-	}
-
-	/**
-	 * Sets the current assigned area
-	 * <p>
-	 *
-	 * @param area
-	 */
-	@Override
-	public final void setArea(JQLayoutArea area)
-	{
-		if (area != null)
-		{
-			removeClass(area.getAreaClass().toString());
-		}
-		this.area = area;
-		if (this.area != null)
-		{
-			addClass(this.area.getAreaClass().toString());
-		}
-	}
-
-	/**
-	 * Returns the current content div
-	 * <p>
-	 *
-	 * @return
-	 */
-	@Override
-	public Div getContentDiv()
-	{
-		if (contentDiv == null)
-		{
-			setContentDiv(new Div());
-		}
-		return contentDiv;
-	}
-
-	/**
-	 * Sets the content div of this layout
-	 *
-	 * @param contentDiv
-	 */
-	public final void setContentDiv(Div contentDiv)
-	{
-		getChildren().remove(this.contentDiv);
-		this.contentDiv = contentDiv;
-		if (this.contentDiv != null)
-		{
-			this.contentDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Content.toString());
-			getChildren().add(this.contentDiv);
-		}
-	}
-
-	/**
-	 * Returns the layout attached to this layout div
-	 * <p>
-	 *
-	 * @return
-	 */
-	@Override
-	public JQLayout getLayout()
-	{
-		return layout;
-	}
-
-	/**
-	 * Sets the layout for this div
-	 * <p>
-	 *
-	 * @param layout
-	 */
-	@Override
-	public final void setLayout(JQLayout layout)
-	{
-		this.layout = layout;
-	}
-
-	@Override
 	public boolean equals(Object o)
 	{
 		if (this == o)
@@ -479,29 +416,128 @@ public class JQLayoutDiv extends Div<JWLayoutDivChildren, NoAttributes, GlobalFe
 		return getLayout() != null ? getLayout().equals(that.getLayout()) : that.getLayout() == null;
 	}
 
-	@Override
+	/**
+	 * Gets the current assigned area
+	 * <p>
+	 *
+	 * @return
+	 */
+	@NotNull
+	public JQLayoutArea getArea()
+	{
+		return area;
+	}
+
+	/**
+	 * Sets the current assigned area
+	 * <p>
+	 *
+	 * @param area
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public final void setArea(JQLayoutArea area)
+	{
+		if (area != null)
+		{
+			removeClass(area.getAreaClass()
+					            .toString());
+		}
+		this.area = area;
+		if (this.area != null)
+		{
+			addClass(this.area.getAreaClass()
+					         .toString());
+		}
+	}
+
+	/**
+	 * Returns the current content div
+	 * <p>
+	 *
+	 * @return
+	 */
+	@NotNull
+	public Div getContentDiv()
+	{
+		if (contentDiv == null)
+		{
+			setContentDiv(new Div());
+		}
+		return contentDiv;
+	}
+
+	/**
+	 * Sets the content div of this layout
+	 *
+	 * @param contentDiv
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public final void setContentDiv(Div contentDiv)
+	{
+		getChildren().remove(this.contentDiv);
+		this.contentDiv = contentDiv;
+		if (this.contentDiv != null)
+		{
+			this.contentDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Content.toString());
+			getChildren().add(this.contentDiv);
+		}
+	}
+
+	/**
+	 * Returns the layout attached to this layout div
+	 * <p>
+	 *
+	 * @return
+	 */
+	@NotNull
+	public JQLayout getLayout()
+	{
+		return layout;
+	}
+
+	/**
+	 * Sets the layout for this div
+	 * <p>
+	 *
+	 * @param layout
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public final void setLayout(@NotNull JQLayout layout)
+	{
+		this.layout = layout;
+	}
+
 	public int hashCode()
 	{
 		return super.hashCode();
 	}
 
-	@Override
+
 	public JQLayoutDefaultOptions getOptions()
 	{
 		switch (this.getArea())
 		{
 			case North:
-				return getLayout().getOptions().getNorth();
+				return getLayout().getOptions()
+						       .getNorth();
 			case Center:
-				return getLayout().getOptions().getCenter();
+				return getLayout().getOptions()
+						       .getCenter();
 			case South:
-				return getLayout().getOptions().getSouth();
+				return getLayout().getOptions()
+						       .getSouth();
 			case East:
-				return getLayout().getOptions().getEast();
+				return getLayout().getOptions()
+						       .getEast();
 			case West:
-				return getLayout().getOptions().getWest();
+				return getLayout().getOptions()
+						       .getWest();
 			default:
-				return getLayout().getOptions().getCenter();
+				return getLayout().getOptions()
+						       .getCenter();
 		}
 	}
 

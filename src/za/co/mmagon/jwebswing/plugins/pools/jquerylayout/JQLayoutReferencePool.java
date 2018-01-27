@@ -30,8 +30,7 @@ import za.co.mmagon.jwebswing.base.servlets.interfaces.ReferencePool;
 public enum JQLayoutReferencePool implements ReferencePool
 {
 
-	JQueryLayout(new JavascriptReference("JQUILayoutJS", 1.45, "bower_components/jquery-layout-latest-1-5/jquery.layout_and_plugins.min.js", "http://layout.jquery-dev.com/lib/js/jquery.layout-latest.min.js"),
-	             new CSSReference("JQUILayoutCSS", 1.45, "bower_components/jquery-layout-latest-1-5/layout-default.min.css"), 10),
+	JQueryLayout(new JavascriptReference("JQUILayoutJS", 1.45, "bower_components/jquery-layout-latest-1-5/jquery.layout_and_plugins.min.js", "http://layout.jquery-dev.com/lib/js/jquery.layout-latest.min.js"), new CSSReference("JQUILayoutCSS", 1.45, "bower_components/jquery-layout-latest-1-5/layout-default.min.css"), 10),
 	JQueryLayoutResizer(new JavascriptReference("layoutResizer", 1.0, "bower_components/jquery-layout-latest-1-5/jquery.layout_customresizer.js"), null, 9);
 
 	private JavascriptReference javaScriptReference;
@@ -44,7 +43,7 @@ public enum JQLayoutReferencePool implements ReferencePool
 	 * @param cssReference
 	 * @param sortOrder
 	 */
-	private JQLayoutReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference, int sortOrder)
+	JQLayoutReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference, int sortOrder)
 	{
 		this.javaScriptReference = javaScriptReference;
 		this.cssReference = cssReference;
@@ -59,18 +58,6 @@ public enum JQLayoutReferencePool implements ReferencePool
 	}
 
 	@Override
-	public JavascriptReference getJavaScriptReference()
-	{
-		return javaScriptReference;
-	}
-
-	@Override
-	public void setJavaScriptReference(JavascriptReference javaScriptReference)
-	{
-		this.javaScriptReference = javaScriptReference;
-	}
-
-	@Override
 	public CSSReference getCssReference()
 	{
 		return cssReference;
@@ -80,5 +67,17 @@ public enum JQLayoutReferencePool implements ReferencePool
 	public void setCssReference(CSSReference cssReference)
 	{
 		this.cssReference = cssReference;
+	}
+
+	@Override
+	public JavascriptReference getJavaScriptReference()
+	{
+		return javaScriptReference;
+	}
+
+	@Override
+	public void setJavaScriptReference(JavascriptReference javaScriptReference)
+	{
+		this.javaScriptReference = javaScriptReference;
 	}
 }

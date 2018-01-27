@@ -75,7 +75,7 @@ define([
         }
 
         // Calculate position if both inputs belong to the same document
-        compare = ( a.ownerDocument || a ) === ( b.ownerDocument || b ) ?
+        compare = (a.ownerDocument || a) === (b.ownerDocument || b) ?
             a.compareDocumentPosition(b) :
 
             // Otherwise we know they are disconnected
@@ -96,7 +96,7 @@ define([
 
             // Maintain original order
             return sortInput ?
-                ( indexOf.call(sortInput, a) - indexOf.call(sortInput, b) ) :
+                (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) :
                 0;
         }
 
@@ -114,7 +114,7 @@ define([
         results.sort(sortOrder);
 
         if (hasDuplicate) {
-            while (( elem = results[i++] )) {
+            while ((elem = results[i++])) {
                 if (elem === results[i]) {
                     j = duplicates.push(i);
                 }
@@ -132,7 +132,7 @@ define([
     }
 
     function escape(sel) {
-        return ( sel + "" ).replace(rcssescape, fcssescape);
+        return (sel + "").replace(rcssescape, fcssescape);
     }
 
     jQuery.extend({
@@ -152,12 +152,12 @@ define([
             }
 
             // Early return if context is not an element or document
-            if (( nodeType = context.nodeType ) !== 1 && nodeType !== 9) {
+            if ((nodeType = context.nodeType) !== 1 && nodeType !== 9) {
                 return [];
             }
 
             if (seed) {
-                while (( elem = seed[i++] )) {
+                while ((elem = seed[i++])) {
                     if (jQuery.find.matchesSelector(elem, selector)) {
                         results.push(elem);
                     }
@@ -177,7 +177,7 @@ define([
             if (!nodeType) {
 
                 // If no nodeType, this is expected to be an array
-                while (( node = elem[i++] )) {
+                while ((node = elem[i++])) {
 
                     // Do not traverse comment nodes
                     ret += jQuery.text(node);
@@ -197,13 +197,13 @@ define([
         contains: function (a, b) {
             var adown = a.nodeType === 9 ? a.documentElement : a,
                 bup = b && b.parentNode;
-            return a === bup || !!( bup && bup.nodeType === 1 && adown.contains(bup) );
+            return a === bup || !!(bup && bup.nodeType === 1 && adown.contains(bup));
         },
         isXMLDoc: function (elem) {
 
             // documentElement is verified for cases where it doesn't yet exist
             // (such as loading iframes in IE - #4833)
-            var documentElement = elem && ( elem.ownerDocument || elem ).documentElement;
+            var documentElement = elem && (elem.ownerDocument || elem).documentElement;
             return documentElement ? documentElement.nodeName !== "HTML" : false;
         },
         expr: {

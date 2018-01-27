@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,13 +17,16 @@
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.options.JQLayoutDefaultOptions;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Marc Magon
  * @version 1.0
  * @since 29 Aug 2015
  */
-public class JQLayoutOptions extends JavaScriptPart
+public class JQLayoutOptions<J extends JQLayoutOptions<J>> extends JavaScriptPart<J>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -81,9 +84,11 @@ public class JQLayoutOptions extends JavaScriptPart
 	 *
 	 * @param name
 	 */
-	public void setName(String name)
+	@SuppressWarnings("unchecked")
+	public J setName(String name)
 	{
 		this.name = name;
+		return (J) this;
 	}
 
 	/**
@@ -92,6 +97,7 @@ public class JQLayoutOptions extends JavaScriptPart
 	 *
 	 * @return
 	 */
+	@NotNull
 	public JQLayoutDefaultOptions getDefaults()
 	{
 		if (defaults == null)
@@ -108,6 +114,7 @@ public class JQLayoutOptions extends JavaScriptPart
 	 *
 	 * @return
 	 */
+	@NotNull
 	public JQLayoutDefaultOptions getWest()
 	{
 		if (west == null)

@@ -87,7 +87,7 @@ define([
             //   2. The data stored at the key
             //
             if (key === undefined ||
-                ( ( key && typeof key === "string" ) && value === undefined )) {
+                ((key && typeof key === "string") && value === undefined)) {
 
                 return this.get(owner, key);
             }
@@ -127,7 +127,7 @@ define([
                     // Otherwise, create an array by matching non-whitespace
                     key = key in cache ?
                         [key] :
-                        ( key.match(rnothtmlwhite) || [] );
+                        (key.match(rnothtmlwhite) || []);
                 }
 
                 i = key.length;

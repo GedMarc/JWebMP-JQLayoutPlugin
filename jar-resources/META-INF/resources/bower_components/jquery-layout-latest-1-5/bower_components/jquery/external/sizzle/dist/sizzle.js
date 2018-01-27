@@ -234,7 +234,7 @@
         // Try to shortcut find operations (as opposed to filters) in HTML documents
         if (!seed) {
 
-            if (( context ? context.ownerDocument || context : preferredDoc ) !== document) {
+            if ((context ? context.ownerDocument || context : preferredDoc) !== document) {
                 setDocument(context);
             }
             context = context || document;
@@ -854,7 +854,7 @@
             function (a, b) {
                 var adown = a.nodeType === 9 ? a.documentElement : a,
                     bup = b && b.parentNode;
-                return a === bup || !!( bup && bup.nodeType === 1 && (
+                return a === bup || !!(bup && bup.nodeType === 1 && (
                     adown.contains ?
                         adown.contains(bup) :
                         a.compareDocumentPosition && a.compareDocumentPosition(bup) & 16
@@ -891,7 +891,7 @@
                 }
 
                 // Calculate position if both inputs belong to the same document
-                compare = ( a.ownerDocument || a ) === ( b.ownerDocument || b ) ?
+                compare = (a.ownerDocument || a) === (b.ownerDocument || b) ?
                     a.compareDocumentPosition(b) :
 
                     // Otherwise we know they are disconnected
@@ -911,7 +911,7 @@
 
                     // Maintain original order
                     return sortInput ?
-                        ( indexOf(sortInput, a) - indexOf(sortInput, b) ) :
+                        (indexOf(sortInput, a) - indexOf(sortInput, b)) :
                         0;
                 }
 
@@ -938,7 +938,7 @@
                             aup ? -1 :
                                 bup ? 1 :
                                     sortInput ?
-                                        ( indexOf(sortInput, a) - indexOf(sortInput, b) ) :
+                                        (indexOf(sortInput, a) - indexOf(sortInput, b)) :
                                         0;
 
                     // If the nodes are siblings, we can do a quick check
@@ -980,7 +980,7 @@
 
     Sizzle.matchesSelector = function (elem, expr) {
         // Set document vars if needed
-        if (( elem.ownerDocument || elem ) !== document) {
+        if ((elem.ownerDocument || elem) !== document) {
             setDocument(elem);
         }
 
@@ -989,8 +989,8 @@
 
         if (support.matchesSelector && documentIsHTML &&
             !compilerCache[expr + " "] &&
-            ( !rbuggyMatches || !rbuggyMatches.test(expr) ) &&
-            ( !rbuggyQSA || !rbuggyQSA.test(expr) )) {
+            (!rbuggyMatches || !rbuggyMatches.test(expr)) &&
+            (!rbuggyQSA || !rbuggyQSA.test(expr))) {
 
             try {
                 var ret = matches.call(elem, expr);
@@ -1011,7 +1011,7 @@
 
     Sizzle.contains = function (context, elem) {
         // Set document vars if needed
-        if (( context.ownerDocument || context ) !== document) {
+        if ((context.ownerDocument || context) !== document) {
             setDocument(context);
         }
         return contains(context, elem);
@@ -1019,7 +1019,7 @@
 
     Sizzle.attr = function (elem, name) {
         // Set document vars if needed
-        if (( elem.ownerDocument || elem ) !== document) {
+        if ((elem.ownerDocument || elem) !== document) {
             setDocument(elem);
         }
 
@@ -1139,7 +1139,7 @@
                 match[1] = match[1].replace(runescape, funescape);
 
                 // Move the given value to match[3] whether quoted or unquoted
-                match[3] = ( match[3] || match[4] || match[5] || "" ).replace(runescape, funescape);
+                match[3] = (match[3] || match[4] || match[5] || "").replace(runescape, funescape);
 
                 if (match[2] === "~=") {
                     match[3] = " " + match[3] + " ";
@@ -1169,8 +1169,8 @@
 
                     // numeric x and y parameters for Expr.filter.CHILD
                     // remember that false/true cast respectively to 0/1
-                    match[4] = +( match[4] ? match[5] + (match[6] || 1) : 2 * ( match[3] === "even" || match[3] === "odd" ) );
-                    match[5] = +( ( match[7] + match[8] ) || match[3] === "odd" );
+                    match[4] = +(match[4] ? match[5] + (match[6] || 1) : 2 * (match[3] === "even" || match[3] === "odd"));
+                    match[5] = +((match[7] + match[8]) || match[3] === "odd");
 
                     // other types prohibit arguments
                 } else if (match[3]) {
@@ -1250,7 +1250,7 @@
                             operator === "^=" ? check && result.indexOf(check) === 0 :
                                 operator === "*=" ? check && result.indexOf(check) > -1 :
                                     operator === "$=" ? check && result.slice(-check.length) === check :
-                                        operator === "~=" ? ( " " + result.replace(rwhitespace, " ") + " " ).indexOf(check) > -1 :
+                                        operator === "~=" ? (" " + result.replace(rwhitespace, " ") + " ").indexOf(check) > -1 :
                                             operator === "|=" ? result === check || result.slice(0, check.length + 1) === check + "-" :
                                                 false;
                 };
@@ -1353,9 +1353,9 @@
                                     while ((node = ++nodeIndex && node && node[dir] ||
                                         (diff = nodeIndex = 0) || start.pop())) {
 
-                                        if (( ofType ?
+                                        if ((ofType ?
                                                 node.nodeName.toLowerCase() === name :
-                                                node.nodeType === 1 ) &&
+                                                node.nodeType === 1) &&
                                             ++diff) {
 
                                             // Cache the index of each encountered element
@@ -1380,7 +1380,7 @@
 
                             // Incorporate the offset, then check against cycle size
                             diff -= last;
-                            return diff === first || ( diff % first === 0 && diff / first >= 0 );
+                            return diff === first || (diff % first === 0 && diff / first >= 0);
                         }
                     };
             },
@@ -1411,7 +1411,7 @@
                                 i = matched.length;
                             while (i--) {
                                 idx = indexOf(seed, matched[i]);
-                                seed[idx] = !( matches[idx] = matched[i] );
+                                seed[idx] = !(matches[idx] = matched[i]);
                             }
                         }) :
                         function (elem) {
@@ -1464,7 +1464,7 @@
             "contains": markFunction(function (text) {
                 text = text.replace(runescape, funescape);
                 return function (elem) {
-                    return ( elem.textContent || elem.innerText || getText(elem) ).indexOf(text) > -1;
+                    return (elem.textContent || elem.innerText || getText(elem)).indexOf(text) > -1;
                 };
             }),
 
@@ -1570,7 +1570,7 @@
 
                     // Support: IE<8
                     // New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
-                    ( (attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text" );
+                    ((attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text");
             },
 
             // Position-in-collection
@@ -1839,13 +1839,13 @@
                 elems = seed || multipleContexts(selector || "*", context.nodeType ? [context] : context, []),
 
                 // Prefilter to get matcher input, preserving a map for seed-results synchronization
-                matcherIn = preFilter && ( seed || !selector ) ?
+                matcherIn = preFilter && (seed || !selector) ?
                     condense(elems, preMap, preFilter, context, xml) :
                     elems,
 
                 matcherOut = matcher ?
                     // If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
-                    postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
+                    postFinder || (seed ? preFilter : preexisting || postFilter) ?
 
                         // ...intermediate processing is necessary
                         [] :
@@ -1930,10 +1930,10 @@
                 return indexOf(checkContext, elem) > -1;
             }, implicitRelative, true),
             matchers = [function (elem, context, xml) {
-                var ret = ( !leadingRelative && ( xml || context !== outermostContext ) ) || (
+                var ret = (!leadingRelative && (xml || context !== outermostContext)) || (
                     (checkContext = context).nodeType ?
                         matchContext(elem, context, xml) :
-                        matchAnyContext(elem, context, xml) );
+                        matchAnyContext(elem, context, xml));
                 // Avoid hanging onto element (issue #299)
                 checkContext = null;
                 return ret;
@@ -2064,7 +2064,7 @@
 
                     // Seedless set matches succeeding multiple successful matchers stipulate sorting
                     if (outermost && !seed && setMatched.length > 0 &&
-                        ( matchedCount + setMatchers.length ) > 1) {
+                        (matchedCount + setMatchers.length) > 1) {
 
                         Sizzle.uniqueSort(results);
                     }
@@ -2139,7 +2139,7 @@
             if (tokens.length > 2 && (token = tokens[0]).type === "ID" &&
                 context.nodeType === 9 && documentIsHTML && Expr.relative[tokens[1].type]) {
 
-                context = ( Expr.find["ID"](token.matches[0].replace(runescape, funescape), context) || [] )[0];
+                context = (Expr.find["ID"](token.matches[0].replace(runescape, funescape), context) || [])[0];
                 if (!context) {
                     return results;
 
@@ -2183,7 +2183,7 @@
 
         // Compile and execute a filtering function if one is not provided
         // Provide `match` to avoid retokenization if we modified the selector above
-        ( compiled || compile(selector, match) )(
+        (compiled || compile(selector, match))(
             seed,
             context,
             !documentIsHTML,

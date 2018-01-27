@@ -41,14 +41,14 @@ define([
 
             if (value !== undefined) {
                 if (hooks && "set" in hooks &&
-                    ( ret = hooks.set(elem, value, name) ) !== undefined) {
+                    (ret = hooks.set(elem, value, name)) !== undefined) {
                     return ret;
                 }
 
-                return ( elem[name] = value );
+                return (elem[name] = value);
             }
 
-            if (hooks && "get" in hooks && ( ret = hooks.get(elem, name) ) !== null) {
+            if (hooks && "get" in hooks && (ret = hooks.get(elem, name)) !== null) {
                 return ret;
             }
 

@@ -14,7 +14,7 @@ define([
     jQuery.ajaxSetup({
         jsonp: "callback",
         jsonpCallback: function () {
-            var callback = oldCallbacks.pop() || ( jQuery.expando + "_" + ( nonce++ ) );
+            var callback = oldCallbacks.pop() || (jQuery.expando + "_" + (nonce++));
             this[callback] = true;
             return callback;
         }
@@ -24,10 +24,10 @@ define([
     jQuery.ajaxPrefilter("json jsonp", function (s, originalSettings, jqXHR) {
 
         var callbackName, overwritten, responseContainer,
-            jsonProp = s.jsonp !== false && ( rjsonp.test(s.url) ?
+            jsonProp = s.jsonp !== false && (rjsonp.test(s.url) ?
                     "url" :
                     typeof s.data === "string" &&
-                    ( s.contentType || "" )
+                    (s.contentType || "")
                         .indexOf("application/x-www-form-urlencoded") === 0 &&
                     rjsonp.test(s.data) && "data"
             );
@@ -44,7 +44,7 @@ define([
             if (jsonProp) {
                 s[jsonProp] = s[jsonProp].replace(rjsonp, "$1" + callbackName);
             } else if (s.jsonp !== false) {
-                s.url += ( rquery.test(s.url) ? "&" : "?" ) + s.jsonp + "=" + callbackName;
+                s.url += (rquery.test(s.url) ? "&" : "?") + s.jsonp + "=" + callbackName;
             }
 
             // Use data converter to retrieve json after script execution

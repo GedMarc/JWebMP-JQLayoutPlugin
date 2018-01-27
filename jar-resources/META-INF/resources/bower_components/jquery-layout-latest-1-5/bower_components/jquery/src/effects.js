@@ -44,7 +44,7 @@ define([
         window.setTimeout(function () {
             fxNow = undefined;
         });
-        return ( fxNow = jQuery.now() );
+        return (fxNow = jQuery.now());
     }
 
 // Generate parameters to create a standard animation
@@ -70,11 +70,11 @@ define([
 
     function createTween(value, prop, animation) {
         var tween,
-            collection = ( Animation.tweeners[prop] || [] ).concat(Animation.tweeners["*"]),
+            collection = (Animation.tweeners[prop] || []).concat(Animation.tweeners["*"]),
             index = 0,
             length = collection.length;
         for (; index < length; index++) {
-            if (( tween = collection[index].call(animation, prop, value) )) {
+            if ((tween = collection[index].call(animation, prop, value))) {
 
                 // We're done with this property
                 return tween;
@@ -123,7 +123,7 @@ define([
             if (rfxtypes.test(value)) {
                 delete props[prop];
                 toggle = toggle || value === "toggle";
-                if (value === ( hidden ? "hide" : "show" )) {
+                if (value === (hidden ? "hide" : "show")) {
 
                     // Pretend to be hidden if this is a "show" and
                     // there is still data from a stopped show/hide
@@ -243,7 +243,7 @@ define([
 
             // Per-property setup
             propTween = createTween(hidden ? dataShow[prop] : 0, prop, anim);
-            if (!( prop in dataShow )) {
+            if (!(prop in dataShow)) {
                 dataShow[prop] = propTween.start;
                 if (hidden) {
                     propTween.end = propTween.start;
@@ -279,7 +279,7 @@ define([
                 // Not quite $.extend, this won't overwrite existing keys.
                 // Reusing 'index' because we have the correct "name"
                 for (index in value) {
-                    if (!( index in props )) {
+                    if (!(index in props)) {
                         props[index] = value[index];
                         specialEasing[index] = easing;
                     }
@@ -563,7 +563,7 @@ define([
 
                 for (index = timers.length; index--;) {
                     if (timers[index].elem === this &&
-                        ( type == null || timers[index].queue === type )) {
+                        (type == null || timers[index].queue === type)) {
 
                         timers[index].anim.stop(gotoEnd);
                         dequeue = false;

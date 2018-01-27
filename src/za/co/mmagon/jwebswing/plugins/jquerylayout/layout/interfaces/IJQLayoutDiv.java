@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,152 +16,10 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.interfaces;
 
-import za.co.mmagon.jwebswing.Component;
-import za.co.mmagon.jwebswing.base.html.Div;
-import za.co.mmagon.jwebswing.base.html.HeaderText;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayout;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutArea;
-import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDefaultOptions;
-
-import java.util.List;
-
 /**
  * @author GedMarc
  * @version 1.0
  * @since Oct 30, 2016
  */
 public interface IJQLayoutDiv
-{
-	/**
-	 * Adds the open event to a component
-	 * <p>
-	 *
-	 * @param button The component to add the open event to
-	 */
-	void addToggleButton(Component button);
-
-	/**
-	 * Adds the close event to the component
-	 * <p>
-	 *
-	 * @param button The button to add a close event to
-	 */
-	void addCloseButton(Component button);
-
-	/**
-	 * Adds the footer to the component
-	 * <p>
-	 *
-	 * @param footerDiv
-	 */
-	void addFooter(Component footerDiv);
-
-	/**
-	 * Adds the footer
-	 * <p>
-	 *
-	 * @param footerDivString
-	 */
-	void addFooter(String footerDivString);
-
-	/**
-	 * Adds the footer header
-	 * <p>
-	 *
-	 * @param footerDivString
-	 */
-	void addFooter(HeaderText footerDivString);
-
-	/**
-	 * Adds the Div as a header and applies the class Widget Header
-	 * <p>
-	 *
-	 * @param headerDiv
-	 */
-	void addHeader(Div headerDiv);
-
-	/**
-	 * Adds the header to the layout div
-	 * <p>
-	 *
-	 * @param headerDivString
-	 */
-	void addHeader(HeaderText headerDivString);
-
-	/**
-	 * Adds the open event to a component
-	 * <p>
-	 *
-	 * @param button The component to add the open event to
-	 */
-	void addOpenButton(Component button);
-
-	/**
-	 * Adds a Pin for this Div
-	 * <p>
-	 *
-	 * @param component
-	 *
-	 * @return The Span
-	 */
-	Component addPin(Component component);
-
-	/**
-	 * Sets the current assigned area
-	 * <p>
-	 *
-	 * @param area
-	 */
-	void setArea(JQLayoutArea area);
-
-	/**
-	 * Returns the current content div
-	 * <p>
-	 *
-	 * @return
-	 */
-	Div getContentDiv();
-
-	/**
-	 * Returns the footers listing
-	 *
-	 * @return
-	 */
-	List<Component> getFooters();
-
-	/**
-	 * Returns the layout attached to this layout div
-	 * <p>
-	 *
-	 * @return
-	 */
-	JQLayout getLayout();
-
-	/**
-	 * Sets the layout for this div
-	 * <p>
-	 *
-	 * @param layout
-	 */
-	void setLayout(JQLayout layout);
-
-	//    @Override
-	JQLayoutDefaultOptions getOptions();
-
-	/**
-	 * Removes the footer
-	 * <p>
-	 *
-	 * @param footerDiv
-	 */
-	void removeFooter(Div footerDiv);
-
-	/**
-	 * Removes the header
-	 * <p>
-	 *
-	 * @param headerDiv
-	 */
-	void removeHeader(Div headerDiv);
-
-}
+{}

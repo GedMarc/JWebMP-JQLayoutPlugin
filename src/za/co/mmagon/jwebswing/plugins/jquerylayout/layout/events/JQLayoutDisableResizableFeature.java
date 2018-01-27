@@ -51,7 +51,10 @@ public class JQLayoutDisableResizableFeature extends Feature<JavaScriptPart, JQL
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		String openDivFunction = divToOpen.getLayout().getVariableID() + ".disableResizable('" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
+		String openDivFunction = divToOpen.getLayout()
+				                         .getVariableID() + ".disableResizable('" + divToOpen.getArea()
+						                                                                    .toString()
+						                                                                    .toLowerCase() + "');" + getNewLine();
 		addQuery(openDivFunction);
 	}
 

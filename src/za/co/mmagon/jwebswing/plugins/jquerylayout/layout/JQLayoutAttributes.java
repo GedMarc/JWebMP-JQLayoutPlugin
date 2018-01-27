@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,6 +16,8 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 
+import za.co.mmagon.jwebswing.base.html.interfaces.AttributeDefinitions;
+
 /**
  * Defines all the attributes allowed on the JWLayout component
  *
@@ -23,7 +25,13 @@ package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
  * @version 1.0
  * @since 23 Sep 2013
  */
-public enum JQLayoutAttributes
+public enum JQLayoutAttributes implements AttributeDefinitions
 {
 	JWType;
+
+	@Override
+	public boolean isKeyword()
+	{
+		return false;
+	}
 }

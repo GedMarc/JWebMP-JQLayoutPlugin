@@ -54,7 +54,10 @@ public class JQLayoutAddPinButtonFeature extends Feature<JavaScriptPart, JQLayou
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		String openDivFunction = divToOpen.getLayout().getVariableID() + ".addPinBtn('#" + getComponent().getID() + "','" + divToOpen.getArea().toString().toLowerCase() + "');" + getNewLine();
+		String openDivFunction = divToOpen.getLayout()
+				                         .getVariableID() + ".addPinBtn('#" + getComponent().getID() + "','" + divToOpen.getArea()
+						                                                                                               .toString()
+						                                                                                               .toLowerCase() + "');" + getNewLine();
 		addQuery(openDivFunction);
 	}
 

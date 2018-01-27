@@ -16,7 +16,7 @@ define(function () {
                 }
 
                 // Hook needed; redefine it so that the support test is not executed again.
-                return ( this.get = hookFn ).apply(this, arguments);
+                return (this.get = hookFn).apply(this, arguments);
             }
         };
     }

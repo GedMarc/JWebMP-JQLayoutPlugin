@@ -54,7 +54,10 @@ public class JQLayoutEnableSlidableFeature extends Feature<JavaScriptPart, JQLay
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		String openDivFunction = divToOpen.getLayout().getVariableID() + ".enableSlidable(\"" + divToOpen.getArea().toString().toLowerCase() + "\");" + getNewLine();
+		String openDivFunction = divToOpen.getLayout()
+				                         .getVariableID() + ".enableSlidable(\"" + divToOpen.getArea()
+						                                                                   .toString()
+						                                                                   .toLowerCase() + "\");" + getNewLine();
 		addQuery(openDivFunction);
 	}
 

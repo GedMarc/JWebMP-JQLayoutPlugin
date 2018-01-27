@@ -13,8 +13,8 @@ define([
 
                 // Margin is only for outerHeight, outerWidth
                 jQuery.fn[funcName] = function (margin, value) {
-                    var chainable = arguments.length && ( defaultExtra || typeof margin !== "boolean" ),
-                        extra = defaultExtra || ( margin === true || value === true ? "margin" : "border" );
+                    var chainable = arguments.length && (defaultExtra || typeof margin !== "boolean"),
+                        extra = defaultExtra || (margin === true || value === true ? "margin" : "border");
 
                     return access(this, function (elem, type, value) {
                         var doc;

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
+package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.options;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,6 +25,12 @@ import za.co.mmagon.jwebswing.htmlbuilder.css.displays.Cursors;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.easingeffects.JQEasingAnimationEffectsPart;
 import za.co.mmagon.jwebswing.plugins.easingeffects.JQEasingEffects;
+import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
+
+import javax.validation.constraints.NotNull;
+
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_PLUS;
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_UNDERSCORE;
 
 /**
  * Users the JavaScript part rather
@@ -38,14 +44,12 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 {
 
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * If the layout is responsive or not
 	 */
-	private Boolean responsive;
-	/**
-	 * When the layout should be responsive
-	 */
-	private LayoutResponsiveBootstrapSize responsiveWhen;
+	private JQLayoutResponsiveOptions responsive;
+
 	/**
 	 * When open, pane can be resized
 	 */
@@ -275,6 +279,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 		return onResize;
 	}
 
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setOnResize(String onResize)
 	{
 		this.onResize = onResize;
@@ -296,6 +302,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param resizable
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setResizable(Boolean resizable)
 	{
 		this.resizable = resizable;
@@ -317,6 +325,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param closable
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setClosable(Boolean closable)
 	{
 		this.closable = closable;
@@ -338,6 +348,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param slidable
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setSlidable(Boolean slidable)
 	{
 		this.slidable = slidable;
@@ -359,6 +371,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param livePaneResizing
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setLivePaneResizing(Boolean livePaneResizing)
 	{
 		this.livePaneResizing = livePaneResizing;
@@ -380,6 +394,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param animatePaneSizing
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setAnimatePaneSizing(Boolean animatePaneSizing)
 	{
 		this.animatePaneSizing = animatePaneSizing;
@@ -402,6 +418,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param showOverflowOnHover
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setShowOverflowOnHover(Boolean showOverflowOnHover)
 	{
 		this.showOverflowOnHover = showOverflowOnHover;
@@ -425,6 +443,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param scrollToBookmarkOnLoad
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setScrollToBookmarkOnLoad(Boolean scrollToBookmarkOnLoad)
 	{
 		this.scrollToBookmarkOnLoad = scrollToBookmarkOnLoad;
@@ -476,6 +496,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param paneSelector
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setPaneSelector(JQLayoutDiv paneSelector)
 	{
 		this.paneSelector = paneSelector;
@@ -515,6 +537,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param contentSelector
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setContentSelector(JQLayoutDiv contentSelector)
 	{
 		this.contentSelector = contentSelector;
@@ -548,6 +572,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param contentIgnoreSelector
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setContentIgnoreSelector(JQLayoutDiv contentIgnoreSelector)
 	{
 		this.contentIgnoreSelector = contentIgnoreSelector;
@@ -586,6 +612,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param paneClass
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setPaneClass(String paneClass)
 	{
 		this.paneClass = paneClass;
@@ -648,6 +676,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param resizerClass
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setResizerClass(String resizerClass)
 	{
 		this.resizerClass = resizerClass;
@@ -693,6 +723,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param togglerClass
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setTogglerClass(String togglerClass)
 	{
 		this.togglerClass = togglerClass;
@@ -758,6 +790,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param buttonClass
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setButtonClass(String buttonClass)
 	{
 		this.buttonClass = buttonClass;
@@ -789,6 +823,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param size
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setSize(Integer size)
 	{
 		this.size = size;
@@ -802,6 +838,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public Integer getMinSize()
 	{
 		return minSize;
@@ -825,6 +863,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public Integer getMaxSize()
 	{
 		return maxSize;
@@ -856,6 +896,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param spacingClosed
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setSpacingClosed(Integer spacingClosed)
 	{
 		this.spacingClosed = spacingClosed;
@@ -877,6 +919,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param spacingOpen
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setSpacingOpen(Integer spacingOpen)
 	{
 		this.spacingOpen = spacingOpen;
@@ -908,6 +952,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param resizerCursor
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setResizerCursor(Cursors resizerCursor)
 	{
 		this.resizerCursor = resizerCursor;
@@ -941,6 +987,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param resizerDragOpacity
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setResizerDragOpacity(Double resizerDragOpacity)
 	{
 		this.resizerDragOpacity = resizerDragOpacity;
@@ -966,6 +1014,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param sliderCursor
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setSliderCursor(Cursors sliderCursor)
 	{
 		this.sliderCursor = sliderCursor;
@@ -995,6 +1045,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param maskIframesOnResize
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setMaskIframesOnResize(Boolean maskIframesOnResize)
 	{
 		this.maskIframesOnResize = maskIframesOnResize;
@@ -1016,6 +1068,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param slideTriggerOpen
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setSlideTriggerOpen(String slideTriggerOpen)
 	{
 		this.slideTriggerOpen = slideTriggerOpen;
@@ -1041,6 +1095,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param slideTriggerClose
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setSlideTriggerClose(String slideTriggerClose)
 	{
 		this.slideTriggerClose = slideTriggerClose;
@@ -1075,6 +1131,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param togglerLengthOpen
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setTogglerLengthOpen(Integer togglerLengthOpen)
 	{
 		this.togglerLengthOpen = togglerLengthOpen;
@@ -1108,6 +1166,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param togglerLengthClosed
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setTogglerLengthClosed(Integer togglerLengthClosed)
 	{
 		this.togglerLengthClosed = togglerLengthClosed;
@@ -1137,6 +1197,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param hideTogglerOnSlide
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setHideTogglerOnSlide(Boolean hideTogglerOnSlide)
 	{
 		this.hideTogglerOnSlide = hideTogglerOnSlide;
@@ -1174,6 +1236,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param togglerAlignOpen
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setTogglerAlignOpen(String togglerAlignOpen)
 	{
 		this.togglerAlignOpen = togglerAlignOpen;
@@ -1211,6 +1275,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param togglerAlignClosed
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setTogglerAlignClosed(String togglerAlignClosed)
 	{
 		this.togglerAlignClosed = togglerAlignClosed;
@@ -1230,6 +1296,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param togglerContentOpen
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setTogglerContentOpen(Component togglerContentOpen)
 	{
 		this.togglerContentOpen = togglerContentOpen.toString(true);
@@ -1257,6 +1325,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param togglerContentClosed
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setTogglerContentClosed(Component togglerContentClosed)
 	{
 		this.togglerContentClosed = togglerContentClosed.toString(true);
@@ -1300,6 +1370,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param enableCursorHotkey
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setEnableCursorHotkey(Boolean enableCursorHotkey)
 	{
 		this.enableCursorHotkey = enableCursorHotkey;
@@ -1333,6 +1405,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param customHotkeyModifier
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setCustomHotkeyModifier(CustomHotkeyModifier customHotkeyModifier)
 	{
 		this.customHotkeyModifier = customHotkeyModifier;
@@ -1374,6 +1448,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param customHotkey
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setCustomHotkey(Character customHotkey)
 	{
 		this.customHotkey = customHotkey;
@@ -1399,6 +1475,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param fxName
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setFxName(JQEasingEffects fxName)
 	{
 		this.fxName = fxName;
@@ -1424,6 +1502,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param fxNameOpen
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setFxNameOpen(JQEasingEffects fxNameOpen)
 	{
 		this.fxNameOpen = fxNameOpen;
@@ -1449,6 +1529,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param fxNameClose
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setFxNameClose(JQEasingEffects fxNameClose)
 	{
 		this.fxNameClose = fxNameClose;
@@ -1474,6 +1556,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param fxSpeed
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setFxSpeed(Integer fxSpeed)
 	{
 		this.fxSpeed = fxSpeed;
@@ -1499,6 +1583,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param fxSpeedOpen
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setFxSpeedOpen(Integer fxSpeedOpen)
 	{
 		this.fxSpeedOpen = fxSpeedOpen;
@@ -1524,6 +1610,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param fxSpeedClose
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setFxSpeedClose(Integer fxSpeedClose)
 	{
 		this.fxSpeedClose = fxSpeedClose;
@@ -1553,6 +1641,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param fxSettings
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setFxSettings(JQEasingAnimationEffectsPart fxSettings)
 	{
 		this.fxSettings = fxSettings;
@@ -1582,6 +1672,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param fxSettingsOpen
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setFxSettingsOpen(JQEasingAnimationEffectsPart fxSettingsOpen)
 	{
 		this.fxSettingsOpen = fxSettingsOpen;
@@ -1611,6 +1703,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param fxSettingsClose
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setFxSettingsClose(JQEasingAnimationEffectsPart fxSettingsClose)
 	{
 		this.fxSettingsClose = fxSettingsClose;
@@ -1636,6 +1730,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param initClosed
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setInitClosed(Boolean initClosed)
 	{
 		this.initClosed = initClosed;
@@ -1661,6 +1757,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param initHidden
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public J setInitHidden(Boolean initHidden)
 	{
 		this.initHidden = initHidden;
@@ -1682,6 +1780,8 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param layoutDiv
 	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
 	public final J setLayoutDiv(JQLayoutDiv layoutDiv)
 	{
 		this.layoutDiv = layoutDiv;
@@ -1693,11 +1793,11 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @return
 	 */
-	public Boolean getResponsive()
+	public JQLayoutResponsiveOptions getResponsive()
 	{
 		if (responsive == null)
 		{
-			return false;
+			responsive = new JQLayoutResponsiveOptions();
 		}
 		return responsive;
 	}
@@ -1707,34 +1807,11 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @param responsive
 	 */
-	public J setResponsive(Boolean responsive)
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J setResponsive(JQLayoutResponsiveOptions responsive)
 	{
 		this.responsive = responsive;
-		return (J) this;
-	}
-
-	/**
-	 * From when should the layout be responsive
-	 *
-	 * @return
-	 */
-	public LayoutResponsiveBootstrapSize getResponsiveWhen()
-	{
-		if (responsiveWhen == null)
-		{
-			return LayoutResponsiveBootstrapSize.Medium;
-		}
-		return responsiveWhen;
-	}
-
-	/**
-	 * Sets when the layout should be responsive
-	 *
-	 * @param responsiveWhen
-	 */
-	public J setResponsiveWhen(LayoutResponsiveBootstrapSize responsiveWhen)
-	{
-		this.responsiveWhen = responsiveWhen;
 		return (J) this;
 	}
 
@@ -1765,7 +1842,7 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 		@Override
 		public String toString()
 		{
-			return name().replaceAll("_", "+");
+			return name().replace(CHAR_UNDERSCORE, CHAR_PLUS);
 		}
 	}
 

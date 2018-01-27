@@ -26,13 +26,13 @@ define([
             if (typeof value === "string" && value) {
                 classes = value.match(rnothtmlwhite) || [];
 
-                while (( elem = this[i++] )) {
+                while ((elem = this[i++])) {
                     curValue = getClass(elem);
-                    cur = elem.nodeType === 1 && ( " " + stripAndCollapse(curValue) + " " );
+                    cur = elem.nodeType === 1 && (" " + stripAndCollapse(curValue) + " ");
 
                     if (cur) {
                         j = 0;
-                        while (( clazz = classes[j++] )) {
+                        while ((clazz = classes[j++])) {
                             if (cur.indexOf(" " + clazz + " ") < 0) {
                                 cur += clazz + " ";
                             }
@@ -67,15 +67,15 @@ define([
             if (typeof value === "string" && value) {
                 classes = value.match(rnothtmlwhite) || [];
 
-                while (( elem = this[i++] )) {
+                while ((elem = this[i++])) {
                     curValue = getClass(elem);
 
                     // This expression is here for better compressibility (see addClass)
-                    cur = elem.nodeType === 1 && ( " " + stripAndCollapse(curValue) + " " );
+                    cur = elem.nodeType === 1 && (" " + stripAndCollapse(curValue) + " ");
 
                     if (cur) {
                         j = 0;
-                        while (( clazz = classes[j++] )) {
+                        while ((clazz = classes[j++])) {
 
                             // Remove *all* instances
                             while (cur.indexOf(" " + clazz + " ") > -1) {
@@ -121,7 +121,7 @@ define([
                     self = jQuery(this);
                     classNames = value.match(rnothtmlwhite) || [];
 
-                    while (( className = classNames[i++] )) {
+                    while ((className = classNames[i++])) {
 
                         // Check each className given, space separated list
                         if (self.hasClass(className)) {
@@ -141,8 +141,8 @@ define([
                     }
 
                     // If the element has a class name or if we're passed `false`,
-                    // then remove the whole classname (if there was one, the above 
-                    // Otherwise bring back whatever was previously 
+                    // then remove the whole classname (if there was one, the above
+                    // Otherwise bring back whatever was previously
                     // falling back to the empty string if nothing was stored.
                     if (this.setAttribute) {
                         this.setAttribute("class",
@@ -160,9 +160,9 @@ define([
                 i = 0;
 
             className = " " + selector + " ";
-            while (( elem = this[i++] )) {
+            while ((elem = this[i++])) {
                 if (elem.nodeType === 1 &&
-                    ( " " + stripAndCollapse(getClass(elem)) + " " ).indexOf(className) > -1) {
+                    (" " + stripAndCollapse(getClass(elem)) + " ").indexOf(className) > -1) {
                     return true;
                 }
             }

@@ -24,7 +24,7 @@ define([
         },
         xhrSupported = jQuery.ajaxSettings.xhr();
 
-    support.cors = !!xhrSupported && ( "withCredentials" in xhrSupported );
+    support.cors = !!xhrSupported && ("withCredentials" in xhrSupported);
     support.ajax = xhrSupported = !!xhrSupported;
 
     jQuery.ajaxTransport(function (options) {
@@ -102,7 +102,7 @@ define([
                                         // Support: IE <=9 only
                                         // IE9 has no XHR2 but throws on binary (trac-11426)
                                         // For XHR2 non-text, let the caller handle it (gh-2498)
-                                        ( xhr.responseType || "text" ) !== "text" ||
+                                        (xhr.responseType || "text") !== "text" ||
                                         typeof xhr.responseText !== "string" ?
                                             {binary: xhr.response} :
                                             {text: xhr.responseText},

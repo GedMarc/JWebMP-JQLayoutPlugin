@@ -39,7 +39,7 @@ define([
                     tmp = tmp || fragment.appendChild(context.createElement("div"));
 
                     // Deserialize a standard representation
-                    tag = ( rtagName.exec(elem) || ["", ""] )[1].toLowerCase();
+                    tag = (rtagName.exec(elem) || ["", ""])[1].toLowerCase();
                     wrap = wrapMap[tag] || wrapMap._default;
                     tmp.innerHTML = wrap[1] + jQuery.htmlPrefilter(elem) + wrap[2];
 
@@ -66,7 +66,7 @@ define([
         fragment.textContent = "";
 
         i = 0;
-        while (( elem = nodes[i++] )) {
+        while ((elem = nodes[i++])) {
 
             // Skip elements already in the context collection (trac-4087)
             if (selection && jQuery.inArray(elem, selection) > -1) {
@@ -89,7 +89,7 @@ define([
             // Capture executables
             if (scripts) {
                 j = 0;
-                while (( elem = tmp[j++] )) {
+                while ((elem = tmp[j++])) {
                     if (rscriptType.test(elem.type || "")) {
                         scripts.push(elem);
                     }

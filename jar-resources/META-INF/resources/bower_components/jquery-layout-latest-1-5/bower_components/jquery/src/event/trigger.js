@@ -85,21 +85,21 @@ define([
                 }
 
                 // Only add window if we got to document (e.g., not plain obj or detached DOM)
-                if (tmp === ( elem.ownerDocument || document )) {
+                if (tmp === (elem.ownerDocument || document)) {
                     eventPath.push(tmp.defaultView || tmp.parentWindow || window);
                 }
             }
 
             // Fire handlers on the event path
             i = 0;
-            while (( cur = eventPath[i++] ) && !event.isPropagationStopped()) {
+            while ((cur = eventPath[i++]) && !event.isPropagationStopped()) {
 
                 event.type = i > 1 ?
                     bubbleType :
                     special.bindType || type;
 
                 // jQuery handler
-                handle = ( dataPriv.get(cur, "events") || {} )[event.type] &&
+                handle = (dataPriv.get(cur, "events") || {})[event.type] &&
                     dataPriv.get(cur, "handle");
                 if (handle) {
                     handle.apply(cur, data);
@@ -119,8 +119,8 @@ define([
             // If nobody prevented the default action, do it now
             if (!onlyHandlers && !event.isDefaultPrevented()) {
 
-                if (( !special._default ||
-                        special._default.apply(eventPath.pop(), data) === false ) &&
+                if ((!special._default ||
+                        special._default.apply(eventPath.pop(), data) === false) &&
                     acceptData(elem)) {
 
                     // Call a native DOM method on the target with the same name as the event.

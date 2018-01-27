@@ -43,7 +43,7 @@ define([
             // Grab necessary hook if one is defined
             if (nType !== 1 || !jQuery.isXMLDoc(elem)) {
                 hooks = jQuery.attrHooks[name.toLowerCase()] ||
-                    ( jQuery.expr.match.bool.test(name) ? boolHook : undefined );
+                    (jQuery.expr.match.bool.test(name) ? boolHook : undefined);
             }
 
             if (value !== undefined) {
@@ -53,7 +53,7 @@ define([
                 }
 
                 if (hooks && "set" in hooks &&
-                    ( ret = hooks.set(elem, value, name) ) !== undefined) {
+                    (ret = hooks.set(elem, value, name)) !== undefined) {
                     return ret;
                 }
 
@@ -61,7 +61,7 @@ define([
                 return value;
             }
 
-            if (hooks && "get" in hooks && ( ret = hooks.get(elem, name) ) !== null) {
+            if (hooks && "get" in hooks && (ret = hooks.get(elem, name)) !== null) {
                 return ret;
             }
 
@@ -96,7 +96,7 @@ define([
                 attrNames = value && value.match(rnothtmlwhite);
 
             if (attrNames && elem.nodeType === 1) {
-                while (( name = attrNames[i++] )) {
+                while ((name = attrNames[i++])) {
                     elem.removeAttribute(name);
                 }
             }

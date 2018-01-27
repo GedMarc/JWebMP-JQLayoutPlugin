@@ -17,10 +17,10 @@ define([
                     return jQuery.css(elem, prop, "");
                 },
             initial = currentValue(),
-            unit = valueParts && valueParts[3] || ( jQuery.cssNumber[prop] ? "" : "px" ),
+            unit = valueParts && valueParts[3] || (jQuery.cssNumber[prop] ? "" : "px"),
 
             // Starting value computation is required for potential unit mismatches
-            initialInUnit = ( jQuery.cssNumber[prop] || unit !== "px" && +initial ) &&
+            initialInUnit = (jQuery.cssNumber[prop] || unit !== "px" && +initial) &&
                 rcssNum.exec(jQuery.css(elem, prop));
 
         if (initialInUnit && initialInUnit[3] !== unit) {
@@ -47,7 +47,7 @@ define([
                 // Update scale, tolerating zero or NaN from tween.cur()
                 // Break the loop if scale is unchanged or perfect, or if we've just had enough.
             } while (
-                scale !== ( scale = currentValue() / initial ) && scale !== 1 && --maxIterations
+                scale !== (scale = currentValue() / initial) && scale !== 1 && --maxIterations
                 );
         }
 
@@ -56,7 +56,7 @@ define([
 
             // Apply relative offset (+=/-=) if specified
             adjusted = valueParts[1] ?
-                initialInUnit + ( valueParts[1] + 1 ) * valueParts[2] :
+                initialInUnit + (valueParts[1] + 1) * valueParts[2] :
                 +valueParts[2];
             if (tween) {
                 tween.unit = unit;

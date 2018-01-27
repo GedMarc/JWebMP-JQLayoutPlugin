@@ -16,6 +16,7 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 
+import za.co.mmagon.jwebswing.base.interfaces.ICSSClassName;
 import za.co.mmagon.jwebswing.utilities.StaticStrings;
 
 import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_DASH;
@@ -25,7 +26,7 @@ import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_DASH;
  * @version 1.0
  * @since 21 Jul 2013
  */
-public enum JQLayoutCSSThemeBlockNames
+public enum JQLayoutCSSThemeBlockNames implements ICSSClassName
 {
 	/**
 	 * The Layout Component Content
@@ -63,7 +64,8 @@ public enum JQLayoutCSSThemeBlockNames
 	@Override
 	public String toString()
 	{
-		return name().toLowerCase().replace(StaticStrings.CHAR_UNDERSCORE, CHAR_DASH);
+		return name().toLowerCase()
+				       .replace(StaticStrings.CHAR_UNDERSCORE, CHAR_DASH);
 	}
 
 }

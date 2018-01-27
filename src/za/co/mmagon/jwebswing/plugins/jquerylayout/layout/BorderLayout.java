@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
  * @version 1.0
  * @since 22 Dec 2016
  */
-public class BorderLayout extends JQLayout
+public class BorderLayout<J extends BorderLayout<J>> extends JQLayout<J>
 {
 
 	private static final long serialVersionUID = 1L;

@@ -79,7 +79,7 @@ define([
 // Support: IE9-10 only
 // Older IE sometimes signals "interactive" too soon
     if (document.readyState === "complete" ||
-        ( document.readyState !== "loading" && !document.documentElement.doScroll )) {
+        (document.readyState !== "loading" && !document.documentElement.doScroll)) {
 
         // Handle it asynchronously to allow scripts the opportunity to delay ready
         window.setTimeout(jQuery.ready);
