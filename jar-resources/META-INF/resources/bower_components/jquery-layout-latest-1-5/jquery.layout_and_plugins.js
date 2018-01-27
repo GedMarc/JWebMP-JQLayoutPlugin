@@ -65,8 +65,8 @@
      * GENERIC $.layout METHODS - used by all layouts
      */
         $.layout = {
-            version: "1.6.0"
-            , revision: 1.0601 // eg: ver 1.4.4 = rev 1.0404 - major(n+).minor(nn)+patch(nn+)
+            version: "1.4.4"
+            , revision: 1.0404 // eg: ver 1.4.4 = rev 1.0404 - major(n+).minor(nn)+patch(nn+)
 
             // $.layout.browser REPLACES $.browser
             , browser: {} // set below
@@ -725,18 +725,19 @@
          */
             , panes: {// default options for 'all panes' - will be overridden by 'per-pane settings'
                 applyDemoStyles: false  // NOTE: renamed from applyDefaultStyles for clarity
+
                 //Add responsiveness
-                , responsive: {
-                    enabled: false //enabled or not
-                    , when: 'xl'
-                    , sizes: {
-                        xl: 1140,
-                        lg: 992,
-                        md: 768,
-                        sm: 576,
-                        xs: 0
+                , responsive:
+                    {
+                        when: 'md'
+                        , sizes: {
+                            xl: 1140,
+                            lg: 992,
+                            md: 768,
+                            sm: 576,
+                            xs: 0
+                        }
                     }
-                }
                 , closable: true  // pane can open & close
                 , resizable: true  // when open, pane can be resized
                 , slidable: true  // when closed, pane can 'slide open' over other panes - closes on mouse-out
@@ -1619,7 +1620,7 @@
                         o = options[pane];
                         s = state[pane];
 
-                        var $P = $Ps[pane];
+                        $P = $Ps[pane];
                         if (o.initHidden) {
                             hide(pane);
                         } else if (o.initClosed) {
@@ -3830,13 +3831,13 @@
                     if (pane === "center")
                         return; // validate
                     if (s.isClosed || s.isResizing)
-                         // skip if already closed OR in process of resizing
+                        return; // skip if already closed OR in process of resizing
                     else if (o.slideTrigger_close === "click")
                         close_NOW(); // close immediately onClick
                     else if (o.preventQuickSlideClose && s.isMoving)
-                         // handle Chrome quick-close on slide-open
+                        return; // handle Chrome quick-close on slide-open
                     else if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
-                         // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
+                        return; // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
                     else if (evt) // trigger = mouseleave - use a delay
                     // 1 sec delay if 'opening', else .3 sec
                         timer.set(pane + "_closeSlider", close_NOW, max(o.slideDelay_close, delay));
@@ -4489,9 +4490,9 @@
                         var paneRespondedState = false;
                         var windowWidth = $(window).width();
 
-                        if ((o !== null && o !== 'undefined') && o.responsive.enabled) {
+                        if ((o !== null && o !== 'undefined') && o.responsive) {
                             //if(s.size >= o.responsive.sizes.lg)
-                            if (windowWidth >= o.responsiveSizes.lg)
+                            if (windowWidth >= o.responsive.sizes.lg)
                                 if (o.responsive.when === 'lg' || o.responsive.when === 'md' || o.responsive.when === 'sm' || o.responsive.when === 'xs') {
                                     paneResponsive = false;
                                 } else {
@@ -4666,7 +4667,6 @@
                         function _below($E) {
                             return max(s.css.paddingBottom, (parseInt($E.css("marginBottom"), 10) || 0));
                         }
-
                         function _measure() {
                             var
                                 ignore = options[pane].contentIgnoreSelector
@@ -5023,6 +5023,7 @@
                     _runCallbacks("onswap_end", pane1);
                     _runCallbacks("onswap_end", pane2);
 
+                    return;
 
                     function copy(n) { // n = pane
                         var
@@ -5037,7 +5038,6 @@
                             , options: $.extend(true, {}, options[n])
                         }
                     }
-
                     function move(oPane, pane) {
                         if (!oPane)
                             return;
@@ -5174,7 +5174,6 @@
                 evt.returnValue = false; // CANCEL key
                 return false;
             }
-
             /*
          * ######################################
          * UTILITY METHODS
@@ -5257,7 +5256,6 @@
                 });
 
             }
-
             /**
              * @param {Object=}   [el] (optional) Can also be 'bound' to a click, mouseOver, or other event
              */
@@ -5296,7 +5294,6 @@
                 // clear var
                 s.cssSaved = false;
             }
-
             /*
          * #####################
          * CREATE/RETURN LAYOUT
@@ -5700,10 +5697,10 @@ jQuery.cookie = function (name, value, options) {
                     if (!$.isPlainObject(o))
                         return; // no key, skip pane
 
-                    var s = o.size;
+                    s = o.size;
                     c = o.initClosed;
                     h = o.initHidden;
-                    var ar = o.autoResize;
+                    ar = o.autoResize;
                     state = inst.state[pane];
                     open = state.isVisible;
 
