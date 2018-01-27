@@ -3830,13 +3830,13 @@
                     if (pane === "center")
                         return; // validate
                     if (s.isClosed || s.isResizing)
-                        return; // skip if already closed OR in process of resizing
+                         // skip if already closed OR in process of resizing
                     else if (o.slideTrigger_close === "click")
                         close_NOW(); // close immediately onClick
                     else if (o.preventQuickSlideClose && s.isMoving)
-                        return; // handle Chrome quick-close on slide-open
+                         // handle Chrome quick-close on slide-open
                     else if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
-                        return; // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
+                         // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
                     else if (evt) // trigger = mouseleave - use a delay
                     // 1 sec delay if 'opening', else .3 sec
                         timer.set(pane + "_closeSlider", close_NOW, max(o.slideDelay_close, delay));
@@ -5023,7 +5023,6 @@
                     _runCallbacks("onswap_end", pane1);
                     _runCallbacks("onswap_end", pane2);
 
-                    return;
 
                     function copy(n) { // n = pane
                         var
@@ -6461,7 +6460,6 @@ jQuery.cookie = function (name, value, options) {
         });
     };
 })
-;
 (jQuery);
 
 
