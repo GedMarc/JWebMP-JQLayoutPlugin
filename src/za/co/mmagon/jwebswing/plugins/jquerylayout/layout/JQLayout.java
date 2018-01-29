@@ -33,8 +33,7 @@ import za.co.mmagon.logger.LogFactory;
 import javax.validation.constraints.NotNull;
 import java.util.logging.Logger;
 
-import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_DASH;
-import static za.co.mmagon.jwebswing.utilities.StaticStrings.CHAR_UNDERSCORE;
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.*;
 
 /**
  * This is a Layout Pane and can be applied to any div to turn it into a border layout
@@ -48,7 +47,7 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 {
 
 	private static final Logger log = LogFactory.getInstance()
-			                                  .getLogger("JWLayout");
+			                                  .getLogger("JQLayout");
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -58,27 +57,27 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	/**
 	 * The set of options
 	 */
-	private JQLayoutOptions options;
+	private JQLayoutOptions<?> options;
 	/**
 	 * The center div
 	 */
-	private JQLayoutDiv center;
+	private JQLayoutDiv<?> center;
 	/**
 	 * The north div
 	 */
-	private JQLayoutDiv north;
+	private JQLayoutDiv<?> north;
 	/**
 	 * The east div
 	 */
-	private JQLayoutDiv east;
+	private JQLayoutDiv<?> east;
 	/**
 	 * The west div
 	 */
-	private JQLayoutDiv west;
+	private JQLayoutDiv<?> west;
 	/**
 	 * The south div
 	 */
-	private JQLayoutDiv south;
+	private JQLayoutDiv<?> south;
 
 	/**
 	 * Constructs a new JWLayout Layout Handler with the given parameters
@@ -272,10 +271,8 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		StringBuilder sb = new StringBuilder(getVariableID() + " = " + getComponent().getJQueryID() + "layout(" + getNewLine());
-		sb.append(getOptions());
-		sb.append(");");
-		addQuery(sb.toString());
+		String sb = getVariableID() + STRING_EQUALS + getComponent().getJQueryID() + "layout(" + getNewLine() + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON;
+		addQuery(sb);
 	}
 
 	/**
@@ -377,24 +374,49 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 		return atfb;
 	}
 
-/**
- * Creates a toggle button for the given pane on the component.
-	 * <p>
-	 * The feature is added to the component
- *
- * @param component
- * @param pane
-	 *
-	 * @return
-	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	@NotNull
-	public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane)
+	public boolean equals(Object o)
 	{
-		JQLayoutCloseLayoutDivFeature atfb = new JQLayoutCloseLayoutDivFeature(getPane(pane));
-		component.addFeature(atfb);
-		return atfb;
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof JQLayout))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		JQLayout<?> jqLayout = (JQLayout<?>) o;
+
+		if (getVariableID() != null ? !getVariableID().equals(jqLayout.getVariableID()) : jqLayout.getVariableID() != null)
+		{
+			return false;
+		}
+		if (getOptions() != null ? !getOptions().equals(jqLayout.getOptions()) : jqLayout.getOptions() != null)
+		{
+			return false;
+		}
+		if (getCenter() != null ? !getCenter().equals(jqLayout.getCenter()) : jqLayout.getCenter() != null)
+		{
+			return false;
+		}
+		if (getNorth() != null ? !getNorth().equals(jqLayout.getNorth()) : jqLayout.getNorth() != null)
+		{
+			return false;
+		}
+		if (getEast() != null ? !getEast().equals(jqLayout.getEast()) : jqLayout.getEast() != null)
+		{
+			return false;
+		}
+		if (getWest() != null ? !getWest().equals(jqLayout.getWest()) : jqLayout.getWest() != null)
+		{
+			return false;
+		}
+		return getSouth() != null ? getSouth().equals(jqLayout.getSouth()) : jqLayout.getSouth() == null;
 	}
 
 	/**
@@ -489,54 +511,36 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 		super.preConfigure();
 	}
 
-
-	public boolean equals(Object o)
-	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof JQLayout))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		JQLayout<?> jqLayout = (JQLayout<?>) o;
-
-		if (getVariableID() != null ? !getVariableID().equals(jqLayout.getVariableID()) : jqLayout.getVariableID() != null)
-		{
-			return false;
-		}
-		if (getOptions() != null ? !getOptions().equals(jqLayout.getOptions()) : jqLayout.getOptions() != null)
-		{
-			return false;
-		}
-		if (getCenter() != null ? !getCenter().equals(jqLayout.getCenter()) : jqLayout.getCenter() != null)
-		{
-			return false;
-		}
-		if (getNorth() != null ? !getNorth().equals(jqLayout.getNorth()) : jqLayout.getNorth() != null)
-		{
-			return false;
-		}
-		if (getEast() != null ? !getEast().equals(jqLayout.getEast()) : jqLayout.getEast() != null)
-		{
-			return false;
-		}
-		if (getWest() != null ? !getWest().equals(jqLayout.getWest()) : jqLayout.getWest() != null)
-		{
-			return false;
-		}
-		return getSouth() != null ? getSouth().equals(jqLayout.getSouth()) : jqLayout.getSouth() == null;
-	}
-
-
+	@Override
 	public int hashCode()
 	{
 		return super.hashCode();
+	}
+
+	/**
+	 * Creates a toggle button for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane)
+	{
+		JQLayoutCloseLayoutDivFeature atfb = new JQLayoutCloseLayoutDivFeature(getPane(pane));
+		component.addFeature(atfb);
+		return atfb;
+	}
+
+	@Override
+	public J setID(String id)
+	{
+		setVariableID(id);
+		return super.setID(id);
 	}
 }

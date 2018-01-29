@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import static za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutCSSThemeBlockNames.UI_Layout_Footer;
 import static za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutCSSThemeBlockNames.UI_Layout_Header;
 
 /**
@@ -74,7 +75,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	/**
 	 * The main center div
 	 */
-	private Div contentDiv;
+	private Div<?, ?, ?, ?, ?> contentDiv;
 	/**
 	 * The layout div
 	 */
@@ -99,31 +100,28 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 		setArea(area);
 	}
 
-
 	@SuppressWarnings("unchecked")
 	public void init()
 	{
-		if (!isInitialized())
+		if (!isInitialized() && !getHeaders().isEmpty())
 		{
-			if (!getHeaders().isEmpty())
+			for (int i = 0, j = 0; i < getHeaders().size(); i++, j++)
 			{
-				for (int i = getHeaders().size() - 1, j = 0; i >= 0; i--, j++)
-				{
-					Div get = getHeaders().get(i);
-					get.addClass(UI_Layout_Header);
-					List list = new ArrayList(getChildren());
-					list.add(j, get);
-					setChildren(new LinkedHashSet<>(list));
-					get.preConfigure();
-				}
+				Div get = getHeaders().get(i);
+				get.addClass(UI_Layout_Header);
+				List list = new ArrayList(getChildren());
+				list.add(j, get);
+				setChildren(new LinkedHashSet<>(list));
+				get.preConfigure();
 			}
-			if (!getFooters().isEmpty())
+		}
+		if (!isInitialized() && !getFooters().isEmpty())
+		{
+			for (Component footer : getFooters())
 			{
-				for (Component footer : getFooters())
-				{
-					getChildren().add(footer);
-					footer.preConfigure();
-				}
+				getChildren().add(footer);
+				footer.addClass(UI_Layout_Footer);
+				footer.preConfigure();
 			}
 		}
 		super.init();
@@ -165,13 +163,15 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 * @param footers
 	 */
 	@NotNull
-	public void setFooters(List<Component> footers)
+	@SuppressWarnings("unchecked")
+	public J setFooters(List<Component> footers)
 	{
 		this.footers = footers;
 		if (footers != null)
 		{
 			footers.forEach(next -> next.addClass(UiFooterString));
 		}
+		return (J) this;
 	}
 
 	/**
@@ -181,10 +181,11 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void setHeaders(List<Div> headers)
+	public J setHeaders(List<Div> headers)
 	{
 		this.headers = headers;
 		headers.forEach(this::addHeader);
+		return (J) this;
 	}
 
 	/**
@@ -206,11 +207,12 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void addHeader(String headerDivString)
+	public J addHeader(String headerDivString)
 	{
 		Div headerDiv = new Div();
 		headerDiv.add(headerDivString);
 		addHeader(headerDiv);
+		return (J) this;
 	}
 
 	/**
@@ -233,17 +235,18 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 * Adds the footer header
 	 * <p>
 	 *
-	 * @param footerDivString
+	 * @param footerHeaderText
 	 */
 
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void addFooter(HeaderText footerDivString)
+	public J addFooter(HeaderText footerHeaderText)
 	{
 		Div headerDiv = new Div();
-		headerDiv.add(footerDivString);
+		headerDiv.add(footerHeaderText);
 		headerDiv.addClass(UiFooterString);
 		getFooters().add(headerDiv);
+		return (J) this;
 	}
 
 	/**
@@ -254,11 +257,12 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 *
 	 * @return The original component
 	 */
-
-	public Component addPin(Component component)
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J addPin(Component component)
 	{
 		component.addFeature(new JQLayoutAddPinButtonFeature(this, component));
-		return component;
+		return (J) this;
 	}
 
 	/**
@@ -270,9 +274,10 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void addToggleButton(Component button)
+	public J addToggleButton(Component button)
 	{
 		button.addFeature(new JQLayoutAddToggleButtonFeature(this, button));
+		return (J) this;
 	}
 
 	/**
@@ -284,9 +289,10 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void addCloseButton(Component button)
+	public J addCloseButton(Component button)
 	{
 		button.addFeature(new JQLayoutCloseLayoutDivFeature(this));
+		return (J) this;
 	}
 
 	/**
@@ -297,13 +303,14 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void addFooter(Component footerDiv)
+	public J addFooter(Component footerDiv)
 	{
 		if (footerDiv != null)
 		{
 			getFooters().add(footerDiv);
 			footerDiv.addClass(UiFooterString);
 		}
+		return (J) this;
 	}
 
 	/**
@@ -314,12 +321,13 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void addFooter(String footerDivString)
+	public J addFooter(String footerDivString)
 	{
 		Div headerDiv = new Div();
 		headerDiv.add(footerDivString);
 		headerDiv.addClass(UiFooterString);
 		getFooters().add(headerDiv);
+		return (J) this;
 	}
 
 	/**
@@ -331,11 +339,12 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void addHeader(HeaderText headerDivString)
+	public J addHeader(HeaderText headerDivString)
 	{
 		Div headerDiv = new Div();
 		headerDiv.add(headerDivString);
 		addHeader(headerDiv);
+		return (J) this;
 	}
 
 	/**
@@ -345,10 +354,12 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 * @param button
 	 * 		The component to add the open event to
 	 */
-
-	public void addOpenButton(Component button)
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public J addOpenButton(Component button)
 	{
 		button.addFeature(new JQLayoutOpenLayoutDivFeature(this));
+		return (J) this;
 	}
 
 	/**
@@ -360,10 +371,11 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void removeFooter(Div footerDiv)
+	public J removeFooter(Div footerDiv)
 	{
 		getFooters().remove(footerDiv);
 		getChildren().remove(footerDiv);
+		return (J) this;
 	}
 
 	/**
@@ -374,12 +386,14 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public void removeHeader(Div headerDiv)
+	public J removeHeader(Div headerDiv)
 	{
 		getHeaders().remove(headerDiv);
 		getChildren().remove(headerDiv);
+		return (J) this;
 	}
 
+	@Override
 	public boolean equals(Object o)
 	{
 		if (this == o)
@@ -428,27 +442,10 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 		return area;
 	}
 
-	/**
-	 * Sets the current assigned area
-	 * <p>
-	 *
-	 * @param area
-	 */
-	@SuppressWarnings("unchecked")
-	@NotNull
-	public final void setArea(JQLayoutArea area)
+	@Override
+	public int hashCode()
 	{
-		if (area != null)
-		{
-			removeClass(area.getAreaClass()
-					            .toString());
-		}
-		this.area = area;
-		if (this.area != null)
-		{
-			addClass(this.area.getAreaClass()
-					         .toString());
-		}
+		return super.hashCode();
 	}
 
 	/**
@@ -468,21 +465,27 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	}
 
 	/**
-	 * Sets the content div of this layout
+	 * Sets the current assigned area
+	 * <p>
 	 *
-	 * @param contentDiv
+	 * @param area
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public final void setContentDiv(Div contentDiv)
+	public final J setArea(JQLayoutArea area)
 	{
-		getChildren().remove(this.contentDiv);
-		this.contentDiv = contentDiv;
-		if (this.contentDiv != null)
+		if (area != null)
 		{
-			this.contentDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Content.toString());
-			getChildren().add(this.contentDiv);
+			removeClass(area.getAreaClass()
+					            .toString());
 		}
+		this.area = area;
+		if (this.area != null)
+		{
+			addClass(this.area.getAreaClass()
+					         .toString());
+		}
+		return (J) this;
 	}
 
 	/**
@@ -510,12 +513,27 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 		this.layout = layout;
 	}
 
-	public int hashCode()
+	/**
+	 * Sets the content div of this layout
+	 *
+	 * @param contentDiv
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public final J setContentDiv(Div contentDiv)
 	{
-		return super.hashCode();
+		getChildren().remove(this.contentDiv);
+		this.contentDiv = contentDiv;
+		if (this.contentDiv != null)
+		{
+			this.contentDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Content.toString());
+			getChildren().add(this.contentDiv);
+		}
+		return (J) this;
 	}
 
-
+	@Override
+	@NotNull
 	public JQLayoutDefaultOptions getOptions()
 	{
 		switch (this.getArea())
