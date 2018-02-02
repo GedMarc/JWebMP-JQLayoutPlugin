@@ -30,8 +30,12 @@ import za.co.mmagon.jwebswing.base.servlets.interfaces.ReferencePool;
 public enum JQLayoutReferencePool implements ReferencePool
 {
 
-	JQueryLayout(new JavascriptReference("JQUILayoutJS", 1.45, "bower_components/jquery-layout-latest-1-5/jquery.layout_and_plugins.min.js", "http://layout.jquery-dev.com/lib/js/jquery.layout-latest.min.js"), new CSSReference("JQUILayoutCSS", 1.45, "bower_components/jquery-layout-latest-1-5/layout-default.min.css"), 10),
-	JQueryLayoutResizer(new JavascriptReference("layoutResizer", 1.0, "bower_components/jquery-layout-latest-1-5/jquery.layout_customresizer.js"), null, 9);
+	JQueryLayout(
+			new JavascriptReference("JQUILayoutJS", 1.45, "bower_components/jquery-layout-latest-1-5/jquery.layout_and_plugins.min.js"),
+			new CSSReference("JQUILayoutCSS", 1.45, "bower_components/jquery-layout-latest-1-5/layout-default.min.css")),
+	JQueryLayoutResizer(
+			new JavascriptReference("layoutResizer", 1.0, "bower_components/jquery-layout-latest-1-5/jquery.layout_customresizer.js"),
+			null);
 
 	private JavascriptReference javaScriptReference;
 	private CSSReference cssReference;
@@ -43,18 +47,10 @@ public enum JQLayoutReferencePool implements ReferencePool
 	 * @param cssReference
 	 * @param sortOrder
 	 */
-	JQLayoutReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference, int sortOrder)
+	JQLayoutReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference)
 	{
 		this.javaScriptReference = javaScriptReference;
 		this.cssReference = cssReference;
-		if (this.javaScriptReference != null)
-		{
-			this.javaScriptReference.setSortOrder(sortOrder);
-		}
-		if (this.cssReference != null)
-		{
-			this.cssReference.setSortOrder(sortOrder);
-		}
 	}
 
 	@Override
