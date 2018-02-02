@@ -37,11 +37,14 @@ public class JQLayoutTest extends BaseTestClass
 	@Test
 	public void testJQLayout()
 	{
-		JQueryPageConfigurator.setRequired(true);
+		JQueryPageConfigurator.setRequired(false);
 		AngularPageConfigurator.setRequired(false);
 		Page p = getPage();
 		JQLayout layout = new JQLayout(p.getBody());
+		p.getOptions()
+				.setDynamicRender(true);
 		System.out.println(p.toString(true));
+
 		System.out.println(layout.renderJavascript());
 
 	}
@@ -49,7 +52,7 @@ public class JQLayoutTest extends BaseTestClass
 	@Test
 	public void testResponsive()
 	{
-		JQueryPageConfigurator.setRequired(true);
+		JQueryPageConfigurator.setRequired(false);
 		AngularPageConfigurator.setRequired(false);
 		Page p = new Page();
 		JQLayout<?> layout = new JQLayout<>(p.getBody());
@@ -64,7 +67,7 @@ public class JQLayoutTest extends BaseTestClass
 	@Test
 	public void testResponsiveSizes()
 	{
-		JQueryPageConfigurator.setRequired(true);
+		JQueryPageConfigurator.setRequired(false);
 		AngularPageConfigurator.setRequired(false);
 		Page p = new Page();
 		JQLayout<?> layout = new JQLayout<>(p.getBody());

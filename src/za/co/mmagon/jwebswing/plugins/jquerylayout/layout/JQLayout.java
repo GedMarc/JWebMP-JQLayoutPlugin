@@ -19,6 +19,7 @@ package za.co.mmagon.jwebswing.plugins.jquerylayout.layout;
 import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
+import za.co.mmagon.jwebswing.base.angular.AngularPageConfigurator;
 import za.co.mmagon.jwebswing.base.html.Div;
 import za.co.mmagon.jwebswing.base.html.attributes.GlobalAttributes;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
@@ -89,6 +90,7 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	public JQLayout(ComponentHierarchyBase component)
 	{
 		super("JQLayout");
+		AngularPageConfigurator.setRequired(true);
 		setComponent(component);
 		setVariableID(component.getID());
 		getComponent().addAttribute(GlobalAttributes.JWType, "layout");
@@ -377,46 +379,7 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@Override
 	public boolean equals(Object o)
 	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof JQLayout))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		JQLayout<?> jqLayout = (JQLayout<?>) o;
-
-		if (getVariableID() != null ? !getVariableID().equals(jqLayout.getVariableID()) : jqLayout.getVariableID() != null)
-		{
-			return false;
-		}
-		if (getOptions() != null ? !getOptions().equals(jqLayout.getOptions()) : jqLayout.getOptions() != null)
-		{
-			return false;
-		}
-		if (getCenter() != null ? !getCenter().equals(jqLayout.getCenter()) : jqLayout.getCenter() != null)
-		{
-			return false;
-		}
-		if (getNorth() != null ? !getNorth().equals(jqLayout.getNorth()) : jqLayout.getNorth() != null)
-		{
-			return false;
-		}
-		if (getEast() != null ? !getEast().equals(jqLayout.getEast()) : jqLayout.getEast() != null)
-		{
-			return false;
-		}
-		if (getWest() != null ? !getWest().equals(jqLayout.getWest()) : jqLayout.getWest() != null)
-		{
-			return false;
-		}
-		return getSouth() != null ? getSouth().equals(jqLayout.getSouth()) : jqLayout.getSouth() == null;
+		return super.equals(0);
 	}
 
 	/**
