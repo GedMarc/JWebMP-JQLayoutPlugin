@@ -16,50 +16,41 @@
  */
 package za.co.mmagon.jwebswing.plugins.jquerylayout.layout.events;
 
-import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutDiv;
 
 /**
- * Disables sliding for a pane
+ * This maps an Open Div feature to a component
  *
  * @author MMagon
  * @version 1.0
  * @since 23 Sep 2013
  */
-@SuppressWarnings("unused")
-public class JQLayoutDisableSlidableFeature extends Feature<JavaScriptPart, JQLayoutDisableSlidableFeature>
+public class JQLayoutSlideOpenLayoutDivFeature extends Feature<JavaScriptPart, JQLayoutSlideOpenLayoutDivFeature>
 {
 
 	private static final long serialVersionUID = 1L;
-	/**
-	 * The layout div to open
-	 */
-	private final JQLayoutDiv divToOpen;
 
-	/**
-	 * Adds a pin button for the layout side to the given component
-	 *
-	 * @param layoutDiv
-	 * @param pinButton
-	 */
-	public JQLayoutDisableSlidableFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	private final JQLayoutDiv divToClose;
+
+	public JQLayoutSlideOpenLayoutDivFeature(JQLayoutDiv layoutDiv)
 	{
-		super("JQLayoutDisableSlidableFeature");
-		setComponent(pinButton);
-		divToOpen = layoutDiv;
+		super("JWLayoutSlideOpenDiv");
+		divToClose = layoutDiv;
+
 	}
 
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		String openDivFunction = divToOpen.getLayout()
-				                         .getVariableID() + ".disableSlidable(\"" + divToOpen.getArea()
-						                                                                    .toString()
-						                                                                    .toLowerCase() + "\");" + getNewLine();
+		String openDivFunction = divToClose.getLayout()
+				                         .getVariableID() + ".slideOpen('" + divToClose.getArea()
+						                                                             .name()
+						                                                             .toLowerCase() + "');";
 		addQuery(openDivFunction);
 	}
+
 
 	@Override
 	public boolean equals(Object o)

@@ -37,7 +37,7 @@ public class JQLayoutAddToggleButtonFeature extends Feature<JavaScriptPart, JQLa
 
 	public JQLayoutAddToggleButtonFeature(JQLayoutDiv layoutDiv, Component pinButton)
 	{
-		super("JWLayoutPinButtonFeature");
+		super("JWLayoutToggleButtonFeature");
 		setComponent(pinButton);
 		divToOpen = layoutDiv;
 	}
@@ -55,29 +55,12 @@ public class JQLayoutAddToggleButtonFeature extends Feature<JavaScriptPart, JQLa
 	@Override
 	public boolean equals(Object o)
 	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof JQLayoutAddToggleButtonFeature))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		JQLayoutAddToggleButtonFeature that = (JQLayoutAddToggleButtonFeature) o;
-
-		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+		return super.equals(o);
 	}
 
 	@Override
 	public int hashCode()
 	{
-		int result = super.hashCode();
-		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
-		return result;
+		return super.hashCode();
 	}
 }

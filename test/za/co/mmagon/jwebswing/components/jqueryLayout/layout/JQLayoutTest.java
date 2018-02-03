@@ -16,13 +16,19 @@
  */
 package za.co.mmagon.jwebswing.components.jqueryLayout.layout;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import za.co.mmagon.jwebswing.BaseTestClass;
 import za.co.mmagon.jwebswing.Page;
+import za.co.mmagon.jwebswing.base.ajax.AjaxResponse;
 import za.co.mmagon.jwebswing.base.angular.AngularPageConfigurator;
+import za.co.mmagon.jwebswing.base.html.Button;
 import za.co.mmagon.jwebswing.plugins.jquery.JQueryPageConfigurator;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayout;
 import za.co.mmagon.jwebswing.plugins.jquerylayout.layout.options.LayoutResponsiveSize;
+
+import static za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutArea.East;
+import static za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutArea.West;
 
 /**
  * @author ged_m
@@ -78,5 +84,42 @@ public class JQLayoutTest extends BaseTestClass
 				.put(LayoutResponsiveSize.ExtraLarge, 500);
 
 		System.out.println(layout.renderJavascript());
+	}
+
+	@Test
+	public void testAjaxResponseAdditions()
+	{
+
+		JQueryPageConfigurator.setRequired(false);
+		AngularPageConfigurator.setRequired(false);
+		Page p = new Page();
+		JQLayout<?> layout = new JQLayout<>(p.getBody());
+
+		Button pin = new Button();
+		Button toggle = new Button();
+
+		AjaxResponse ar = new AjaxResponse();
+		ar.getFeatures()
+				.add(layout.createPinButton(pin, West));
+		System.out.println("Feature Size : " + ar.getFeatures()
+				                                       .size());
+		ar.getFeatures()
+				.add(layout.createToggleButton(toggle, West));
+		System.out.println("Feature Size : " + ar.getFeatures()
+				                                       .size());
+
+		System.out.println(ar.toString());
+
+		ar.getFeatures()
+				.add(layout.createPinButton(pin, East));
+		ar.getFeatures()
+				.add(layout.createToggleButton(toggle, East));
+
+		System.out.println("Feature Size : " + ar.getFeatures()
+				                                       .size());
+		System.out.println(ar.toString());
+
+		Assertions.assertEquals(4, ar.getFeatures()
+				                           .size());
 	}
 }

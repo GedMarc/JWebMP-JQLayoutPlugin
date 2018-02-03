@@ -59,32 +59,16 @@ public class JQLayoutDisableClosableFeature extends Feature<JavaScriptPart, JQLa
 		addQuery(openDivFunction);
 	}
 
+
 	@Override
 	public boolean equals(Object o)
 	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof JQLayoutDisableClosableFeature))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		JQLayoutDisableClosableFeature that = (JQLayoutDisableClosableFeature) o;
-
-		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+		return super.equals(o);
 	}
 
 	@Override
 	public int hashCode()
 	{
-		int result = super.hashCode();
-		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
-		return result;
+		return super.hashCode();
 	}
 }

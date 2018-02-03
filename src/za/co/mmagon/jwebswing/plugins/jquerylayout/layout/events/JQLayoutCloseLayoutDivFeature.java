@@ -36,7 +36,7 @@ public class JQLayoutCloseLayoutDivFeature extends Feature<JavaScriptPart, JQLay
 
 	public JQLayoutCloseLayoutDivFeature(JQLayoutDiv layoutDiv)
 	{
-		super("JWLayoutOpenDiv");
+		super("JWLayoutCloseOpenDiv");
 		divToClose = layoutDiv;
 
 	}
@@ -51,32 +51,16 @@ public class JQLayoutCloseLayoutDivFeature extends Feature<JavaScriptPart, JQLay
 		addQuery(openDivFunction);
 	}
 
+
 	@Override
 	public boolean equals(Object o)
 	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof JQLayoutCloseLayoutDivFeature))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		JQLayoutCloseLayoutDivFeature that = (JQLayoutCloseLayoutDivFeature) o;
-
-		return divToClose != null ? divToClose.equals(that.divToClose) : that.divToClose == null;
+		return super.equals(o);
 	}
 
 	@Override
 	public int hashCode()
 	{
-		int result = super.hashCode();
-		result = 31 * result + (divToClose != null ? divToClose.hashCode() : 0);
-		return result;
+		return super.hashCode();
 	}
 }

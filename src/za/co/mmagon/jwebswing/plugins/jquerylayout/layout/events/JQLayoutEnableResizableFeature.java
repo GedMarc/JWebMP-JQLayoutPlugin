@@ -62,29 +62,12 @@ public class JQLayoutEnableResizableFeature extends Feature<JavaScriptPart, JQLa
 	@Override
 	public boolean equals(Object o)
 	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof JQLayoutEnableResizableFeature))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		JQLayoutEnableResizableFeature that = (JQLayoutEnableResizableFeature) o;
-
-		return divToOpen != null ? divToOpen.equals(that.divToOpen) : that.divToOpen == null;
+		return super.equals(o);
 	}
 
 	@Override
 	public int hashCode()
 	{
-		int result = super.hashCode();
-		result = 31 * result + (divToOpen != null ? divToOpen.hashCode() : 0);
-		return result;
+		return super.hashCode();
 	}
 }
