@@ -152,9 +152,7 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@NotNull
 	public JQLayoutAddToggleButtonFeature createToggleButton(Component component, JQLayoutArea pane)
 	{
-		JQLayoutAddToggleButtonFeature atfb = new JQLayoutAddToggleButtonFeature(getPane(pane), component);
-		component.addFeature(atfb);
-		return atfb;
+		return new JQLayoutAddToggleButtonFeature(getPane(pane), component);
 	}
 
 	/**
@@ -371,15 +369,25 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@NotNull
 	public JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane)
 	{
-		JQLayoutAddPinButtonFeature atfb = new JQLayoutAddPinButtonFeature(getPane(pane), component);
-		component.addFeature(atfb);
-		return atfb;
+		return new JQLayoutAddPinButtonFeature(getPane(pane), component);
 	}
 
+	/**
+	 * Creates a toggle button for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param component
+	 * @param pane
+	 *
+	 * @return
+	 */
 	@Override
-	public boolean equals(Object o)
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane)
 	{
-		return super.equals(0);
+		return new JQLayoutCloseLayoutDivFeature(getPane(pane));
 	}
 
 	/**
@@ -397,9 +405,7 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@NotNull
 	public JQLayoutOpenLayoutDivFeature createOpenButton(Component component, JQLayoutArea pane)
 	{
-		JQLayoutOpenLayoutDivFeature atfb = new JQLayoutOpenLayoutDivFeature(getPane(pane));
-		component.addFeature(atfb);
-		return atfb;
+		return new JQLayoutOpenLayoutDivFeature(getPane(pane));
 	}
 
 	/**
@@ -480,24 +486,10 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 		return super.hashCode();
 	}
 
-	/**
-	 * Creates a toggle button for the given pane on the component.
-	 * <p>
-	 * The feature is added to the component
-	 *
-	 * @param component
-	 * @param pane
-	 *
-	 * @return
-	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	@NotNull
-	public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane)
+	public boolean equals(Object o)
 	{
-		JQLayoutCloseLayoutDivFeature atfb = new JQLayoutCloseLayoutDivFeature(getPane(pane));
-		component.addFeature(atfb);
-		return atfb;
+		return super.equals(super.equals(o));
 	}
 
 	@Override
