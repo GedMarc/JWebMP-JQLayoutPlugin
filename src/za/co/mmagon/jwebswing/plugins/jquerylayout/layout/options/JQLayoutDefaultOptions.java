@@ -238,17 +238,17 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	/**
 	 * The effects settings
 	 */
-	private JQEasingAnimationEffectsPart fxSettings;
+	private JQEasingAnimationEffectsPart<?> fxSettings;
 	/**
 	 * The effects settings open
 	 */
 	@JsonProperty("fxSettings_open")
-	private JQEasingAnimationEffectsPart fxSettingsOpen;
+	private JQEasingAnimationEffectsPart<?> fxSettingsOpen;
 	/**
 	 * The effects setting close
 	 */
 	@JsonProperty("fxSettings_close")
-	private JQEasingAnimationEffectsPart fxSettingsClose;
+	private JQEasingAnimationEffectsPart<?> fxSettingsClose;
 	//Layout State Initialization
 	/**
 	 * If the pane should init closed
@@ -1627,7 +1627,7 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @return
 	 */
-	public JQEasingAnimationEffectsPart getFxSettings()
+	public JQEasingAnimationEffectsPart<?> getFxSettings()
 	{
 		return fxSettings;
 	}
@@ -1643,7 +1643,7 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setFxSettings(JQEasingAnimationEffectsPart fxSettings)
+	public J setFxSettings(JQEasingAnimationEffectsPart<?> fxSettings)
 	{
 		this.fxSettings = fxSettings;
 		return (J) this;
@@ -1658,7 +1658,7 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @return
 	 */
-	public JQEasingAnimationEffectsPart getFxSettingsOpen()
+	public JQEasingAnimationEffectsPart<?> getFxSettingsOpen()
 	{
 		return fxSettingsOpen;
 	}
@@ -1674,7 +1674,7 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setFxSettingsOpen(JQEasingAnimationEffectsPart fxSettingsOpen)
+	public J setFxSettingsOpen(JQEasingAnimationEffectsPart<?> fxSettingsOpen)
 	{
 		this.fxSettingsOpen = fxSettingsOpen;
 		return (J) this;
@@ -1689,7 +1689,7 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 *
 	 * @return
 	 */
-	public JQEasingAnimationEffectsPart getFxSettingsClose()
+	public JQEasingAnimationEffectsPart<?> getFxSettingsClose()
 	{
 		return fxSettingsClose;
 	}
@@ -1705,7 +1705,7 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>> extends
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setFxSettingsClose(JQEasingAnimationEffectsPart fxSettingsClose)
+	public J setFxSettingsClose(JQEasingAnimationEffectsPart<?> fxSettingsClose)
 	{
 		this.fxSettingsClose = fxSettingsClose;
 		return (J) this;
