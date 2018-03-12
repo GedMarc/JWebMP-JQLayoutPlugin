@@ -3831,13 +3831,13 @@
                     if (pane === "center")
                         return; // validate
                     if (s.isClosed || s.isResizing)
-                        return; // skip if already closed OR in process of resizing
+                         // skip if already closed OR in process of resizing
                     else if (o.slideTrigger_close === "click")
                         close_NOW(); // close immediately onClick
                     else if (o.preventQuickSlideClose && s.isMoving)
-                        return; // handle Chrome quick-close on slide-open
+                         // handle Chrome quick-close on slide-open
                     else if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
-                        return; // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
+                         // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
                     else if (evt) // trigger = mouseleave - use a delay
                     // 1 sec delay if 'opening', else .3 sec
                         timer.set(pane + "_closeSlider", close_NOW, max(o.slideDelay_close, delay));
@@ -4667,6 +4667,7 @@
                         function _below($E) {
                             return max(s.css.paddingBottom, (parseInt($E.css("marginBottom"), 10) || 0));
                         }
+
                         function _measure() {
                             var
                                 ignore = options[pane].contentIgnoreSelector
@@ -5023,7 +5024,7 @@
                     _runCallbacks("onswap_end", pane1);
                     _runCallbacks("onswap_end", pane2);
 
-                    return;
+
 
                     function copy(n) { // n = pane
                         var
@@ -5038,6 +5039,7 @@
                             , options: $.extend(true, {}, options[n])
                         }
                     }
+
                     function move(oPane, pane) {
                         if (!oPane)
                             return;
@@ -5174,6 +5176,7 @@
                 evt.returnValue = false; // CANCEL key
                 return false;
             }
+
             /*
          * ######################################
          * UTILITY METHODS
@@ -5256,6 +5259,7 @@
                 });
 
             }
+
             /**
              * @param {Object=}   [el] (optional) Can also be 'bound' to a click, mouseOver, or other event
              */
@@ -5294,6 +5298,7 @@
                 // clear var
                 s.cssSaved = false;
             }
+
             /*
          * #####################
          * CREATE/RETURN LAYOUT
