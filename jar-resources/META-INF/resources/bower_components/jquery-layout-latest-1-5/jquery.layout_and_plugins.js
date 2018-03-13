@@ -57,7 +57,8 @@
                 function g(f) {
                     return f;
                 }
-                 // compiler hack
+
+                // compiler hack
             }
         ;
 
@@ -1226,7 +1227,8 @@
                     function g(f) {
                         return f;
                     }
-                     // compiler hack
+
+                    // compiler hack
                 }
 
 
@@ -3831,14 +3833,17 @@
                     if (pane === "center")
                         return; // validate
                     if (s.isClosed || s.isResizing)
-                         // skip if already closed OR in process of resizing
-                    else if (o.slideTrigger_close === "click")
+                    // skip if already closed OR in process of resizing
+                    else
+                    if (o.slideTrigger_close === "click")
                         close_NOW(); // close immediately onClick
                     else if (o.preventQuickSlideClose && s.isMoving)
-                         // handle Chrome quick-close on slide-open
-                    else if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
-                         // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
-                    else if (evt) // trigger = mouseleave - use a delay
+                    // handle Chrome quick-close on slide-open
+                    else
+                    if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
+                    // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
+                    else
+                    if (evt) // trigger = mouseleave - use a delay
                     // 1 sec delay if 'opening', else .3 sec
                         timer.set(pane + "_closeSlider", close_NOW, max(o.slideDelay_close, delay));
                     else // called programically
@@ -5023,7 +5028,6 @@
                     // run these even if NOT state.initialized
                     _runCallbacks("onswap_end", pane1);
                     _runCallbacks("onswap_end", pane2);
-
 
 
                     function copy(n) { // n = pane
