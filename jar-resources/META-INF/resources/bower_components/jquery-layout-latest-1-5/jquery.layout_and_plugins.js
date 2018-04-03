@@ -1,8 +1,8 @@
 /**
  * @preserve
- * jquery.layout 1.6.0
- * $Date: 2018-01-27 08:00:00 (Sat, 29 November 2014) $
- * $Rev: 1.0.6.0 $
+ * jquery.layout 1.6.2
+ * $Date: 2018-04-02 08:00:00 $
+ * $Rev: 1.0.6.2 $
  *
  * Copyright (c) 2014 Kevin Dalman (http://jquery-dev.com)
  * Based on work by Fabrizio Balliano (http://www.fabrizioballiano.net)
@@ -21,6 +21,7 @@
  * History
  * 2016/28/10 - Added responsiveness - marc magon
  * 2018/01/27 - Updated the toggler class and responsive properties
+ * 2018/04/02 - Switch unbinds to .off() as recommended
  */
 
 /* JavaDoc Info: http://code.google.com/closure/compiler/docs/js-for-compiler.html
@@ -66,8 +67,8 @@
      * GENERIC $.layout METHODS - used by all layouts
      */
         $.layout = {
-            version: "1.6.0"
-            , revision: 1.6001 // eg: ver 1.4.4 = rev 1.0404 - major(n+).minor(nn)+patch(nn+)
+            version: "1.6.2"
+            , revision: 1.6002 // eg: ver 1.4.4 = rev 1.0404 - major(n+).minor(nn)+patch(nn+)
 
             // $.layout.browser REPLACES $.browser
             , browser: {} // set below
@@ -3077,8 +3078,8 @@
                  */
                 , destroy = function (evt_or_destroyChildren, destroyChildren) {
                     // UNBIND layout events and remove global object
-                    $(window).unbind("." + sID);  // resize & unload
-                    $(document).unbind("." + sID); // keyDown (hotkeys)
+                    $(window).off("." + sID);  // resize & unload
+                    $(document).off("." + sID); // keyDown (hotkeys)
 
                     if (typeof evt_or_destroyChildren === "object")
                     // stopPropagation if called by trigger("layoutdestroy") - use evtPane utility
@@ -3094,7 +3095,7 @@
                         .removeData("layout")
                         .removeData("layoutContainer")
                         .removeClass(options.containerClass)
-                        .unbind("." + sID) // remove ALL Layout events
+                        .off("." + sID) // remove ALL Layout events
                     ;
 
                     // remove all mask elements that have been created
@@ -3217,7 +3218,7 @@
                             .removeData("layoutRole")
                             .removeData("layoutEdge")
                             .removeData("autoHidden") // in case set
-                            .unbind("." + sID) // remove ALL Layout events
+                            .off("." + sID) // remove ALL Layout events
                         // TODO: remove these extra unbind commands when jQuery is fixed
                         //.unbind("mouseenter"+ sID)
                         //.unbind("mouseleave"+ sID)
@@ -3833,17 +3834,14 @@
                     if (pane === "center")
                         return; // validate
                     if (s.isClosed || s.isResizing)
-                    // skip if already closed OR in process of resizing
-                    else
-                    if (o.slideTrigger_close === "click")
+                         // skip if already closed OR in process of resizing
+                    else if (o.slideTrigger_close === "click")
                         close_NOW(); // close immediately onClick
                     else if (o.preventQuickSlideClose && s.isMoving)
-                    // handle Chrome quick-close on slide-open
-                    else
-                    if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
-                    // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
-                    else
-                    if (evt) // trigger = mouseleave - use a delay
+                         // handle Chrome quick-close on slide-open
+                    else if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
+                         // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
+                    else if (evt) // trigger = mouseleave - use a delay
                     // 1 sec delay if 'opening', else .3 sec
                         timer.set(pane + "_closeSlider", close_NOW, max(o.slideDelay_close, delay));
                     else // called programically
@@ -4879,7 +4877,7 @@
                     // is closable is disable, then pane MUST be open!
                     if (state[pane].isClosed)
                         open(pane, false, true);
-                    $T.unbind("." + sID)
+                    $T.off("." + sID)
                         .css("visibility", hide ? "hidden" : "visible") // instead of hide(), which creates logic issues
                         .css("cursor", "default")
                         .attr("title", "");
@@ -5028,6 +5026,7 @@
                     // run these even if NOT state.initialized
                     _runCallbacks("onswap_end", pane1);
                     _runCallbacks("onswap_end", pane2);
+
 
 
                     function copy(n) { // n = pane

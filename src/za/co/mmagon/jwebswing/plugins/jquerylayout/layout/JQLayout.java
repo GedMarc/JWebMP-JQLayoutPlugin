@@ -43,12 +43,16 @@ import static za.co.mmagon.jwebswing.utilities.StaticStrings.*;
  * @version 1.0
  * @since 16 Jul 2013
  */
-@ComponentInformation(name = "JQuery UI Layout", description = "?The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.", url = "http://layout.jquery-dev.com/")
-public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J> implements IJQLayout<J>
+@ComponentInformation(name = "JQuery UI Layout",
+		description = "?The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.",
+		url = "http://layout.jquery-dev.com/")
+public class JQLayout<J extends JQLayout<J>>
+		extends Feature<JQLayoutOptions, J>
+		implements IJQLayout<J>
 {
 
 	private static final Logger log = LogFactory.getInstance()
-			                                  .getLogger("JQLayout");
+	                                            .getLogger("JQLayout");
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -103,17 +107,16 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	 *
 	 * @return A Layout pane on the center div
 	 */
-
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public final JQLayoutDiv getCenter()
 	{
-		if (this.center == null)
+		if (center == null)
 		{
 			setCenter(new JQLayoutDiv(this, JQLayoutArea.Center, new Div()));
 		}
-		return this.center;
+		return center;
 	}
 
 	/**
@@ -122,17 +125,16 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	 * @param centerDiv
 	 * 		The new center panel
 	 */
-
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J setCenter(JQLayoutDiv centerDiv)
 	{
-		getComponent().remove(this.center);
-		this.center = centerDiv;
-		if (this.center != null)
+		getComponent().remove(center);
+		center = centerDiv;
+		if (center != null)
 		{
-			getComponent().add(this.center);
+			getComponent().add(center);
 		}
 		return (J) this;
 	}
@@ -200,15 +202,14 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	 *
 	 * @return A Layout pane on the center div
 	 */
-
 	@Override
 	public JQLayoutDiv getNorth()
 	{
-		if (this.north == null)
+		if (north == null)
 		{
 			setNorth(new JQLayoutDiv(this, JQLayoutArea.North, new Div()));
 		}
-		return this.north;
+		return north;
 	}
 
 	/**
@@ -217,17 +218,16 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	 * @param centerDiv
 	 * 		The new center panel
 	 */
-
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J setNorth(JQLayoutDiv centerDiv)
 	{
-		getComponent().remove(this.north);
-		this.north = centerDiv;
-		if (this.north != null)
+		getComponent().remove(north);
+		north = centerDiv;
+		if (north != null)
 		{
-			getComponent().add(this.north);
+			getComponent().add(north);
 		}
 		return (J) this;
 	}
@@ -241,11 +241,11 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@NotNull
 	public JQLayoutDiv getWest()
 	{
-		if (this.west == null)
+		if (west == null)
 		{
 			setWest(new JQLayoutDiv(this, JQLayoutArea.West, new Div()));
 		}
-		return this.west;
+		return west;
 	}
 
 	/**
@@ -257,22 +257,11 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@Override
 	public JQLayoutDiv getSouth()
 	{
-		if (this.south == null)
+		if (south == null)
 		{
 			setSouth(new JQLayoutDiv(this, JQLayoutArea.South, new Div()));
 		}
-		return this.south;
-	}
-
-	/**
-	 * Write the layout options
-	 */
-
-	@Override
-	public void assignFunctionsToComponent()
-	{
-		String sb = getVariableID() + STRING_EQUALS + getComponent().getJQueryID() + "layout(" + getNewLine() + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON;
-		addQuery(sb);
+		return south;
 	}
 
 	/**
@@ -285,11 +274,11 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@NotNull
 	public JQLayoutDiv getEast()
 	{
-		if (this.east == null)
+		if (east == null)
 		{
 			setEast(new JQLayoutDiv(this, JQLayoutArea.East, new Div()));
 		}
-		return this.east;
+		return east;
 	}
 
 	/**
@@ -303,11 +292,11 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@SuppressWarnings("unchecked")
 	public J setEast(JQLayoutDiv eastDiv)
 	{
-		getComponent().remove(this.east);
-		this.east = eastDiv;
-		if (this.east != null)
+		getComponent().remove(east);
+		east = eastDiv;
+		if (east != null)
 		{
-			getComponent().add(this.east);
+			getComponent().add(east);
 		}
 		return (J) this;
 	}
@@ -324,11 +313,11 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@NotNull
 	public J setSouth(JQLayoutDiv southDiv)
 	{
-		getComponent().remove(this.south);
-		this.south = southDiv;
-		if (this.south != null)
+		getComponent().remove(south);
+		south = southDiv;
+		if (south != null)
 		{
-			getComponent().add(this.south);
+			getComponent().add(south);
 		}
 		return (J) this;
 	}
@@ -345,11 +334,11 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	@NotNull
 	public J setWest(JQLayoutDiv westDiv)
 	{
-		getComponent().remove(this.west);
-		this.west = westDiv;
-		if (this.west != null)
+		getComponent().remove(west);
+		west = westDiv;
+		if (west != null)
 		{
-			getComponent().add(this.west);
+			getComponent().add(west);
 		}
 		return (J) this;
 	}
@@ -421,24 +410,6 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	}
 
 	/**
-	 * Returns the layout options
-	 * <p>
-	 *
-	 * @return
-	 */
-
-	@Override
-	@NotNull
-	public JQLayoutOptions getOptions()
-	{
-		if (options == null)
-		{
-			options = new JQLayoutOptions();
-		}
-		return options;
-	}
-
-	/**
 	 * Sets the variable ID. Adds 'lay_' in front and takes all hyphens (-) into underscores (_)
 	 *
 	 * @param variableID
@@ -481,6 +452,44 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 	}
 
 	@Override
+	public J setID(String id)
+	{
+		setVariableID(id);
+		return super.setID(id);
+	}
+
+	/**
+	 * Write the layout options
+	 */
+
+	@Override
+	public void assignFunctionsToComponent()
+	{
+		String sb = getVariableID() + STRING_EQUALS + getComponent().getJQueryID() + "layout(" + getNewLine() + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON;
+		addQuery(sb);
+	}
+
+
+	/**
+	 * Returns the layout options
+	 * <p>
+	 *
+	 * @return
+	 */
+
+	@Override
+	@NotNull
+	public JQLayoutOptions getOptions()
+	{
+		if (options == null)
+		{
+			options = new JQLayoutOptions();
+		}
+		return options;
+	}
+
+
+	@Override
 	public int hashCode()
 	{
 		return super.hashCode();
@@ -492,10 +501,5 @@ public class JQLayout<J extends JQLayout<J>> extends Feature<JQLayoutOptions, J>
 		return super.equals(super.equals(o));
 	}
 
-	@Override
-	public J setID(String id)
-	{
-		setVariableID(id);
-		return super.setID(id);
-	}
+
 }
