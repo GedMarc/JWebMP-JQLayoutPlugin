@@ -48,7 +48,9 @@ import static za.co.mmagon.jwebswing.plugins.jquerylayout.layout.JQLayoutCSSThem
  * @version 1.0
  * @since 16 Jul 2013
  */
-public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J> implements BodyChildren, GlobalChildren, IJQLayoutDiv
+public class JQLayoutDiv<J extends JQLayoutDiv<J>>
+		extends Div<JWLayoutDivChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J>
+		implements BodyChildren, GlobalChildren, IJQLayoutDiv
 {
 
 	/**
@@ -100,6 +102,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 		setArea(area);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public void init()
 	{
@@ -442,12 +445,6 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 		return area;
 	}
 
-	@Override
-	public int hashCode()
-	{
-		return super.hashCode();
-	}
-
 	/**
 	 * Returns the current content div
 	 * <p>
@@ -455,37 +452,13 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 	 * @return
 	 */
 	@NotNull
-	public Div getContentDiv()
+	public Div<?, ?, ?, ?, ?> getContentDiv()
 	{
 		if (contentDiv == null)
 		{
 			setContentDiv(new Div());
 		}
 		return contentDiv;
-	}
-
-	/**
-	 * Sets the current assigned area
-	 * <p>
-	 *
-	 * @param area
-	 */
-	@SuppressWarnings("unchecked")
-	@NotNull
-	public final J setArea(JQLayoutArea area)
-	{
-		if (area != null)
-		{
-			removeClass(area.getAreaClass()
-					            .toString());
-		}
-		this.area = area;
-		if (this.area != null)
-		{
-			addClass(this.area.getAreaClass()
-					         .toString());
-		}
-		return (J) this;
 	}
 
 	/**
@@ -532,30 +505,60 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>> extends Div<JWLayoutDivChildr
 		return (J) this;
 	}
 
+	/**
+	 * Sets the current assigned area
+	 * <p>
+	 *
+	 * @param area
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public final J setArea(JQLayoutArea area)
+	{
+		if (area != null)
+		{
+			removeClass(area.getAreaClass()
+			                .toString());
+		}
+		this.area = area;
+		if (this.area != null)
+		{
+			addClass(this.area.getAreaClass()
+			                  .toString());
+		}
+		return (J) this;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return super.hashCode();
+	}
+
 	@Override
 	@NotNull
 	public JQLayoutDefaultOptions getOptions()
 	{
-		switch (this.getArea())
+		switch (getArea())
 		{
 			case North:
 				return getLayout().getOptions()
-						       .getNorth();
+				                  .getNorth();
 			case Center:
 				return getLayout().getOptions()
-						       .getCenter();
+				                  .getCenter();
 			case South:
 				return getLayout().getOptions()
-						       .getSouth();
+				                  .getSouth();
 			case East:
 				return getLayout().getOptions()
-						       .getEast();
+				                  .getEast();
 			case West:
 				return getLayout().getOptions()
-						       .getWest();
+				                  .getWest();
 			default:
 				return getLayout().getOptions()
-						       .getCenter();
+				                  .getCenter();
 		}
 	}
 

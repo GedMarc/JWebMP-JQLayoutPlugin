@@ -84,6 +84,11 @@ public class JQLayout<J extends JQLayout<J>>
 	 */
 	private JQLayoutDiv<?> south;
 
+	public JQLayout()
+	{
+		super("JQLayout");
+	}
+
 	/**
 	 * Constructs a new JWLayout Layout Handler with the given parameters
 	 * <p>
@@ -94,6 +99,11 @@ public class JQLayout<J extends JQLayout<J>>
 	public JQLayout(ComponentHierarchyBase component)
 	{
 		super("JQLayout");
+		configureForComponent(component);
+	}
+
+	public void configureForComponent(ComponentHierarchyBase component)
+	{
 		AngularPageConfigurator.setRequired(true);
 		setComponent(component);
 		setVariableID(component.getID());
