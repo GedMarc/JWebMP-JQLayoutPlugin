@@ -22,10 +22,7 @@ import com.jwebmp.plugins.jquerylayout.layout.JQLayout;
 import com.jwebmp.plugins.jquerylayout.layout.JQLayoutArea;
 import com.jwebmp.plugins.jquerylayout.layout.JQLayoutDiv;
 import com.jwebmp.plugins.jquerylayout.layout.JQLayoutOptions;
-import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutAddPinButtonFeature;
-import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutAddToggleButtonFeature;
-import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutCloseLayoutDivFeature;
-import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
+import com.jwebmp.plugins.jquerylayout.layout.events.*;
 
 import javax.validation.constraints.NotNull;
 
@@ -150,6 +147,14 @@ public interface IJQLayout<J extends JQLayout<J>>
 	@SuppressWarnings("unchecked")
 	@NotNull
 	J setWest(JQLayoutDiv westDiv);
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	JQLayoutSlideToggleLayoutDivFeature createSlideToggleButton(JQLayoutArea pane);
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	JQLayoutAddSlideToggleButtonFeature createAddSlideToggleButton(JQLayoutArea pane, Component pinButton);
 
 	/**
 	 * Returns the layout options

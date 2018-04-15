@@ -1,7 +1,7 @@
 /**
  * @preserve
- * jquery.layout 1.6.2
- * $Date: 2018-04-02 08:00:00 $
+ * jquery.layout 1.6.3
+ * $Date: 2018-04-14 08:00:00 $
  * $Rev: 1.0.6.2 $
  *
  * Copyright (c) 2014 Kevin Dalman (http://jquery-dev.com)
@@ -67,8 +67,8 @@
      * GENERIC $.layout METHODS - used by all layouts
      */
         $.layout = {
-            version: "1.6.2"
-            , revision: 1.6002 // eg: ver 1.4.4 = rev 1.0404 - major(n+).minor(nn)+patch(nn+)
+            version: "1.6.3"
+            , revision: 1.6003 // eg: ver 1.4.4 = rev 1.0404 - major(n+).minor(nn)+patch(nn+)
 
             // $.layout.browser REPLACES $.browser
             , browser: {} // set below
@@ -3834,17 +3834,14 @@
                     if (pane === "center")
                         return; // validate
                     if (s.isClosed || s.isResizing)
-                    // skip if already closed OR in process of resizing
-                    else
-                    if (o.slideTrigger_close === "click")
+                        return; // skip if already closed OR in process of resizing
+                    else if (o.slideTrigger_close === "click")
                         close_NOW(); // close immediately onClick
                     else if (o.preventQuickSlideClose && s.isMoving)
-                    // handle Chrome quick-close on slide-open
-                    else
-                    if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
-                    // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
-                    else
-                    if (evt) // trigger = mouseleave - use a delay
+                        return; // handle Chrome quick-close on slide-open
+                    else if (o.preventPrematureSlideClose && evt && $.layout.isMouseOverElem(evt, $Ps[pane]))
+                        return; // handle incorrect mouseleave trigger, like when over a SELECT-list in IE
+                    else if (evt) // trigger = mouseleave - use a delay
                     // 1 sec delay if 'opening', else .3 sec
                         timer.set(pane + "_closeSlider", close_NOW, max(o.slideDelay_close, delay));
                     else // called programically
@@ -5030,6 +5027,7 @@
                     _runCallbacks("onswap_end", pane1);
                     _runCallbacks("onswap_end", pane2);
 
+                    return;
 
                     function copy(n) { // n = pane
                         var
@@ -6065,6 +6063,21 @@ jQuery.cookie = function (name, value, options) {
                 });
             return inst;
         }
+        /**
+         * Add a slide Toggler button for a pane
+         *
+         * @param {(string|!Object)} selector jQuery selector (or element) for button, eg: ".ui-layout-north .toggle-button"
+         * @param {string}     pane   Name of the pane the button is for: 'north', 'south', etc.
+         * @param {boolean=}   slide   true = slide-open, false = pin-open
+         */
+        , addSlideToggle: function (inst, selector, pane, slide) {
+            $.layout.buttons.get(inst, selector, pane, "slideToggle")
+                .click(function (evt) {
+                    inst.slideToggle(pane, !!slide);
+                    evt.stopPropagation();
+                });
+            return inst;
+        }
 
         /**
          * Add a custom Open button for a pane
@@ -6186,6 +6199,9 @@ jQuery.cookie = function (name, value, options) {
                 // DEPRECATED METHODS...
                 , addToggleBtn: function (selector, pane, slide) {
                     return $.layout.buttons.addToggle(inst, selector, pane, slide);
+                }
+                , addSlideToggleBtn: function (selector, pane, slide) {
+                    return $.layout.buttons.addSlideToggle(inst, selector, pane, slide);
                 }
                 , addOpenBtn: function (selector, pane, slide) {
                     return $.layout.buttons.addOpen(inst, selector, pane, slide);

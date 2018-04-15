@@ -45,7 +45,5 @@
                 $(table).dataTable().fnAdjustColumnSizing();
             }
         });
-
-
     };
 })(jQuery);

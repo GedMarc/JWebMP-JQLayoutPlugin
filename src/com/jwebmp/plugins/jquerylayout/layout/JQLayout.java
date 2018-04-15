@@ -24,10 +24,7 @@ import com.jwebmp.base.html.Div;
 import com.jwebmp.base.html.attributes.GlobalAttributes;
 import com.jwebmp.plugins.ComponentInformation;
 import com.jwebmp.plugins.jquery.JQueryPageConfigurator;
-import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutAddPinButtonFeature;
-import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutAddToggleButtonFeature;
-import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutCloseLayoutDivFeature;
-import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
+import com.jwebmp.plugins.jquerylayout.layout.events.*;
 import com.jwebmp.plugins.jquerylayout.layout.interfaces.IJQLayout;
 import za.co.mmagon.logger.LogFactory;
 
@@ -351,6 +348,40 @@ public class JQLayout<J extends JQLayout<J>>
 			getComponent().add(west);
 		}
 		return (J) this;
+	}
+
+	/**
+	 * Creates a toggle button that uses the animation for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param pane
+	 *
+	 * @return
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public JQLayoutSlideToggleLayoutDivFeature createSlideToggleButton(JQLayoutArea pane)
+	{
+		return new JQLayoutSlideToggleLayoutDivFeature(getPane(pane));
+	}
+
+	/**
+	 * Creates a toggle button that uses the animation for the given pane on the component.
+	 * <p>
+	 * The feature is added to the component
+	 *
+	 * @param pane
+	 *
+	 * @return
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	@NotNull
+	public JQLayoutAddSlideToggleButtonFeature createAddSlideToggleButton(JQLayoutArea pane, Component pinButton)
+	{
+		return new JQLayoutAddSlideToggleButtonFeature(getPane(pane), pinButton);
 	}
 
 	/**
