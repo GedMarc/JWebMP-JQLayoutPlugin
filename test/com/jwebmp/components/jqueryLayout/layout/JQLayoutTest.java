@@ -16,7 +16,6 @@
  */
 package com.jwebmp.components.jqueryLayout.layout;
 
-import com.jwebmp.BaseTestClass;
 import com.jwebmp.Page;
 import com.jwebmp.base.ajax.AjaxResponse;
 import com.jwebmp.base.angular.AngularPageConfigurator;
@@ -34,7 +33,7 @@ import static com.jwebmp.plugins.jquerylayout.layout.JQLayoutArea.West;
  * @author ged_m
  */
 public class JQLayoutTest
-		extends BaseTestClass
+
 {
 
 	public JQLayoutTest()
@@ -46,7 +45,7 @@ public class JQLayoutTest
 	{
 		JQueryPageConfigurator.setRequired(false);
 		AngularPageConfigurator.setRequired(false);
-		Page p = getPage();
+		Page p = new Page();
 		JQLayout layout = new JQLayout(p.getBody());
 		p.getOptions()
 		 .setDynamicRender(true);
