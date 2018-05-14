@@ -19,18 +19,22 @@ package com.jwebmp.plugins.jquerylayout.layout;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.jwebmp.Component;
+import com.jwebmp.base.ComponentHierarchyBase;
 import com.jwebmp.base.html.Div;
 import com.jwebmp.base.html.HeaderText;
 import com.jwebmp.base.html.interfaces.GlobalChildren;
 import com.jwebmp.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.base.html.interfaces.children.BodyChildren;
 import com.jwebmp.base.html.interfaces.events.GlobalEvents;
+import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutArea;
+import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutAttributes;
+import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutCSSThemeBlockNames;
 import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutAddPinButtonFeature;
 import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutAddToggleButtonFeature;
 import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutCloseLayoutDivFeature;
 import com.jwebmp.plugins.jquerylayout.layout.events.JQLayoutOpenLayoutDivFeature;
 import com.jwebmp.plugins.jquerylayout.layout.interfaces.IJQLayoutDiv;
-import com.jwebmp.plugins.jquerylayout.layout.interfaces.JWLayoutDivChildren;
+import com.jwebmp.plugins.jquerylayout.layout.interfaces.JQLayoutDivChildren;
 import com.jwebmp.plugins.jquerylayout.layout.options.JQLayoutDefaultOptions;
 
 import javax.validation.constraints.NotNull;
@@ -46,9 +50,8 @@ import java.util.List;
  * @since 16 Jul 2013
  */
 public class JQLayoutDiv<J extends JQLayoutDiv<J>>
-		extends Div<JWLayoutDivChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J>
-		implements BodyChildren, GlobalChildren, IJQLayoutDiv
-{
+		extends Div<JQLayoutDivChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J>
+		implements BodyChildren, GlobalChildren, IJQLayoutDiv<J> {
 
 	/**
 	 * Version 1
@@ -70,7 +73,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * All the footer containers
 	 */
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
-	private List<Component> footers;
+	private List<ComponentHierarchyBase> footers;
 	/**
 	 * The main center div
 	 */
@@ -79,7 +82,9 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * The layout div
 	 */
 	@JsonIgnore
-	private JQLayout layout;
+	private JQLayout<?> layout;
+	
+	
 
 	/**
 	 * Constructs a new Border Layout Div
@@ -92,7 +97,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param contentDiv
 	 * 		The content div. Never null please
 	 */
-	public JQLayoutDiv(JQLayout layout, JQLayoutArea area, Div contentDiv)
+	public JQLayoutDiv(JQLayout<?> layout, JQLayoutArea area, Div<?,?,?,?,?> contentDiv)
 	{
 		setLayout(layout);
 		setContentDiv(contentDiv);
@@ -117,7 +122,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		}
 		if (!isInitialized() && !getFooters().isEmpty())
 		{
-			for (Component footer : getFooters())
+			for (ComponentHierarchyBase footer : getFooters())
 			{
 				getChildren().add(footer);
 				footer.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Footer);
@@ -132,6 +137,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @return
 	 */
+	@Override
 	@NotNull
 	public List<Div> getHeaders()
 	{
@@ -147,8 +153,9 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @return
 	 */
+	@Override
 	@NotNull
-	public List<Component> getFooters()
+	public List<ComponentHierarchyBase> getFooters()
 	{
 		if (footers == null)
 		{
@@ -162,9 +169,10 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param footers
 	 */
+	@Override
 	@NotNull
 	@SuppressWarnings("unchecked")
-	public J setFooters(List<Component> footers)
+	public J setFooters(List<ComponentHierarchyBase> footers)
 	{
 		this.footers = footers;
 		if (footers != null)
@@ -179,6 +187,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param headers
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J setHeaders(List<Div> headers)
@@ -193,7 +202,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @return
 	 */
-	public IJQLayoutDiv asMe()
+	public IJQLayoutDiv<J> asMe()
 	{
 		return this;
 	}
@@ -205,6 +214,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param headerDivString
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addHeader(String headerDivString)
@@ -222,6 +232,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param headerDiv
 	 */
 
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addHeader(Div headerDiv)
@@ -238,6 +249,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param footerHeaderText
 	 */
 
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addFooter(HeaderText footerHeaderText)
@@ -257,6 +269,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @return The original component
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addPin(Component component)
@@ -272,6 +285,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param button
 	 * 		The component to add the open event to
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addToggleButton(Component button)
@@ -287,6 +301,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param button
 	 * 		The button to add a close event to
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addCloseButton(Component button)
@@ -301,6 +316,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param footerDiv
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addFooter(Component footerDiv)
@@ -319,6 +335,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param footerDivString
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addFooter(String footerDivString)
@@ -337,6 +354,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param headerDivString
 	 */
 
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addHeader(HeaderText headerDivString)
@@ -354,6 +372,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param button
 	 * 		The component to add the open event to
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J addOpenButton(Component button)
@@ -369,6 +388,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param footerDiv
 	 */
 
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J removeFooter(Div footerDiv)
@@ -384,6 +404,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param headerDiv
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public J removeHeader(Div headerDiv)
@@ -394,40 +415,8 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	}
 
 	@Override
-	public boolean equals(Object o)
-	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof JQLayoutDiv))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		JQLayoutDiv that = (JQLayoutDiv) o;
-
-		if (getArea() != that.getArea())
-		{
-			return false;
-		}
-		if (getHeaders() != null ? !getHeaders().equals(that.getHeaders()) : that.getHeaders() != null)
-		{
-			return false;
-		}
-		if (getFooters() != null ? !getFooters().equals(that.getFooters()) : that.getFooters() != null)
-		{
-			return false;
-		}
-		if (getContentDiv() != null ? !getContentDiv().equals(that.getContentDiv()) : that.getContentDiv() != null)
-		{
-			return false;
-		}
-		return getLayout() != null ? getLayout().equals(that.getLayout()) : that.getLayout() == null;
+	public boolean equals(Object o) {
+		return super.equals(o);
 	}
 
 	@Override
@@ -442,6 +431,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @return
 	 */
+	@Override
 	@NotNull
 	public JQLayoutArea getArea()
 	{
@@ -454,6 +444,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @return
 	 */
+	@Override
 	@NotNull
 	public Div<?, ?, ?, ?, ?> getContentDiv()
 	{
@@ -470,6 +461,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @return
 	 */
+	@Override
 	@NotNull
 	public JQLayout getLayout()
 	{
@@ -482,6 +474,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param layout
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public final void setLayout(@NotNull JQLayout layout)
@@ -494,6 +487,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param contentDiv
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public final J setContentDiv(Div contentDiv)
@@ -514,6 +508,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param area
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
 	public final J setArea(JQLayoutArea area)

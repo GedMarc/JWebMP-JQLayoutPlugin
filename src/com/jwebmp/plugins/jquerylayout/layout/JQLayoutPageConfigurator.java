@@ -32,7 +32,7 @@ import com.jwebmp.plugins.pools.jquerylayout.JQLayoutReferencePool;
 @PluginInformation(pluginName = "JQuery UI Layout",
 		pluginUniqueName = "jquery-layout",
 		pluginDescription = "The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.",
-		pluginVersion = "1.5.13",
+		pluginVersion = "1.6.3",
 		pluginDependancyUniqueIDs = "jquery,jquery-easing",
 		pluginCategories = "jquery, layouts,border layout, jwebswing",
 		pluginSubtitle = "The Ultimate Page Layout Manager",

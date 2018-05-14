@@ -18,6 +18,7 @@
 package com.jwebmp.plugins.jquerylayout.layout.options;
 
 import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.plugins.jquerylayout.layout.enumerations.LayoutResponsiveSize;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;

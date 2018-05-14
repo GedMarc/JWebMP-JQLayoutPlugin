@@ -14,13 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.jwebmp.plugins.jquerylayout.layout.interfaces;
+package com.jwebmp.plugins.jquerylayout.layout.enumerations;
+
+import com.jwebmp.base.html.interfaces.AttributeDefinitions;
 
 /**
- * Any class that has this interface can be added as a child to a layout page.
+ * Defines all the attributes allowed on the JWLayout component
  *
- * @author mmagon
- * @since 2013/07/17
+ * @author MMagon
+ * @version 1.0
+ * @since 23 Sep 2013
  */
-public interface JWLayoutChildren
-{}
+public enum JQLayoutAttributes
+		implements AttributeDefinitions
+{
+	JWType;
+
+	@Override
+	public boolean isKeyword()
+	{
+		return false;
+	}
+}

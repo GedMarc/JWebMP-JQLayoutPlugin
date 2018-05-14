@@ -24,6 +24,8 @@ import com.jwebmp.base.html.Div;
 import com.jwebmp.base.html.attributes.GlobalAttributes;
 import com.jwebmp.plugins.ComponentInformation;
 import com.jwebmp.plugins.jquery.JQueryPageConfigurator;
+import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutArea;
+import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutAttributes;
 import com.jwebmp.plugins.jquerylayout.layout.events.*;
 import com.jwebmp.plugins.jquerylayout.layout.interfaces.IJQLayout;
 import za.co.mmagon.logger.LogFactory;
@@ -104,7 +106,7 @@ public class JQLayout<J extends JQLayout<J>>
 		AngularPageConfigurator.setRequired(true);
 		setComponent(component);
 		setVariableID(component.getID());
-		getComponent().addAttribute(GlobalAttributes.JWType, "layout");
+		getComponent().addAttribute(JQLayoutAttributes.JWType, "layout");
 		getCenter();
 		getComponent().addFeature(this);
 	}
@@ -214,7 +216,7 @@ public class JQLayout<J extends JQLayout<J>>
 	{
 		if (north == null)
 		{
-			setNorth(new JQLayoutDiv(this, JQLayoutArea.North, new Div()));
+			setNorth(new JQLayoutDiv<>(this, JQLayoutArea.North, new Div()));
 		}
 		return north;
 	}
@@ -250,7 +252,7 @@ public class JQLayout<J extends JQLayout<J>>
 	{
 		if (west == null)
 		{
-			setWest(new JQLayoutDiv(this, JQLayoutArea.West, new Div()));
+			setWest(new JQLayoutDiv<>(this, JQLayoutArea.West, new Div()));
 		}
 		return west;
 	}
@@ -266,7 +268,7 @@ public class JQLayout<J extends JQLayout<J>>
 	{
 		if (south == null)
 		{
-			setSouth(new JQLayoutDiv(this, JQLayoutArea.South, new Div()));
+			setSouth(new JQLayoutDiv<>(this, JQLayoutArea.South, new Div()));
 		}
 		return south;
 	}
@@ -283,7 +285,7 @@ public class JQLayout<J extends JQLayout<J>>
 	{
 		if (east == null)
 		{
-			setEast(new JQLayoutDiv(this, JQLayoutArea.East, new Div()));
+			setEast(new JQLayoutDiv<>(this, JQLayoutArea.East, new Div()));
 		}
 		return east;
 	}
@@ -520,11 +522,11 @@ public class JQLayout<J extends JQLayout<J>>
 
 	@Override
 	@NotNull
-	public JQLayoutOptions getOptions()
+	public JQLayoutOptions<?> getOptions()
 	{
 		if (options == null)
 		{
-			options = new JQLayoutOptions();
+			options = new JQLayoutOptions<>();
 		}
 		return options;
 	}
@@ -539,6 +541,4 @@ public class JQLayout<J extends JQLayout<J>>
 		String sb = getVariableID() + STRING_EQUALS + getComponent().getJQueryID() + "layout(" + getNewLine() + getOptions() + STRING_CLOSING_BRACKET_SEMICOLON;
 		addQuery(sb);
 	}
-
-
 }

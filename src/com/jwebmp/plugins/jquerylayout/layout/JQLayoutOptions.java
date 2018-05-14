@@ -38,27 +38,27 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	/**
 	 * The global defaults
 	 */
-	private JQLayoutDefaultOptions defaults;
+	private JQLayoutDefaultOptions<?> defaults;
 	/**
 	 * The west entry
 	 */
-	private JQLayoutDefaultOptions west;
+	private JQLayoutDefaultOptions<?> west;
 	/**
 	 * The north entry
 	 */
-	private JQLayoutDefaultOptions north;
+	private JQLayoutDefaultOptions<?> north;
 	/**
 	 * The east entry
 	 */
-	private JQLayoutDefaultOptions east;
+	private JQLayoutDefaultOptions<?> east;
 	/**
 	 * The south entry
 	 */
-	private JQLayoutDefaultOptions south;
+	private JQLayoutDefaultOptions<?> south;
 	/**
 	 * The center entry
 	 */
-	private JQLayoutDefaultOptions center;
+	private JQLayoutDefaultOptions<?> center;
 
 	/**
 	 * A blank options canvas
@@ -99,7 +99,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 * @return
 	 */
 	@NotNull
-	public JQLayoutDefaultOptions getDefaults()
+	public JQLayoutDefaultOptions<?> getDefaults()
 	{
 		if (defaults == null)
 		{
@@ -116,7 +116,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 * @return
 	 */
 	@NotNull
-	public JQLayoutDefaultOptions getWest()
+	public JQLayoutDefaultOptions<?> getWest()
 	{
 		if (west == null)
 		{
@@ -131,7 +131,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 *
 	 * @param west
 	 */
-	public void setWest(JQLayoutDefaultOptions west)
+	public void setWest(JQLayoutDefaultOptions<?> west)
 	{
 		this.west = west;
 	}
@@ -142,7 +142,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 *
 	 * @return
 	 */
-	public JQLayoutDefaultOptions getNorth()
+	public JQLayoutDefaultOptions<?> getNorth()
 	{
 		if (north == null)
 		{
@@ -157,7 +157,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 *
 	 * @param north
 	 */
-	public void setNorth(JQLayoutDefaultOptions north)
+	public void setNorth(JQLayoutDefaultOptions<?> north)
 	{
 		this.north = north;
 	}
@@ -168,7 +168,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 *
 	 * @return
 	 */
-	public JQLayoutDefaultOptions getEast()
+	public JQLayoutDefaultOptions<?> getEast()
 	{
 		if (east == null)
 		{
@@ -183,7 +183,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 *
 	 * @param east
 	 */
-	public void setEast(JQLayoutDefaultOptions east)
+	public void setEast(JQLayoutDefaultOptions<?> east)
 	{
 		this.east = east;
 	}
@@ -194,7 +194,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 *
 	 * @return
 	 */
-	public JQLayoutDefaultOptions getSouth()
+	public JQLayoutDefaultOptions<?> getSouth()
 	{
 		if (south == null)
 		{
@@ -209,7 +209,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 *
 	 * @param south
 	 */
-	public void setSouth(JQLayoutDefaultOptions south)
+	public void setSouth(JQLayoutDefaultOptions<?> south)
 	{
 		this.south = south;
 	}
@@ -220,7 +220,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 *
 	 * @return
 	 */
-	public JQLayoutDefaultOptions getCenter()
+	public JQLayoutDefaultOptions<?> getCenter()
 	{
 		if (center == null)
 		{
@@ -235,7 +235,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	 *
 	 * @param center
 	 */
-	public void setCenter(JQLayoutDefaultOptions center)
+	public void setCenter(JQLayoutDefaultOptions<?> center)
 	{
 		this.center = center;
 	}

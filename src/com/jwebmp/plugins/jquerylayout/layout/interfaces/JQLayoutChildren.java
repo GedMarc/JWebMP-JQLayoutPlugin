@@ -16,13 +16,11 @@
  */
 package com.jwebmp.plugins.jquerylayout.layout.interfaces;
 
-import com.jwebmp.base.html.interfaces.GlobalChildren;
-
 /**
- * @author GedMarc
+ * Any class that has this interface can be added as a child to a layout page.
+ *
+ * @author mmagon
+ * @since 2013/07/17
  */
-public interface JWLayoutDivChildren
-		extends GlobalChildren
-{
-
-}
+public interface JQLayoutChildren
+{}

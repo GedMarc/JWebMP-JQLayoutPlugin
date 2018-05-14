@@ -45,7 +45,6 @@ public enum JQLayoutReferencePool implements ReferencePool
 	 *
 	 * @param javaScriptReference
 	 * @param cssReference
-	 * @param sortOrder
 	 */
 	JQLayoutReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference)
 	{

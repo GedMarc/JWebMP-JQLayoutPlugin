@@ -19,7 +19,7 @@ package com.jwebmp.plugins.jquerylayout.layout.interfaces;
 
 import com.jwebmp.Component;
 import com.jwebmp.plugins.jquerylayout.layout.JQLayout;
-import com.jwebmp.plugins.jquerylayout.layout.JQLayoutArea;
+import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jquerylayout.layout.JQLayoutDiv;
 import com.jwebmp.plugins.jquerylayout.layout.JQLayoutOptions;
 import com.jwebmp.plugins.jquerylayout.layout.events.*;
