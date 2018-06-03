@@ -1,9 +1,9 @@
 /*
  * Default Layout Theme
  *
- * Created for jquery.layout 
+ * Created for jquery.layout
  *
- * Copyright (c) 2010 
+ * Copyright (c) 2010
  *   Fabrizio Balliano (http://www.fabrizioballiano.net)
  *   Kevin Dalman (http://allpro.net)
  *
@@ -187,7 +187,7 @@ body {
 
 /*
  *	PANE-MASKS
- *	these styles are hard-coded on mask elems, but are also 
+ *	these styles are hard-coded on mask elems, but are also
  *	included here as !important to ensure will overrides any generic styles
  */
 .ui-layout-mask {
@@ -234,7 +234,7 @@ iframe.ui-layout-mask {
         bottom:		auto !important;
         left:		auto !important;
         right:		auto !important;
-        /* only IE6 has container width & height set by Layout 
+        /* only IE6 has container width & height set by Layout
         _width:		auto !important;
         _height:	auto !important;
     }*/
@@ -260,11 +260,11 @@ iframe.ui-layout-mask {
 }
 
 /*
-The following hack is useful if you plan to use seamlessly jQuery UI Layout plugin (https://github.com/allpro/layout) 
+The following hack is useful if you plan to use seamlessly jQuery UI Layout plugin (https://github.com/allpro/layout)
 and Bootstrap components, like Dropdown, Popover, Tooltip;
 
 Otherwise you have to use special utiliy methods, like allowOverflow( elem_or_pane ), resetOverflow( elem_or_pane )
-everytime you want to show/hide each and every component that may oveflow the pane. 
+everytime you want to show/hide each and every component that may oveflow the pane.
 
 */
 
@@ -275,7 +275,7 @@ everytime you want to show/hide each and every component that may oveflow the pa
     (for example: popups, dropdown lists, tooltips) are correctly displayed
     in front of other 'panes' WHILE the mouse IS NEITHER over the 'pane' NOR over its child elements.
     */
-    z-index: auto !important;
+    z-index: auto;
     /*
     remove default border on panes
     */

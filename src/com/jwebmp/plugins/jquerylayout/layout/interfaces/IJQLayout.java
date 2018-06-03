@@ -18,15 +18,14 @@
 package com.jwebmp.plugins.jquerylayout.layout.interfaces;
 
 import com.jwebmp.Component;
-import com.jwebmp.plugins.jquerylayout.layout.JQLayout;
-import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jquerylayout.layout.JQLayoutDiv;
 import com.jwebmp.plugins.jquerylayout.layout.JQLayoutOptions;
+import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jquerylayout.layout.events.*;
 
 import javax.validation.constraints.NotNull;
 
-public interface IJQLayout<J extends JQLayout<J>>
+public interface IJQLayout<J extends IJQLayout<J>>
 {
 	/**
 	 * Returns the center pane
@@ -78,18 +77,11 @@ public interface IJQLayout<J extends JQLayout<J>>
 	 * @return A Layout pane on the center div
 	 */
 
-	JQLayoutDiv getNorth();
-
-	/**
-	 * Sets the north pane
-	 *
-	 * @param centerDiv
-	 * 		The new center panel
-	 */
+	JQLayoutDiv<?> getNorth();
 
 	@SuppressWarnings("unchecked")
 	@NotNull
-	J setNorth(JQLayoutDiv centerDiv);
+	J setNorth(JQLayoutDiv<?> centerDiv);
 
 	/**
 	 * Returns the center pane
@@ -97,7 +89,17 @@ public interface IJQLayout<J extends JQLayout<J>>
 	 * @return A Layout pane on the center div
 	 */
 	@NotNull
-	JQLayoutDiv getWest();
+	JQLayoutDiv<?> getWest();
+
+	/**
+	 * Sets the center pane
+	 *
+	 * @param westDiv
+	 * 		The new center panel
+	 */
+	@SuppressWarnings("unchecked")
+	@NotNull
+	J setWest(JQLayoutDiv<?> westDiv);
 
 	/**
 	 * Returns the south pane
@@ -105,26 +107,7 @@ public interface IJQLayout<J extends JQLayout<J>>
 	 * @return A Layout pane on the center div
 	 */
 
-	JQLayoutDiv getSouth();
-
-	/**
-	 * Returns the center pane
-	 *
-	 * @return A Layout pane on the center div
-	 */
-
-	@NotNull
-	JQLayoutDiv getEast();
-
-	/**
-	 * Sets the center pane
-	 *
-	 * @param eastDiv
-	 * 		The new center panel
-	 */
-
-	@SuppressWarnings("unchecked")
-	J setEast(JQLayoutDiv eastDiv);
+	JQLayoutDiv<?> getSouth();
 
 	/**
 	 * Sets the south pane
@@ -135,18 +118,26 @@ public interface IJQLayout<J extends JQLayout<J>>
 
 	@SuppressWarnings("unchecked")
 	@NotNull
-	J setSouth(JQLayoutDiv southDiv);
+	J setSouth(JQLayoutDiv<?> southDiv);
+
+	/**
+	 * Returns the center pane
+	 *
+	 * @return A Layout pane on the center div
+	 */
+
+	@NotNull
+	JQLayoutDiv<?> getEast();
 
 	/**
 	 * Sets the center pane
 	 *
-	 * @param westDiv
+	 * @param eastDiv
 	 * 		The new center panel
 	 */
 
 	@SuppressWarnings("unchecked")
-	@NotNull
-	J setWest(JQLayoutDiv westDiv);
+	J setEast(JQLayoutDiv<?> eastDiv);
 
 	@SuppressWarnings("unchecked")
 	@NotNull
@@ -179,6 +170,14 @@ public interface IJQLayout<J extends JQLayout<J>>
 	@SuppressWarnings("unchecked")
 	@NotNull
 	JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane);
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	JQLayoutSlideCloseLayoutDivFeature createSlideCloseFeature(JQLayoutArea pane);
+
+	@SuppressWarnings("unchecked")
+	@NotNull
+	JQLayoutSlideOpenLayoutDivFeature createSlideOpenFeature(JQLayoutArea pane);
 
 	/**
 	 * Creates a toggle button for the given pane on the component.
@@ -223,4 +222,8 @@ public interface IJQLayout<J extends JQLayout<J>>
 	 */
 	@SuppressWarnings("unchecked")
 	J setVariableID(@NotNull String variableID);
+
+	@NotNull
+	@SuppressWarnings("unchecked")
+	J setFullScreen(boolean fullScreen);
 }

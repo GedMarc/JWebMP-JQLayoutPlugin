@@ -22,10 +22,12 @@ import com.jwebmp.Component;
 import com.jwebmp.base.ComponentHierarchyBase;
 import com.jwebmp.base.html.Div;
 import com.jwebmp.base.html.HeaderText;
+import com.jwebmp.base.html.attributes.NoAttributes;
 import com.jwebmp.base.html.interfaces.GlobalChildren;
 import com.jwebmp.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.base.html.interfaces.children.BodyChildren;
 import com.jwebmp.base.html.interfaces.events.GlobalEvents;
+import com.jwebmp.plugins.jquerylayout.layout.components.BorderLayout;
 import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutAttributes;
 import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutCSSThemeBlockNames;
@@ -42,6 +44,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import static com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutCSSThemeBlockNames.UI_Layout_Footer;
+import static com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutCSSThemeBlockNames.UI_Layout_Header;
+
 /**
  * This class makes sure only layout DIV's gets added to Layout's Also adds capability of headers and footers
  *
@@ -51,15 +56,13 @@ import java.util.List;
  */
 public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		extends Div<JQLayoutDivChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J>
-		implements BodyChildren, GlobalChildren, IJQLayoutDiv<J> {
+		implements BodyChildren, GlobalChildren, IJQLayoutDiv<J>
+{
 
 	/**
 	 * Version 1
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private static final String UiFooterString = "ui-layout-footer";
-
 	/**
 	 * The layout area of this particular Layout Div
 	 */
@@ -77,14 +80,12 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	/**
 	 * The main center div
 	 */
-	private Div<?, ?, ?, ?, ?> contentDiv;
+	private Div<GlobalChildren, NoAttributes, GlobalFeatures, GlobalEvents, ?> contentDiv;
 	/**
 	 * The layout div
 	 */
 	@JsonIgnore
-	private JQLayout<?> layout;
-	
-	
+	private BorderLayout<?> layout;
 
 	/**
 	 * Constructs a new Border Layout Div
@@ -97,7 +98,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param contentDiv
 	 * 		The content div. Never null please
 	 */
-	public JQLayoutDiv(JQLayout<?> layout, JQLayoutArea area, Div<?,?,?,?,?> contentDiv)
+	public JQLayoutDiv(BorderLayout<?> layout, JQLayoutArea area, Div<GlobalChildren, NoAttributes, GlobalFeatures, GlobalEvents, ?> contentDiv)
 	{
 		setLayout(layout);
 		setContentDiv(contentDiv);
@@ -113,7 +114,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 			for (int i = 0, j = 0; i < getHeaders().size(); i++, j++)
 			{
 				Div get = getHeaders().get(i);
-				get.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Header);
+				get.addClass(UI_Layout_Header);
 				List list = new ArrayList(getChildren());
 				list.add(j, get);
 				setChildren(new LinkedHashSet<>(list));
@@ -177,7 +178,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		this.footers = footers;
 		if (footers != null)
 		{
-			footers.forEach(next -> next.addClass(UiFooterString));
+			footers.forEach(next -> next.addClass(UI_Layout_Header));
 		}
 		return (J) this;
 	}
@@ -195,16 +196,6 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		this.headers = headers;
 		headers.forEach(this::addHeader);
 		return (J) this;
-	}
-
-	/**
-	 * Returns a clean version of this components options
-	 *
-	 * @return
-	 */
-	public IJQLayoutDiv<J> asMe()
-	{
-		return this;
 	}
 
 	/**
@@ -238,7 +229,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	public J addHeader(Div headerDiv)
 	{
 		getHeaders().add(headerDiv);
-		headerDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Header.toString());
+		headerDiv.addClass(UI_Layout_Header.toString());
 		return (J) this;
 	}
 
@@ -256,7 +247,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	{
 		Div headerDiv = new Div();
 		headerDiv.add(footerHeaderText);
-		headerDiv.addClass(UiFooterString);
+		headerDiv.addClass(UI_Layout_Footer);
 		getFooters().add(headerDiv);
 		return (J) this;
 	}
@@ -324,7 +315,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		if (footerDiv != null)
 		{
 			getFooters().add(footerDiv);
-			footerDiv.addClass(UiFooterString);
+			footerDiv.addClass(UI_Layout_Footer);
 		}
 		return (J) this;
 	}
@@ -342,7 +333,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	{
 		Div headerDiv = new Div();
 		headerDiv.add(footerDivString);
-		headerDiv.addClass(UiFooterString);
+		headerDiv.addClass(UI_Layout_Footer);
 		getFooters().add(headerDiv);
 		return (J) this;
 	}
@@ -414,17 +405,6 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		return (J) this;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		return super.equals(o);
-	}
-
-	@Override
-	public int hashCode()
-	{
-		return super.hashCode();
-	}
-
 	/**
 	 * Gets the current assigned area
 	 * <p>
@@ -446,7 +426,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@Override
 	@NotNull
-	public Div<?, ?, ?, ?, ?> getContentDiv()
+	public Div<GlobalChildren, NoAttributes, GlobalFeatures, GlobalEvents, ?> getContentDiv()
 	{
 		if (contentDiv == null)
 		{
@@ -463,7 +443,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@Override
 	@NotNull
-	public JQLayout getLayout()
+	public BorderLayout<?> getLayout()
 	{
 		return layout;
 	}
@@ -477,9 +457,10 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public final void setLayout(@NotNull JQLayout layout)
+	public final J setLayout(@NotNull BorderLayout<?> layout)
 	{
 		this.layout = layout;
+		return (J) this;
 	}
 
 	/**
@@ -525,6 +506,28 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 			                  .toString());
 		}
 		return (J) this;
+	}
+
+	/**
+	 * Returns a clean version of this components options
+	 *
+	 * @return
+	 */
+	public IJQLayoutDiv<J> asMe()
+	{
+		return this;
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		return super.equals(o);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return super.hashCode();
 	}
 
 	@Override

@@ -1,19 +1,23 @@
 package com.jwebmp.plugins.jquerylayout.layout.interfaces;
 
-import java.util.List;
-
-import javax.validation.constraints.NotNull;
-
 import com.jwebmp.Component;
 import com.jwebmp.base.ComponentHierarchyBase;
 import com.jwebmp.base.html.Div;
 import com.jwebmp.base.html.HeaderText;
-import com.jwebmp.plugins.jquerylayout.layout.JQLayout;
-import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutArea;
+import com.jwebmp.base.html.interfaces.AttributeDefinitions;
+import com.jwebmp.base.html.interfaces.GlobalChildren;
+import com.jwebmp.base.html.interfaces.GlobalFeatures;
+import com.jwebmp.base.html.interfaces.events.GlobalEvents;
 import com.jwebmp.plugins.jquerylayout.layout.JQLayoutDiv;
+import com.jwebmp.plugins.jquerylayout.layout.components.BorderLayout;
+import com.jwebmp.plugins.jquerylayout.layout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jquerylayout.layout.options.JQLayoutDefaultOptions;
 
-public interface IJQLayoutDiv<J extends JQLayoutDiv<J>> {
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
+public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
+{
 
 	/**
 	 * Returns a never empty list of header
@@ -195,7 +199,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>> {
 	 * @return
 	 */
 	@NotNull
-	Div<?, ?, ?, ?, ?> getContentDiv();
+	<C extends GlobalChildren, A extends Enum & AttributeDefinitions, F extends GlobalFeatures, E extends GlobalEvents> Div<C, A, F, E, ?> getContentDiv();
 
 	/**
 	 * Returns the layout attached to this layout div
@@ -204,7 +208,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>> {
 	 * @return
 	 */
 	@NotNull
-	JQLayout getLayout();
+	BorderLayout<?> getLayout();
 
 	/**
 	 * Sets the layout for this div
@@ -214,7 +218,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>> {
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	void setLayout(@NotNull JQLayout layout);
+	J setLayout(@NotNull BorderLayout<?> layout);
 
 	/**
 	 * Sets the content div of this layout
