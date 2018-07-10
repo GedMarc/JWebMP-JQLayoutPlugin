@@ -20,7 +20,6 @@ package com.jwebmp.plugins.jquerylayout.layout.options;
 import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jquerylayout.layout.enumerations.LayoutResponsiveSize;
 
-import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 import java.util.SortedMap;
@@ -34,7 +33,8 @@ import java.util.TreeMap;
  *
  * @since 2018/01/27
  */
-public class JQLayoutResponsiveOptions<J extends JQLayoutResponsiveOptions<J>> extends JavaScriptPart<J>
+public class JQLayoutResponsiveOptions<J extends JQLayoutResponsiveOptions<J>>
+		extends JavaScriptPart<J>
 {
 	private Boolean enabled;
 	private LayoutResponsiveSize when;
@@ -108,7 +108,7 @@ public class JQLayoutResponsiveOptions<J extends JQLayoutResponsiveOptions<J>> e
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setEnabled(@Nullable Boolean enabled)
+	public J setEnabled(Boolean enabled)
 	{
 		this.enabled = enabled;
 		return (J) this;
@@ -133,7 +133,7 @@ public class JQLayoutResponsiveOptions<J extends JQLayoutResponsiveOptions<J>> e
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setWhen(@Nullable LayoutResponsiveSize when)
+	public J setWhen(LayoutResponsiveSize when)
 	{
 		this.when = when;
 		return (J) this;
@@ -164,7 +164,7 @@ public class JQLayoutResponsiveOptions<J extends JQLayoutResponsiveOptions<J>> e
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setSizes(@Nullable Map<LayoutResponsiveSize, Integer> sizes)
+	public J setSizes(Map<LayoutResponsiveSize, Integer> sizes)
 	{
 		this.sizes = sizes;
 		return (J) this;
