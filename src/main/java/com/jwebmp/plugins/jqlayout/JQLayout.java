@@ -16,13 +16,13 @@
  */
 package com.jwebmp.plugins.jqlayout;
 
-import com.jwebmp.Feature;
-import com.jwebmp.plugins.ComponentInformation;
+import com.jwebmp.core.Feature;
+import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.plugins.jqlayout.components.BorderLayout;
 
 import javax.validation.constraints.NotNull;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * This is a Layout Pane and can be applied to any div to turn it into a border layout

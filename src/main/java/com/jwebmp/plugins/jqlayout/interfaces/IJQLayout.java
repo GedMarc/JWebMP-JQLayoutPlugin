@@ -17,7 +17,7 @@
 
 package com.jwebmp.plugins.jqlayout.interfaces;
 
-import com.jwebmp.Component;
+import com.jwebmp.core.Component;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 import com.jwebmp.plugins.jqlayout.JQLayoutOptions;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea;

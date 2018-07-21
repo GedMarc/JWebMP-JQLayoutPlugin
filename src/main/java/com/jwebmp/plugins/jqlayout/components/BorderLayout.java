@@ -16,13 +16,13 @@
  */
 package com.jwebmp.plugins.jqlayout.components;
 
-import com.jwebmp.Component;
-import com.jwebmp.base.html.Body;
-import com.jwebmp.base.html.Div;
-import com.jwebmp.base.html.interfaces.GlobalChildren;
-import com.jwebmp.base.html.interfaces.GlobalFeatures;
-import com.jwebmp.base.html.interfaces.events.GlobalEvents;
-import com.jwebmp.exceptions.NullComponentException;
+import com.jwebmp.core.Component;
+import com.jwebmp.core.base.html.Body;
+import com.jwebmp.core.base.html.Div;
+import com.jwebmp.core.base.html.interfaces.GlobalChildren;
+import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
+import com.jwebmp.core.base.html.interfaces.events.GlobalEvents;
+import com.jwebmp.core.exceptions.NullComponentException;
 import com.jwebmp.plugins.jqlayout.JQLayout;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 import com.jwebmp.plugins.jqlayout.JQLayoutOptions;
@@ -33,7 +33,7 @@ import com.jwebmp.plugins.jqlayout.interfaces.IJQLayout;
 
 import javax.validation.constraints.NotNull;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * Another name for the JQuery UI Layout

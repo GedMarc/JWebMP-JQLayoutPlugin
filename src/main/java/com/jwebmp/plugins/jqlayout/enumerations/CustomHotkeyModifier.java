@@ -1,6 +1,6 @@
 package com.jwebmp.plugins.jqlayout.enumerations;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * Specifies HotKey Entries specific to the layout

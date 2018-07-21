@@ -16,7 +16,7 @@
  */
 package com.jwebmp.plugins.jqlayout.enumerations;
 
-import com.jwebmp.base.html.interfaces.AttributeDefinitions;
+import com.jwebmp.core.base.html.interfaces.AttributeDefinitions;
 
 /**
  * Defines all the attributes allowed on the JWLayout component

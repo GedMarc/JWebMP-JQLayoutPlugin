@@ -16,10 +16,10 @@
  */
 package com.jwebmp.plugins.jqlayout.enumerations;
 
-import com.jwebmp.base.interfaces.ICSSClassName;
-import com.jwebmp.utilities.StaticStrings;
+import com.jwebmp.core.base.interfaces.ICSSClassName;
+import com.jwebmp.core.utilities.StaticStrings;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * @author MMagon

@@ -16,13 +16,14 @@
  */
 package com.jwebmp.components.jqueryLayout.layout;
 
-import com.jwebmp.Page;
-import com.jwebmp.base.ajax.AjaxResponse;
-import com.jwebmp.base.angular.AngularPageConfigurator;
-import com.jwebmp.base.html.Button;
-import com.jwebmp.base.html.Div;
-import com.jwebmp.generics.Direction;
-import com.jwebmp.htmlbuilder.css.displays.Cursors;
+import com.jwebmp.core.Page;
+import com.jwebmp.core.base.ajax.AjaxResponse;
+import com.jwebmp.core.base.angular.AngularPageConfigurator;
+import com.jwebmp.core.base.html.Button;
+import com.jwebmp.core.base.html.Div;
+import com.jwebmp.core.generics.Direction;
+import com.jwebmp.core.htmlbuilder.css.displays.Cursors;
+import com.jwebmp.core.plugins.jquery.JQueryPageConfigurator;
 import com.jwebmp.plugins.easingeffects.JQEasingAnimationEffectsPart;
 import com.jwebmp.plugins.easingeffects.JQEasingEffects;
 import com.jwebmp.plugins.jqlayout.components.BorderLayout;
@@ -30,7 +31,6 @@ import com.jwebmp.plugins.jqlayout.enumerations.CustomHotkeyModifier;
 import com.jwebmp.plugins.jqlayout.enumerations.LayoutResponsiveSize;
 import com.jwebmp.plugins.jqlayout.events.*;
 import com.jwebmp.plugins.jqlayout.options.JQLayoutResponsiveOptions;
-import com.jwebmp.plugins.jquery.JQueryPageConfigurator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -16,8 +16,8 @@
  */
 package com.jwebmp.plugins.jqlayout.events;
 
-import com.jwebmp.Feature;
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.Feature;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 
 /**

@@ -17,7 +17,7 @@
 
 package com.jwebmp.plugins.jqlayout.options;
 
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.enumerations.LayoutResponsiveSize;
 
 import javax.validation.constraints.NotNull;

@@ -16,9 +16,9 @@
  */
 package com.jwebmp.plugins.jqlayout;
 
-import com.jwebmp.base.references.CSSReference;
-import com.jwebmp.base.references.JavascriptReference;
-import com.jwebmp.base.servlets.interfaces.ReferencePool;
+import com.jwebmp.core.base.references.CSSReference;
+import com.jwebmp.core.base.references.JavascriptReference;
+import com.jwebmp.core.base.servlets.interfaces.ReferencePool;
 
 /**
  * The references for the JWColourPicker
