@@ -17,10 +17,10 @@
 package com.jwebmp.plugins.jqlayout;
 
 import com.jwebmp.core.Page;
-import com.jwebmp.core.PageConfigurator;
 import com.jwebmp.core.base.angular.AngularPageConfigurator;
 import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.plugins.jquery.JQueryPageConfigurator;
+import com.jwebmp.core.services.IPageConfigurator;
 
 /**
  * The page configuration for UI Layout enablement
@@ -44,11 +44,8 @@ import com.jwebmp.core.plugins.jquery.JQueryPageConfigurator;
 		pluginIconImageUrl = "bower_components/jquery-layout-latest-1-5/borderlayout.gif",
 		pluginLastUpdatedDate = "2017/03/04")
 public class JQLayoutPageConfigurator
-		extends PageConfigurator
+		implements IPageConfigurator
 {
-
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * Configures the page
 	 */

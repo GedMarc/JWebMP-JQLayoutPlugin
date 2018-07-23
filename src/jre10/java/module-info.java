@@ -1,3 +1,6 @@
+import com.jwebmp.core.services.IPageConfigurator;
+import com.jwebmp.plugins.jqlayout.JQLayoutPageConfigurator;
+
 module com.jwebmp.plugins.jqlayout {
 	exports com.jwebmp.plugins.jqlayout;
 	exports com.jwebmp.plugins.jqlayout.events;
@@ -13,4 +16,7 @@ module com.jwebmp.plugins.jqlayout {
 	requires java.validation;
 	requires java.logging;
 	requires com.jwebmp.plugins.easingeffects;
+
+	provides IPageConfigurator with JQLayoutPageConfigurator;
+
 }
