@@ -19,4 +19,11 @@ module com.jwebmp.plugins.jqlayout {
 
 	provides IPageConfigurator with JQLayoutPageConfigurator;
 
+	opens com.jwebmp.plugins.jqlayout to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.jqlayout.interfaces to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.jqlayout.components to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.jqlayout.enumerations to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.jqlayout.events to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.jqlayout.options to com.fasterxml.jackson.databind, com.jwebmp.core;
+
 }

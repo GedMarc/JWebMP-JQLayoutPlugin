@@ -58,8 +58,6 @@ public class JQLayoutPageConfigurator
 	@SuppressWarnings("unchecked")
 	public Page configure(Page page)
 	{
-		if (!page.isConfigured())
-		{
 			JQueryPageConfigurator.setRequired(true);
 			AngularPageConfigurator.setRequired(true);
 			page.getBody()
@@ -68,8 +66,6 @@ public class JQLayoutPageConfigurator
 			page.getBody()
 			    .getCssReferences()
 			    .add(JQLayoutReferencePool.JQueryLayout.getCssReference());
-		}
-
 		return page;
 	}
 }
