@@ -16,7 +16,7 @@
  */
 package com.jwebmp.plugins.jqlayout.enumerations;
 
-import com.jwebmp.core.base.interfaces.ICSSClassName;
+import com.jwebmp.core.base.interfaces.ICssClassName;
 import com.jwebmp.core.utilities.StaticStrings;
 
 import static com.jwebmp.core.utilities.StaticStrings.*;
@@ -27,7 +27,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
  * @since 21 Jul 2013
  */
 public enum JQLayoutCSSThemeBlockNames
-		implements ICSSClassName
+		implements ICssClassName
 {
 	/**
 	 * The Layout Component Content
