@@ -22,6 +22,8 @@ import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.plugins.jquery.JQueryPageConfigurator;
 import com.jwebmp.core.services.IPageConfigurator;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * The page configuration for UI Layout enablement
  *
@@ -54,18 +56,19 @@ public class JQLayoutPageConfigurator
 		//Nothing Needed
 	}
 
+	@NotNull
 	@Override
 	@SuppressWarnings("unchecked")
 	public Page configure(Page page)
 	{
-			JQueryPageConfigurator.setRequired(true);
-			AngularPageConfigurator.setRequired(true);
-			page.getBody()
-			    .getJavascriptReferences()
-			    .add(JQLayoutReferencePool.JQueryLayout.getJavaScriptReference());
-			page.getBody()
-			    .getCssReferences()
-			    .add(JQLayoutReferencePool.JQueryLayout.getCssReference());
+		JQueryPageConfigurator.setRequired(true);
+		AngularPageConfigurator.setRequired(true);
+		page.getBody()
+		    .getJavascriptReferences()
+		    .add(JQLayoutReferencePool.JQueryLayout.getJavaScriptReference());
+		page.getBody()
+		    .getCssReferences()
+		    .add(JQLayoutReferencePool.JQueryLayout.getCssReference());
 		return page;
 	}
 }
