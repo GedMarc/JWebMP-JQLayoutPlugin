@@ -18,6 +18,7 @@ package com.jwebmp.plugins.jqlayout.events;
 
 import com.jwebmp.core.Component;
 import com.jwebmp.core.Feature;
+import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 
@@ -30,7 +31,7 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  */
 @SuppressWarnings("unused")
 public class JQLayoutEnableSlidableFeature
-		extends Feature<JavaScriptPart, JQLayoutEnableSlidableFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutEnableSlidableFeature>
 {
 
 	private static final long serialVersionUID = 1L;

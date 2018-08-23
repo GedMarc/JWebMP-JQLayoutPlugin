@@ -17,6 +17,7 @@
 package com.jwebmp.plugins.jqlayout.events;
 
 import com.jwebmp.core.Feature;
+import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 
@@ -28,7 +29,7 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  * @since 23 Sep 2013
  */
 public class JQLayoutSlideCloseLayoutDivFeature
-		extends Feature<JavaScriptPart, JQLayoutSlideCloseLayoutDivFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutSlideCloseLayoutDivFeature>
 {
 
 	private static final long serialVersionUID = 1L;

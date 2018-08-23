@@ -1,14 +1,11 @@
 package com.jwebmp.plugins.jqlayout.interfaces;
 
 import com.jwebmp.core.Component;
-import com.jwebmp.core.base.ComponentHierarchyBase;
-import com.jwebmp.core.base.html.Div;
 import com.jwebmp.core.base.html.HeaderText;
-import com.jwebmp.core.base.html.interfaces.AttributeDefinitions;
-import com.jwebmp.core.base.html.interfaces.GlobalChildren;
-import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
-import com.jwebmp.core.base.html.interfaces.events.GlobalEvents;
+import com.jwebmp.plugins.jqlayout.JQLayoutContentDiv;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
+import com.jwebmp.plugins.jqlayout.JQLayoutFooterDiv;
+import com.jwebmp.plugins.jqlayout.JQLayoutHeaderDiv;
 import com.jwebmp.plugins.jqlayout.components.BorderLayout;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jqlayout.options.JQLayoutDefaultOptions;
@@ -25,7 +22,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @return
 	 */
 	@NotNull
-	List<Div> getHeaders();
+	List<JQLayoutHeaderDiv<?>> getHeaders();
 
 	/**
 	 * Returns the footers listing
@@ -33,7 +30,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @return
 	 */
 	@NotNull
-	List<ComponentHierarchyBase> getFooters();
+	List<JQLayoutFooterDiv<?>> getFooters();
 
 	/**
 	 * Sets the footer collection
@@ -42,7 +39,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@NotNull
 	@SuppressWarnings("unchecked")
-	J setFooters(List<ComponentHierarchyBase> footers);
+	J setFooters(List<JQLayoutFooterDiv<?>> footers);
 
 	/**
 	 * Sets the headers
@@ -51,7 +48,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	J setHeaders(List<Div> headers);
+	J setHeaders(List<JQLayoutHeaderDiv<?>> headers);
 
 	/**
 	 * *
@@ -73,7 +70,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 
 	@SuppressWarnings("unchecked")
 	@NotNull
-	J addHeader(Div headerDiv);
+	J addHeader(JQLayoutHeaderDiv<?> headerDiv);
 
 	/**
 	 * Adds the footer header
@@ -128,7 +125,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	J addFooter(Component footerDiv);
+	J addFooter(JQLayoutFooterDiv<?> footerDiv);
 
 	/**
 	 * Adds the footer
@@ -171,7 +168,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 
 	@SuppressWarnings("unchecked")
 	@NotNull
-	J removeFooter(Div footerDiv);
+	J removeFooter(JQLayoutFooterDiv<?> footerDiv);
 
 	/**
 	 * Removes the header
@@ -181,7 +178,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	J removeHeader(Div headerDiv);
+	J removeHeader(JQLayoutHeaderDiv<?> headerDiv);
 
 	/**
 	 * Gets the current assigned area
@@ -198,7 +195,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @return
 	 */
-	@NotNull <C extends GlobalChildren, A extends Enum & AttributeDefinitions, F extends GlobalFeatures, E extends GlobalEvents> Div<C, A, F, E, ?> getContentDiv();
+	@NotNull JQLayoutContentDiv<?> getContentDiv();
 
 	/**
 	 * Returns the layout attached to this layout div
@@ -226,7 +223,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@SuppressWarnings("unchecked")
 	@NotNull
-	J setContentDiv(Div contentDiv);
+	J setContentDiv(JQLayoutContentDiv<?> contentDiv);
 
 	/**
 	 * Sets the current assigned area

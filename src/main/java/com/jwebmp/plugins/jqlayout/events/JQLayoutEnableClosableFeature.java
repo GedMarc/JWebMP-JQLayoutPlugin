@@ -17,6 +17,7 @@
 package com.jwebmp.plugins.jqlayout.events;
 
 import com.jwebmp.core.Feature;
+import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 
@@ -29,7 +30,7 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  */
 @SuppressWarnings("unused")
 public class JQLayoutEnableClosableFeature
-		extends Feature<JavaScriptPart, JQLayoutEnableClosableFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutEnableClosableFeature>
 {
 
 	private static final long serialVersionUID = 1L;

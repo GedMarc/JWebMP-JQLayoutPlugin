@@ -19,11 +19,8 @@ package com.jwebmp.plugins.jqlayout;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.jwebmp.core.Component;
-import com.jwebmp.core.base.ComponentHierarchyBase;
 import com.jwebmp.core.base.html.Div;
 import com.jwebmp.core.base.html.HeaderText;
-import com.jwebmp.core.base.html.attributes.NoAttributes;
-import com.jwebmp.core.base.html.interfaces.GlobalChildren;
 import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.core.base.html.interfaces.children.BodyChildren;
 import com.jwebmp.core.base.html.interfaces.events.GlobalEvents;
@@ -53,7 +50,7 @@ import java.util.List;
  */
 public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		extends Div<JQLayoutDivChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J>
-		implements BodyChildren, GlobalChildren, IJQLayoutDiv<J>
+		implements BodyChildren<JQLayoutDivChildren, J>, IJQLayoutDiv<J>
 {
 
 	/**
@@ -68,16 +65,16 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * All the header containers
 	 */
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
-	private List<Div> headers;
+	private List<JQLayoutHeaderDiv<?>> headers;
 	/**
 	 * All the footer containers
 	 */
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
-	private List<ComponentHierarchyBase> footers;
+	private List<JQLayoutFooterDiv<?>> footers;
 	/**
 	 * The main center div
 	 */
-	private Div<GlobalChildren, NoAttributes, GlobalFeatures, GlobalEvents, ?> contentDiv;
+	private JQLayoutContentDiv<?> contentDiv;
 	/**
 	 * The layout div
 	 */
@@ -95,7 +92,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param contentDiv
 	 * 		The content div. Never null please
 	 */
-	public JQLayoutDiv(BorderLayout<?> layout, JQLayoutArea area, Div<GlobalChildren, NoAttributes, GlobalFeatures, GlobalEvents, ?> contentDiv)
+	public JQLayoutDiv(BorderLayout<?> layout, JQLayoutArea area, JQLayoutContentDiv<?> contentDiv)
 	{
 		setLayout(layout);
 		setContentDiv(contentDiv);
@@ -110,21 +107,19 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		{
 			for (int i = 0, j = 0; i < getHeaders().size(); i++, j++)
 			{
-				Div get = getHeaders().get(i);
-				get.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Header);
+				JQLayoutHeaderDiv<?> get = getHeaders().get(i);
 				List list = new ArrayList(getChildren());
 				list.add(j, get);
 				setChildren(new LinkedHashSet<>(list));
+				get.init();
 				get.preConfigure();
 			}
 		}
 		if (!isInitialized() && !getFooters().isEmpty())
 		{
-			for (ComponentHierarchyBase footer : getFooters())
+			for (JQLayoutFooterDiv<?> footer : getFooters())
 			{
-				getChildren().add(footer);
-				footer.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Footer);
-				footer.preConfigure();
+				add(footer);
 			}
 		}
 		super.init();
@@ -137,7 +132,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@Override
 	@NotNull
-	public List<Div> getHeaders()
+	public List<JQLayoutHeaderDiv<?>> getHeaders()
 	{
 		if (headers == null)
 		{
@@ -153,7 +148,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@Override
 	@NotNull
-	public List<ComponentHierarchyBase> getFooters()
+	public List<JQLayoutFooterDiv<?>> getFooters()
 	{
 		if (footers == null)
 		{
@@ -170,7 +165,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@NotNull
 	@SuppressWarnings("unchecked")
-	public J setFooters(List<ComponentHierarchyBase> footers)
+	public J setFooters(List<JQLayoutFooterDiv<?>> footers)
 	{
 		this.footers = footers;
 		if (footers != null)
@@ -188,7 +183,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setHeaders(List<Div> headers)
+	public J setHeaders(List<JQLayoutHeaderDiv<?>> headers)
 	{
 		this.headers = headers;
 		headers.forEach(this::addHeader);
@@ -207,7 +202,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@NotNull
 	public J addHeader(String headerDivString)
 	{
-		Div headerDiv = new Div();
+		JQLayoutHeaderDiv<?> headerDiv = new JQLayoutHeaderDiv<>();
 		headerDiv.add(headerDivString);
 		addHeader(headerDiv);
 		return (J) this;
@@ -223,7 +218,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J addHeader(Div headerDiv)
+	public J addHeader(JQLayoutHeaderDiv<?> headerDiv)
 	{
 		getHeaders().add(headerDiv);
 		headerDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Header.toString());
@@ -242,9 +237,8 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@NotNull
 	public J addFooter(HeaderText footerHeaderText)
 	{
-		Div headerDiv = new Div();
+		JQLayoutFooterDiv<?> headerDiv = new JQLayoutFooterDiv<>();
 		headerDiv.add(footerHeaderText);
-		headerDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Footer);
 		getFooters().add(headerDiv);
 		return (J) this;
 	}
@@ -307,12 +301,11 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J addFooter(Component footerDiv)
+	public J addFooter(JQLayoutFooterDiv<?> footerDiv)
 	{
 		if (footerDiv != null)
 		{
 			getFooters().add(footerDiv);
-			footerDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Footer);
 		}
 		return (J) this;
 	}
@@ -328,9 +321,8 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@NotNull
 	public J addFooter(String footerDivString)
 	{
-		Div headerDiv = new Div();
+		JQLayoutFooterDiv<?> headerDiv = new JQLayoutFooterDiv<>();
 		headerDiv.add(footerDivString);
-		headerDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Footer);
 		getFooters().add(headerDiv);
 		return (J) this;
 	}
@@ -347,7 +339,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@NotNull
 	public J addHeader(HeaderText headerDivString)
 	{
-		Div headerDiv = new Div();
+		JQLayoutHeaderDiv<?> headerDiv = new JQLayoutHeaderDiv<>();
 		headerDiv.add(headerDivString);
 		addHeader(headerDiv);
 		return (J) this;
@@ -379,7 +371,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J removeFooter(Div footerDiv)
+	public J removeFooter(JQLayoutFooterDiv<?> footerDiv)
 	{
 		getFooters().remove(footerDiv);
 		getChildren().remove(footerDiv);
@@ -395,7 +387,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J removeHeader(Div headerDiv)
+	public J removeHeader(JQLayoutHeaderDiv<?> headerDiv)
 	{
 		getHeaders().remove(headerDiv);
 		getChildren().remove(headerDiv);
@@ -423,11 +415,11 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@Override
 	@NotNull
-	public Div<GlobalChildren, NoAttributes, GlobalFeatures, GlobalEvents, ?> getContentDiv()
+	public JQLayoutContentDiv<?> getContentDiv()
 	{
 		if (contentDiv == null)
 		{
-			setContentDiv(new Div());
+			setContentDiv(new JQLayoutContentDiv<>());
 		}
 		return contentDiv;
 	}
@@ -468,14 +460,17 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public final J setContentDiv(Div contentDiv)
+	public final J setContentDiv(JQLayoutContentDiv<?> contentDiv)
 	{
-		getChildren().remove(this.contentDiv);
+		if (this.contentDiv != null)
+		{
+			getChildren().remove(this.contentDiv);
+		}
 		this.contentDiv = contentDiv;
 		if (this.contentDiv != null)
 		{
 			this.contentDiv.addClass(JQLayoutCSSThemeBlockNames.UI_Layout_Content.toString());
-			getChildren().add(this.contentDiv);
+			add(this.contentDiv);
 		}
 		return (J) this;
 	}
@@ -516,15 +511,15 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	}
 
 	@Override
-	public boolean equals(Object o)
-	{
-		return super.equals(o);
-	}
-
-	@Override
 	public int hashCode()
 	{
 		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		return super.equals(o);
 	}
 
 	@Override

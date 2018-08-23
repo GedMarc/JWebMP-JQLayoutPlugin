@@ -18,16 +18,15 @@ package com.jwebmp.plugins.jqlayout.components;
 
 import com.jwebmp.core.Component;
 import com.jwebmp.core.base.html.Body;
-import com.jwebmp.core.base.html.Div;
-import com.jwebmp.core.base.html.interfaces.GlobalChildren;
-import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
-import com.jwebmp.core.base.html.interfaces.events.GlobalEvents;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.exceptions.NullComponentException;
 import com.jwebmp.plugins.jqlayout.JQLayout;
+import com.jwebmp.plugins.jqlayout.JQLayoutContentDiv;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 import com.jwebmp.plugins.jqlayout.JQLayoutOptions;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutAttributes;
+import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutCSSThemeBlockNames;
 import com.jwebmp.plugins.jqlayout.events.*;
 import com.jwebmp.plugins.jqlayout.interfaces.IJQLayout;
 
@@ -43,7 +42,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
  * @since 22 Dec 2016
  */
 public class BorderLayout<J extends BorderLayout<J>>
-		extends Div<GlobalChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J>
+		extends JQLayoutContentDiv<J>
 		implements IJQLayout<J>
 {
 
@@ -86,9 +85,11 @@ public class BorderLayout<J extends BorderLayout<J>>
 	{
 		super();
 		addFeature(feature = new JQLayout(this));
-		addAttribute(JQLayoutAttributes.JWType, "layout");
+		addAttribute(JQLayoutAttributes.JWType.toString(), "layout");
+		removeClass(JQLayoutCSSThemeBlockNames.UI_Layout_Content);
 	}
 
+	@NotNull
 	@Override
 	public J setID(String id)
 	{
@@ -118,10 +119,22 @@ public class BorderLayout<J extends BorderLayout<J>>
 		if (!isConfigured())
 		{
 			add(getCenter());
-			add(west);
-			add(east);
-			add(south);
-			add(north);
+			if (west != null)
+			{
+				add(west);
+			}
+			if (east != null)
+			{
+				add(east);
+			}
+			if (south != null)
+			{
+				add(south);
+			}
+			if (north != null)
+			{
+				add(north);
+			}
 			if (isFullScreen())
 			{
 				addStyle("width:100%;height:100%;");
@@ -143,11 +156,11 @@ public class BorderLayout<J extends BorderLayout<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public final JQLayoutDiv<? extends GlobalChildren> getCenter()
+	public final JQLayoutDiv<? extends IComponentHierarchyBase> getCenter()
 	{
 		if (center == null)
 		{
-			setCenter(new JQLayoutDiv(this, JQLayoutArea.Center, new Div()));
+			setCenter(new JQLayoutDiv(this, JQLayoutArea.Center, new JQLayoutContentDiv<>()));
 		}
 		return center;
 	}
@@ -226,7 +239,7 @@ public class BorderLayout<J extends BorderLayout<J>>
 	{
 		if (north == null)
 		{
-			setNorth(new JQLayoutDiv<>(this, JQLayoutArea.North, new Div<>()));
+			setNorth(new JQLayoutDiv<>(this, JQLayoutArea.North, new JQLayoutContentDiv<>()));
 		}
 		return north;
 	}
@@ -258,7 +271,7 @@ public class BorderLayout<J extends BorderLayout<J>>
 	{
 		if (west == null)
 		{
-			setWest(new JQLayoutDiv<>(this, JQLayoutArea.West, new Div<>()));
+			setWest(new JQLayoutDiv<>(this, JQLayoutArea.West, new JQLayoutContentDiv<>()));
 		}
 		return west;
 	}
@@ -294,7 +307,7 @@ public class BorderLayout<J extends BorderLayout<J>>
 	{
 		if (south == null)
 		{
-			setSouth(new JQLayoutDiv<>(this, JQLayoutArea.South, new Div<>()));
+			setSouth(new JQLayoutDiv<>(this, JQLayoutArea.South, new JQLayoutContentDiv<>()));
 		}
 		return south;
 	}
@@ -331,7 +344,7 @@ public class BorderLayout<J extends BorderLayout<J>>
 	{
 		if (east == null)
 		{
-			setEast(new JQLayoutDiv<>(this, JQLayoutArea.East, new Div<>()));
+			setEast(new JQLayoutDiv<>(this, JQLayoutArea.East, new JQLayoutContentDiv<>()));
 		}
 		return east;
 	}

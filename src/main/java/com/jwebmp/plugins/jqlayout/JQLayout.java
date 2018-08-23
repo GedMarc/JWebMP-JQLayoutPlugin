@@ -17,6 +17,7 @@
 package com.jwebmp.plugins.jqlayout;
 
 import com.jwebmp.core.Feature;
+import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.plugins.jqlayout.components.BorderLayout;
 
@@ -35,7 +36,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
 		description = "?The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.",
 		url = "http://layout.jquery-dev.com/")
 public class JQLayout<J extends JQLayout<J>>
-		extends Feature<JQLayoutOptions, J>
+		extends Feature<GlobalFeatures, JQLayoutOptions, J>
 
 {
 	private static final String NAME = "JQLayout";
@@ -60,7 +61,7 @@ public class JQLayout<J extends JQLayout<J>>
 	 */
 	public JQLayout(BorderLayout component)
 	{
-		super(NAME, component);
+		super(JQLayout.NAME, component);
 	}
 
 	@Override
