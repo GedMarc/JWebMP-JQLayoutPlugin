@@ -49,11 +49,41 @@ public class JQLayoutPageConfigurator
 		implements IPageConfigurator
 {
 	/**
+	 * If this configurator is enabled
+	 */
+	private static boolean enabled = true;
+
+	/**
 	 * Configures the page
 	 */
 	public JQLayoutPageConfigurator()
 	{
 		//Nothing Needed
+	}
+
+	/**
+	 * Method isEnabled returns the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @return the enabled (type boolean) of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static boolean isEnabled()
+	{
+		return JQLayoutPageConfigurator.enabled;
+	}
+
+	/**
+	 * Method setEnabled sets the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @param mustEnable
+	 * 		the enabled of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static void setEnabled(boolean mustEnable)
+	{
+		JQLayoutPageConfigurator.enabled = mustEnable;
 	}
 
 	@NotNull
@@ -70,5 +100,11 @@ public class JQLayoutPageConfigurator
 		    .getCssReferences()
 		    .add(JQLayoutReferencePool.JQueryLayout.getCssReference());
 		return page;
+	}
+
+	@Override
+	public boolean enabled()
+	{
+		return JQLayoutPageConfigurator.enabled;
 	}
 }
