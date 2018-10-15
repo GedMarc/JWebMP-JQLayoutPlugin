@@ -37,16 +37,16 @@ import javax.validation.constraints.NotNull;
 		pluginDependancyUniqueIDs = "jquery,jquery-easing",
 		pluginCategories = "jquery, layouts,border layout, jwebswing",
 		pluginSubtitle = "The Ultimate Page Layout Manager",
-		pluginGitUrl = "https://github.com/GedMarc/JWebSwing-JQLayoutPlugin",
+		pluginGitUrl = "https://github.com/GedMarc/JWebMP-JQLayoutPlugin",
 		pluginSourceUrl = "https://github.com/GedMarc/layout",
-		pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-JQLayoutPlugin/wiki",
+		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-JQLayoutPlugin/wiki",
 		pluginOriginalHomepage = "http://layout.jquery-dev.com/",
 		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/JQLayoutPlugin.jar/download",
 		pluginIconUrl = "bower_components/jquery-layout-latest-1-5/borderlayout.gif",
 		pluginIconImageUrl = "bower_components/jquery-layout-latest-1-5/borderlayout.gif",
 		pluginLastUpdatedDate = "2017/03/04")
 public class JQLayoutPageConfigurator
-		implements IPageConfigurator
+		implements IPageConfigurator<JQLayoutPageConfigurator>
 {
 	/**
 	 * If this configurator is enabled
