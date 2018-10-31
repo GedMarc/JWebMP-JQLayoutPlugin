@@ -42,7 +42,6 @@ public class JQLayoutDefaultOptions<J extends JQLayoutDefaultOptions<J>>
 		extends JavaScriptPart<J>
 {
 
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * If the layout is responsive or not

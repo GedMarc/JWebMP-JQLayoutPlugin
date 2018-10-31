@@ -46,7 +46,6 @@ public class BorderLayout<J extends BorderLayout<J>>
 		implements IJQLayout<J>
 {
 
-	private static final long serialVersionUID = 1L;
 
 	private JQLayout feature;
 

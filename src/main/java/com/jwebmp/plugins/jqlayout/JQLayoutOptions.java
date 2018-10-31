@@ -30,7 +30,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 		extends JavaScriptPart<J>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The name of the layout
 	 */

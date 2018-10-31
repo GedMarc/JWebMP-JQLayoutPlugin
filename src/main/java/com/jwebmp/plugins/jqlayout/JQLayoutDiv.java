@@ -56,7 +56,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	/**
 	 * Version 1
 	 */
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The layout area of this particular Layout Div
 	 */

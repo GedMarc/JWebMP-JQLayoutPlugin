@@ -34,7 +34,7 @@ public class JQLayoutDisableSlidableFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutDisableSlidableFeature>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The layout div to open
 	 */

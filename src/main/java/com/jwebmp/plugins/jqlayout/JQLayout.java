@@ -40,7 +40,7 @@ public class JQLayout<J extends JQLayout<J>>
 
 {
 	private static final String NAME = "JQLayout";
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * The set of options

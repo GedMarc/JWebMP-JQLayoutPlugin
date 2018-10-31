@@ -33,7 +33,7 @@ public class JQLayoutAddPinButtonFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutAddPinButtonFeature>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The layout div to open
 	 */

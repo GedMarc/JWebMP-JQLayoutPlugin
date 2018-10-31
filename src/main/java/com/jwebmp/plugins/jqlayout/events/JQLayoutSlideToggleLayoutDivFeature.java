@@ -32,7 +32,6 @@ public class JQLayoutSlideToggleLayoutDivFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutSlideToggleLayoutDivFeature>
 {
 
-	private static final long serialVersionUID = 1L;
 
 	private final JQLayoutDiv divToClose;
 

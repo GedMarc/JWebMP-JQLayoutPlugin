@@ -32,7 +32,6 @@ public class JQLayoutSlideOpenLayoutDivFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutSlideOpenLayoutDivFeature>
 {
 
-	private static final long serialVersionUID = 1L;
 
 	private final JQLayoutDiv divToClose;
 

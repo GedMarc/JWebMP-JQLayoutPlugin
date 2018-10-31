@@ -33,7 +33,7 @@ public class JQLayoutEnableResizableFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutEnableResizableFeature>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The layout div to open
 	 */

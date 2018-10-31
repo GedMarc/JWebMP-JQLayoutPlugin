@@ -33,7 +33,7 @@ public class JQLayoutEnableClosableFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutEnableClosableFeature>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The layout div to open
 	 */

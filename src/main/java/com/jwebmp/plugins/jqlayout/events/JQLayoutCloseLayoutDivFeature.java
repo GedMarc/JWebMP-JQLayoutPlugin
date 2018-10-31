@@ -32,7 +32,6 @@ public class JQLayoutCloseLayoutDivFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutCloseLayoutDivFeature>
 {
 
-	private static final long serialVersionUID = 1L;
 
 	private final JQLayoutDiv divToClose;
 

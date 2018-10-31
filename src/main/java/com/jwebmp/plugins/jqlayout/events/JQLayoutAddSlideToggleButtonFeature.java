@@ -33,7 +33,6 @@ public class JQLayoutAddSlideToggleButtonFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutAddSlideToggleButtonFeature>
 {
 
-	private static final long serialVersionUID = 1L;
 
 	private final JQLayoutDiv divToOpen;
 
