@@ -1,4 +1,6 @@
 import com.jwebmp.core.services.IPageConfigurator;
+import com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions;
+import com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions;
 import com.jwebmp.plugins.jqlayout.JQLayoutPageConfigurator;
 
 module com.jwebmp.plugins.jqlayout {
@@ -16,8 +18,12 @@ module com.jwebmp.plugins.jqlayout {
 	requires java.validation;
 	requires java.logging;
 	requires com.jwebmp.plugins.easingeffects;
+	requires com.jwebmp.guicedinjection;
 
 	provides IPageConfigurator with JQLayoutPageConfigurator;
+
+	provides IGuiceScanModuleExclusions with com.jwebmp.plugins.jqlayout.implementations.JQLayoutExclusionsModule;
+	provides IGuiceScanJarExclusions with com.jwebmp.plugins.jqlayout.implementations.JQLayoutExclusionsModule;
 
 	opens com.jwebmp.plugins.jqlayout to com.fasterxml.jackson.databind, com.jwebmp.core;
 	opens com.jwebmp.plugins.jqlayout.interfaces to com.fasterxml.jackson.databind, com.jwebmp.core;
