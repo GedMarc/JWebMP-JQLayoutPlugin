@@ -18,12 +18,10 @@ package com.jwebmp.components.jqueryLayout.layout;
 
 import com.jwebmp.core.Page;
 import com.jwebmp.core.base.ajax.AjaxResponse;
-import com.jwebmp.core.base.angular.AngularPageConfigurator;
 import com.jwebmp.core.base.html.Button;
 import com.jwebmp.core.base.html.Div;
 import com.jwebmp.core.generics.Direction;
 import com.jwebmp.core.htmlbuilder.css.displays.Cursors;
-import com.jwebmp.core.plugins.jquery.JQueryPageConfigurator;
 import com.jwebmp.plugins.easingeffects.JQEasingAnimationEffectsPart;
 import com.jwebmp.plugins.easingeffects.JQEasingEffects;
 import com.jwebmp.plugins.jqlayout.components.BorderLayout;
@@ -31,6 +29,7 @@ import com.jwebmp.plugins.jqlayout.enumerations.CustomHotkeyModifier;
 import com.jwebmp.plugins.jqlayout.enumerations.LayoutResponsiveSize;
 import com.jwebmp.plugins.jqlayout.events.*;
 import com.jwebmp.plugins.jqlayout.options.JQLayoutResponsiveOptions;
+import com.jwebmp.testing.BaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +39,7 @@ import static com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea.*;
  * @author ged_m
  */
 public class JQLayoutTest
-
+		extends BaseTest
 {
 
 	public JQLayoutTest()
@@ -50,8 +49,6 @@ public class JQLayoutTest
 	@Test
 	public void testJQLayout()
 	{
-		JQueryPageConfigurator.setRequired(false);
-		AngularPageConfigurator.setRequired(false);
 		Page p = new Page();
 		BorderLayout layout = new BorderLayout();
 		p.getOptions()
@@ -68,8 +65,6 @@ public class JQLayoutTest
 	@Test
 	public void testResponsive()
 	{
-		JQueryPageConfigurator.setRequired(false);
-		AngularPageConfigurator.setRequired(false);
 		Page p = new Page();
 		BorderLayout<?> layout = new BorderLayout<>();
 
@@ -83,8 +78,6 @@ public class JQLayoutTest
 	@Test
 	public void testResponsiveSizes()
 	{
-		JQueryPageConfigurator.setRequired(false);
-		AngularPageConfigurator.setRequired(false);
 		Page p = new Page();
 		BorderLayout<?> layout = new BorderLayout<>();
 		layout.getOptions()
@@ -99,9 +92,6 @@ public class JQLayoutTest
 	@Test
 	public void testAjaxResponseAdditions()
 	{
-
-		JQueryPageConfigurator.setRequired(false);
-		AngularPageConfigurator.setRequired(false);
 		Page p = new Page();
 		BorderLayout<?> layout = new BorderLayout<>();
 

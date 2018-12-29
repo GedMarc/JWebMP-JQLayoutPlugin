@@ -43,6 +43,14 @@
             <classifier>${jwebmp.runtime.classifier}</classifier>
             <!--<optional>true</optional>-->
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jwebmp-testlib</artifactId>
+            <version>${project.version}</version>
+            <classifier>${jwebmp.runtime.classifier}</classifier>
+            <!--<optional>true</optional>-->
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <scm>
