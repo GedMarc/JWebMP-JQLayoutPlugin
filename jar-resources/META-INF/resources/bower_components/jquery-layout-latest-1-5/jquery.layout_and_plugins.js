@@ -19,7 +19,7 @@
  * Help: http://groups.google.com/group/jquery-ui-layout
  *
  * History
- * 2016/28/10 - Added responsiveness - marc magon
+ * 2016/28/10 - Added responsiveness - GedMarc
  * 2018/01/27 - Updated the toggler class and responsive properties
  * 2018/04/02 - Switch unbinds to .off() as recommended
  */
