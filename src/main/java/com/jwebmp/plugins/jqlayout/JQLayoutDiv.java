@@ -41,6 +41,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import static com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea.*;
+
 /**
  * This class makes sure only layout DIV's gets added to Layout's Also adds capability of headers and footers
  *
@@ -52,11 +54,6 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		extends Div<JQLayoutDivChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J>
 		implements BodyChildren<JQLayoutDivChildren, J>, IJQLayoutDiv<J>
 {
-
-	/**
-	 * Version 1
-	 */
-
 	/**
 	 * The layout area of this particular Layout Div
 	 */
@@ -80,6 +77,14 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	 */
 	@JsonIgnore
 	private BorderLayout<?> layout;
+
+	/**
+	 * An empty an unconfigured layout div
+	 */
+	public JQLayoutDiv()
+	{
+		//No config required
+	}
 
 	/**
 	 * Constructs a new Border Layout Div
@@ -404,6 +409,10 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@NotNull
 	public JQLayoutArea getArea()
 	{
+		if (area == null)
+		{
+			area = Center;
+		}
 		return area;
 	}
 
@@ -434,6 +443,10 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@NotNull
 	public BorderLayout<?> getLayout()
 	{
+		if (layout == null)
+		{
+			layout = new BorderLayout<>();
+		}
 		return layout;
 	}
 

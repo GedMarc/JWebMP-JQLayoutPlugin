@@ -90,13 +90,16 @@ public class JQLayoutPageConfigurator
 	@SuppressWarnings("unchecked")
 	public Page configure(Page page)
 	{
-		JQueryPageConfigurator.setRequired(true);
-		page.getBody()
-		    .getJavascriptReferences()
-		    .add(JQLayoutReferencePool.JQueryLayout.getJavaScriptReference());
-		page.getBody()
-		    .getCssReferences()
-		    .add(JQLayoutReferencePool.JQueryLayout.getCssReference());
+		if (enabled())
+		{
+			JQueryPageConfigurator.setRequired(true);
+			page.getBody()
+			    .getJavascriptReferences()
+			    .add(JQLayoutReferencePool.JQueryLayout.getJavaScriptReference());
+			page.getBody()
+			    .getCssReferences()
+			    .add(JQLayoutReferencePool.JQueryLayout.getCssReference());
+		}
 		return page;
 	}
 

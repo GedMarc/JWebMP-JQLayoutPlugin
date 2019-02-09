@@ -32,9 +32,15 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 public class JQLayoutAddSlideToggleButtonFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutAddSlideToggleButtonFeature>
 {
-
-
 	private final JQLayoutDiv divToOpen;
+
+	/**
+	 * Default constructors no config
+	 */
+	public JQLayoutAddSlideToggleButtonFeature()
+	{
+		divToOpen = new JQLayoutDiv();
+	}
 
 	public JQLayoutAddSlideToggleButtonFeature(JQLayoutDiv layoutDiv, Component pinButton)
 	{
