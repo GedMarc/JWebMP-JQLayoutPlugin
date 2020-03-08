@@ -22,7 +22,6 @@ module com.jwebmp.plugins.jqlayout {
 	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.jqlayout.JQLayoutPageConfigurator;
 
 	provides com.guicedee.guicedinjection.interfaces.IGuiceScanModuleExclusions with com.jwebmp.plugins.jqlayout.implementations.JQLayoutExclusionsModule;
-	provides com.guicedee.guicedinjection.interfaces.IGuiceScanJarExclusions with com.jwebmp.plugins.jqlayout.implementations.JQLayoutExclusionsModule;
 
 	opens com.jwebmp.plugins.jqlayout to com.fasterxml.jackson.databind, com.jwebmp.core;
 	opens com.jwebmp.plugins.jqlayout.interfaces to com.fasterxml.jackson.databind, com.jwebmp.core;
