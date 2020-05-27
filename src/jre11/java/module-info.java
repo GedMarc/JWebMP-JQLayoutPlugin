@@ -11,8 +11,6 @@ module com.jwebmp.plugins.jqlayout {
 	requires transitive com.guicedee.logmaster;
 	requires transitive com.jwebmp.plugins.jqueryui;
 
-	requires com.fasterxml.jackson.annotation;
-
 	requires java.validation;
 	requires java.logging;
 
