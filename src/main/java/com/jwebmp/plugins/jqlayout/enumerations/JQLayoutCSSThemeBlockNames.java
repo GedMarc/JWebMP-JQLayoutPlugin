@@ -19,6 +19,8 @@ package com.jwebmp.plugins.jqlayout.enumerations;
 import com.jwebmp.core.base.interfaces.ICssClassName;
 import com.jwebmp.core.utilities.StaticStrings;
 
+import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_DASH;
+import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_UNDERSCORE;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
@@ -66,7 +68,7 @@ public enum JQLayoutCSSThemeBlockNames
 	public String toString()
 	{
 		return name().toLowerCase()
-		             .replace(StaticStrings.CHAR_UNDERSCORE, CHAR_DASH);
+		             .replace(CHAR_UNDERSCORE, CHAR_DASH);
 	}
 
 }
