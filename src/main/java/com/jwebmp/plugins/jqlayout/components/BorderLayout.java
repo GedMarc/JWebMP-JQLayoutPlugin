@@ -30,7 +30,7 @@ import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutCSSThemeBlockNames;
 import com.jwebmp.plugins.jqlayout.events.*;
 import com.jwebmp.plugins.jqlayout.interfaces.IJQLayout;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_DASH;
 import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_UNDERSCORE;

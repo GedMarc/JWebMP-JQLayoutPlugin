@@ -36,7 +36,7 @@ import com.jwebmp.plugins.jqlayout.interfaces.IJQLayoutDiv;
 import com.jwebmp.plugins.jqlayout.interfaces.JQLayoutDivChildren;
 import com.jwebmp.plugins.jqlayout.options.JQLayoutDefaultOptions;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;

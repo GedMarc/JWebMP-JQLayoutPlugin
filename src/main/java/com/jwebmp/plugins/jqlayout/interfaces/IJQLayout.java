@@ -23,7 +23,7 @@ import com.jwebmp.plugins.jqlayout.JQLayoutOptions;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jqlayout.events.*;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public interface IJQLayout<J extends IJQLayout<J>>
 {

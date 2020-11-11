@@ -19,7 +19,7 @@ package com.jwebmp.plugins.jqlayout;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.options.JQLayoutDefaultOptions;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author GedMarc

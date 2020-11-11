@@ -25,7 +25,7 @@ import com.jwebmp.plugins.easingeffects.JQEasingEffects;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 import com.jwebmp.plugins.jqlayout.enumerations.CustomHotkeyModifier;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Users the JavaScript part rather

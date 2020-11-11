@@ -10,7 +10,7 @@ import com.jwebmp.plugins.jqlayout.components.BorderLayout;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jqlayout.options.JQLayoutDefaultOptions;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
