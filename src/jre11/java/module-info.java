@@ -1,3 +1,5 @@
+import com.jwebmp.plugins.jqlayout.implementations.JQLayoutInclusionModule;
+
 module com.jwebmp.plugins.jqlayout {
 
 	exports com.jwebmp.plugins.jqlayout;
@@ -20,7 +22,8 @@ module com.jwebmp.plugins.jqlayout {
 	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.jqlayout.JQLayoutPageConfigurator;
 
 	provides com.guicedee.guicedinjection.interfaces.IGuiceScanModuleExclusions with com.jwebmp.plugins.jqlayout.implementations.JQLayoutExclusionsModule;
-
+	provides com.guicedee.guicedinjection.interfaces.IGuiceScanModuleInclusions with JQLayoutInclusionModule;
+	
 	opens com.jwebmp.plugins.jqlayout to com.fasterxml.jackson.databind, com.jwebmp.core;
 	opens com.jwebmp.plugins.jqlayout.interfaces to com.fasterxml.jackson.databind, com.jwebmp.core;
 	opens com.jwebmp.plugins.jqlayout.components to com.fasterxml.jackson.databind, com.jwebmp.core;

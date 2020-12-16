@@ -30,12 +30,12 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  */
 @SuppressWarnings("unused")
 public class JQLayoutOpenLayoutDivFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutOpenLayoutDivFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, JQLayoutOpenLayoutDivFeature>
 {
 
-	private JQLayoutDiv divToOpen;
+	private JQLayoutDiv<?> divToOpen;
 
-	public JQLayoutOpenLayoutDivFeature(JQLayoutDiv layoutDiv)
+	public JQLayoutOpenLayoutDivFeature(JQLayoutDiv<?> layoutDiv)
 	{
 		super("JWLayoutOpenDiv");
 		divToOpen = layoutDiv;

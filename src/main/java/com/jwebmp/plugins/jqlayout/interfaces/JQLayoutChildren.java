@@ -16,6 +16,8 @@
  */
 package com.jwebmp.plugins.jqlayout.interfaces;
 
+import com.jwebmp.core.base.html.interfaces.GlobalChildren;
+
 /**
  * Any class that has this interface can be added as a child to a layout page.
  *
@@ -23,4 +25,5 @@ package com.jwebmp.plugins.jqlayout.interfaces;
  * @since 2013/07/17
  */
 public interface JQLayoutChildren
+		extends GlobalChildren
 {}

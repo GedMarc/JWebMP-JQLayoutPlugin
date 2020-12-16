@@ -24,6 +24,7 @@ import com.jwebmp.core.base.html.HeaderText;
 import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.core.base.html.interfaces.children.BodyChildren;
 import com.jwebmp.core.base.html.interfaces.events.GlobalEvents;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.plugins.jqlayout.components.BorderLayout;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutAttributes;
@@ -33,6 +34,7 @@ import com.jwebmp.plugins.jqlayout.events.JQLayoutAddToggleButtonFeature;
 import com.jwebmp.plugins.jqlayout.events.JQLayoutCloseLayoutDivFeature;
 import com.jwebmp.plugins.jqlayout.events.JQLayoutOpenLayoutDivFeature;
 import com.jwebmp.plugins.jqlayout.interfaces.IJQLayoutDiv;
+import com.jwebmp.plugins.jqlayout.interfaces.JQLayoutChildren;
 import com.jwebmp.plugins.jqlayout.interfaces.JQLayoutDivChildren;
 import com.jwebmp.plugins.jqlayout.options.JQLayoutDefaultOptions;
 
@@ -52,7 +54,7 @@ import static com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea.*;
  */
 public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 		extends Div<JQLayoutDivChildren, JQLayoutAttributes, GlobalFeatures, GlobalEvents, J>
-		implements BodyChildren<JQLayoutDivChildren, J>, IJQLayoutDiv<J>
+		implements BodyChildren, IJQLayoutDiv<J>, JQLayoutChildren
 {
 	/**
 	 * The layout area of this particular Layout Div
@@ -240,7 +242,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J addFooter(HeaderText footerHeaderText)
+	public J addFooter(HeaderText<?> footerHeaderText)
 	{
 		JQLayoutFooterDiv<?> headerDiv = new JQLayoutFooterDiv<>();
 		headerDiv.add(footerHeaderText);
@@ -259,9 +261,9 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J addPin(Component component)
+	public J addPin(IComponentHierarchyBase<?,?> component)
 	{
-		component.addFeature(new JQLayoutAddPinButtonFeature(this, component));
+		component.asFeatureBase().addFeature(new JQLayoutAddPinButtonFeature(this, component));
 		return (J) this;
 	}
 
@@ -275,9 +277,9 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J addToggleButton(Component button)
+	public J addToggleButton(IComponentHierarchyBase<?,?> button)
 	{
-		button.addFeature(new JQLayoutAddToggleButtonFeature(this, button));
+		button.asFeatureBase().addFeature(new JQLayoutAddToggleButtonFeature(this, button));
 		return (J) this;
 	}
 
@@ -291,9 +293,9 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J addCloseButton(Component button)
+	public J addCloseButton(IComponentHierarchyBase<?,?> button)
 	{
-		button.addFeature(new JQLayoutCloseLayoutDivFeature(this));
+		button.asFeatureBase().addFeature(new JQLayoutCloseLayoutDivFeature(this));
 		return (J) this;
 	}
 
@@ -342,7 +344,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J addHeader(HeaderText headerDivString)
+	public J addHeader(HeaderText<?> headerDivString)
 	{
 		JQLayoutHeaderDiv<?> headerDiv = new JQLayoutHeaderDiv<>();
 		headerDiv.add(headerDivString);
@@ -360,9 +362,9 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J addOpenButton(Component button)
+	public J addOpenButton(IComponentHierarchyBase<?,?> button)
 	{
-		button.addFeature(new JQLayoutOpenLayoutDivFeature(this));
+		button.asFeatureBase().addFeature(new JQLayoutOpenLayoutDivFeature(this));
 		return (J) this;
 	}
 
@@ -537,7 +539,7 @@ public class JQLayoutDiv<J extends JQLayoutDiv<J>>
 
 	@Override
 	@NotNull
-	public JQLayoutDefaultOptions getOptions()
+	public JQLayoutDefaultOptions<?> getOptions()
 	{
 		switch (getArea())
 		{

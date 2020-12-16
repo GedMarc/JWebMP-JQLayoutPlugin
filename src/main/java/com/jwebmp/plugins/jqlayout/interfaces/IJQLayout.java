@@ -17,12 +17,11 @@
 
 package com.jwebmp.plugins.jqlayout.interfaces;
 
-import com.jwebmp.core.Component;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 import com.jwebmp.plugins.jqlayout.JQLayoutOptions;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutArea;
 import com.jwebmp.plugins.jqlayout.events.*;
-
 import jakarta.validation.constraints.NotNull;
 
 public interface IJQLayout<J extends IJQLayout<J>>
@@ -32,10 +31,8 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 *
 	 * @return A Layout pane on the center div
 	 */
-
-	@SuppressWarnings("unchecked")
 	@NotNull
-	JQLayoutDiv getCenter();
+	JQLayoutDiv<?> getCenter();
 
 	/**
 	 * Sets the center pane
@@ -44,9 +41,9 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 * 		The new center panel
 	 */
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	J setCenter(JQLayoutDiv centerDiv);
+	J setCenter(JQLayoutDiv<?> centerDiv);
 
 	/**
 	 * Creates a toggle button for the given pane on the component.
@@ -58,9 +55,9 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 *
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	JQLayoutAddToggleButtonFeature createToggleButton(Component component, JQLayoutArea pane);
+	JQLayoutAddToggleButtonFeature createToggleButton(IComponentHierarchyBase<?,?> component, JQLayoutArea pane);
 
 	/**
 	 * Gets the layout div for a pane
@@ -69,7 +66,7 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 *
 	 * @return
 	 */
-	JQLayoutDiv getPane(JQLayoutArea area);
+	JQLayoutDiv<?> getPane(JQLayoutArea area);
 
 	/**
 	 * Returns the center pane
@@ -79,7 +76,7 @@ public interface IJQLayout<J extends IJQLayout<J>>
 
 	JQLayoutDiv<?> getNorth();
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J setNorth(JQLayoutDiv<?> centerDiv);
 
@@ -97,7 +94,7 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 * @param westDiv
 	 * 		The new center panel
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J setWest(JQLayoutDiv<?> westDiv);
 
@@ -116,7 +113,7 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 * 		The new center panel
 	 */
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J setSouth(JQLayoutDiv<?> southDiv);
 
@@ -136,16 +133,16 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 * 		The new center panel
 	 */
 
-	@SuppressWarnings("unchecked")
+	
 	J setEast(JQLayoutDiv<?> eastDiv);
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	JQLayoutSlideToggleLayoutDivFeature createSlideToggleButton(JQLayoutArea pane);
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	JQLayoutAddSlideToggleButtonFeature createAddSlideToggleButton(JQLayoutArea pane, Component pinButton);
+	JQLayoutAddSlideToggleButtonFeature createAddSlideToggleButton(JQLayoutArea pane, IComponentHierarchyBase<?,?> pinButton);
 
 	/**
 	 * Returns the layout options
@@ -155,7 +152,7 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 */
 
 	@NotNull
-	JQLayoutOptions getOptions();
+	JQLayoutOptions<?> getOptions();
 
 	/**
 	 * Creates a toggle button for the given pane on the component.
@@ -167,15 +164,15 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 *
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane);
+	JQLayoutAddPinButtonFeature createPinButton(IComponentHierarchyBase<?,?> component, JQLayoutArea pane);
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	JQLayoutSlideCloseLayoutDivFeature createSlideCloseFeature(JQLayoutArea pane);
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	JQLayoutSlideOpenLayoutDivFeature createSlideOpenFeature(JQLayoutArea pane);
 
@@ -189,9 +186,9 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 *
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane);
+	JQLayoutCloseLayoutDivFeature createCloseButton(IComponentHierarchyBase<?,?> component, JQLayoutArea pane);
 
 	/**
 	 * Creates a toggle button for the given pane on the component.
@@ -203,9 +200,9 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 *
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	JQLayoutOpenLayoutDivFeature createOpenButton(Component component, JQLayoutArea pane);
+	JQLayoutOpenLayoutDivFeature createOpenButton(IComponentHierarchyBase<?,?> component, JQLayoutArea pane);
 
 	/**
 	 * Returns the variable ID
@@ -220,10 +217,10 @@ public interface IJQLayout<J extends IJQLayout<J>>
 	 *
 	 * @param variableID
 	 */
-	@SuppressWarnings("unchecked")
+	
 	J setVariableID(@NotNull String variableID);
 
 	@NotNull
-	@SuppressWarnings("unchecked")
+	
 	J setFullScreen(boolean fullScreen);
 }

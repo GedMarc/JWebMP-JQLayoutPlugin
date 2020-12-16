@@ -18,6 +18,7 @@ package com.jwebmp.plugins.jqlayout;
 
 import com.jwebmp.core.Page;
 import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.plugins.PluginStatus;
 import com.jwebmp.core.plugins.jquery.JQueryPageConfigurator;
 import com.jwebmp.core.services.IPageConfigurator;
 
@@ -40,10 +41,15 @@ import jakarta.validation.constraints.NotNull;
 		pluginSourceUrl = "https://github.com/GedMarc/layout",
 		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-JQLayoutPlugin/wiki",
 		pluginOriginalHomepage = "http://layout.jquery-dev.com/",
-		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/JQLayoutPlugin.jar/download",
-		pluginIconUrl = "bower_components/jquery-layout-latest-1-5/borderlayout.gif",
-		pluginIconImageUrl = "bower_components/jquery-layout-latest-1-5/borderlayout.gif",
-		pluginLastUpdatedDate = "2017/03/04")
+		pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.jquery/jwebmp-jqui-layout",
+		pluginIconUrl = "",
+		pluginIconImageUrl = "",
+		pluginLastUpdatedDate = "2017/03/04",
+		pluginGroupId = "com.jwebmp.plugins.jquery",
+		pluginArtifactId = "jwebmp-jqui-layout",
+		pluginModuleName = "com.jwebmp.plugins.jqlayout",
+		pluginStatus = PluginStatus.Released
+)
 public class JQLayoutPageConfigurator
 		implements IPageConfigurator<JQLayoutPageConfigurator>
 {

@@ -29,8 +29,6 @@ import jakarta.validation.constraints.NotNull;
 public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 		extends JavaScriptPart<J>
 {
-
-
 	/**
 	 * The name of the layout
 	 */
@@ -103,7 +101,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	{
 		if (defaults == null)
 		{
-			defaults = new JQLayoutDefaultOptions();
+			defaults = new JQLayoutDefaultOptions<>();
 		}
 		defaults.setOnResize("$.layout.callbacks.resizeJQuery");
 		return defaults;
@@ -120,7 +118,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	{
 		if (west == null)
 		{
-			west = new JQLayoutDefaultOptions();
+			west = new JQLayoutDefaultOptions<>();
 		}
 		return west;
 	}
@@ -146,7 +144,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	{
 		if (north == null)
 		{
-			north = new JQLayoutDefaultOptions();
+			north = new JQLayoutDefaultOptions<>();
 		}
 		return north;
 	}
@@ -172,7 +170,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	{
 		if (east == null)
 		{
-			east = new JQLayoutDefaultOptions();
+			east = new JQLayoutDefaultOptions<>();
 		}
 		return east;
 	}
@@ -198,7 +196,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	{
 		if (south == null)
 		{
-			south = new JQLayoutDefaultOptions();
+			south = new JQLayoutDefaultOptions<>();
 		}
 		return south;
 	}
@@ -224,7 +222,7 @@ public class JQLayoutOptions<J extends JQLayoutOptions<J>>
 	{
 		if (center == null)
 		{
-			center = new JQLayoutDefaultOptions();
+			center = new JQLayoutDefaultOptions<>();
 		}
 		return center;
 	}

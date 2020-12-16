@@ -17,13 +17,14 @@
 package com.jwebmp.plugins.jqlayout.interfaces;
 
 import com.jwebmp.core.base.ComponentBase;
+import com.jwebmp.core.base.html.interfaces.GlobalChildren;
 import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 
 /**
  * @author GedMarc
  */
-public interface JQLayoutDivChildren<C extends IComponentHierarchyBase, J extends ComponentBase>
-		extends IComponentHierarchyBase<C, J>
+public interface JQLayoutDivChildren
+		extends GlobalChildren
 {
 
 }

@@ -19,6 +19,7 @@ package com.jwebmp.plugins.jqlayout.events;
 import com.jwebmp.core.Component;
 import com.jwebmp.core.Feature;
 import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 
@@ -30,42 +31,43 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  * @since 23 Sep 2013
  */
 public class JQLayoutAddSlideToggleButtonFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutAddSlideToggleButtonFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, JQLayoutAddSlideToggleButtonFeature>
 {
-	private final JQLayoutDiv divToOpen;
-
+	private final JQLayoutDiv<?> divToOpen;
+	
 	/**
 	 * Default constructors no config
 	 */
 	public JQLayoutAddSlideToggleButtonFeature()
 	{
-		divToOpen = new JQLayoutDiv();
+		divToOpen = new JQLayoutDiv<>();
 	}
-
-	public JQLayoutAddSlideToggleButtonFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	
+	public JQLayoutAddSlideToggleButtonFeature(JQLayoutDiv<?> layoutDiv, IComponentHierarchyBase<?, ?> pinButton)
 	{
 		super("JWLayoutSlideToggleButtonFeature");
 		setComponent(pinButton);
 		divToOpen = layoutDiv;
 	}
-
+	
 	@Override
 	public int hashCode()
 	{
 		return super.hashCode();
 	}
-
+	
 	@Override
 	public boolean equals(Object o)
 	{
 		return super.equals(o);
 	}
-
+	
 	@Override
 	public void assignFunctionsToComponent()
 	{
 		String openDivFunction = divToOpen.getLayout()
-		                                  .getVariableID() + ".addSlideToggleBtn('#" + getComponent().getID() + "',\"" + divToOpen.getArea()
+		                                  .getVariableID() + ".addSlideToggleBtn('#" + getComponent().asBase()
+		                                                                                             .getID() + "',\"" + divToOpen.getArea()
 		                                                                                                                          .toString()
 		                                                                                                                          .toLowerCase() + "\");" + getNewLine();
 		addQuery(openDivFunction);

@@ -30,21 +30,21 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  */
 @SuppressWarnings("unused")
 public class JQLayoutEnableResizableFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutEnableResizableFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, JQLayoutEnableResizableFeature>
 {
 
 
 	/**
 	 * The layout div to open
 	 */
-	private final JQLayoutDiv divToOpen;
+	private final JQLayoutDiv<?> divToOpen;
 
 	/**
 	 * Adds a pin button for the layout side to the given component
 	 *
 	 * @param layoutDiv
 	 */
-	public JQLayoutEnableResizableFeature(JQLayoutDiv layoutDiv)
+	public JQLayoutEnableResizableFeature(JQLayoutDiv<?> layoutDiv)
 	{
 		super("JQLayoutEnableResizableFeature");
 		divToOpen = layoutDiv;

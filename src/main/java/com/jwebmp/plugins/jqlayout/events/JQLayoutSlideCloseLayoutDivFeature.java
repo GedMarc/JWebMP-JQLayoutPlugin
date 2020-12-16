@@ -29,13 +29,13 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  * @since 23 Sep 2013
  */
 public class JQLayoutSlideCloseLayoutDivFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutSlideCloseLayoutDivFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, JQLayoutSlideCloseLayoutDivFeature>
 {
 
 
-	private final JQLayoutDiv divToClose;
+	private final JQLayoutDiv<?> divToClose;
 
-	public JQLayoutSlideCloseLayoutDivFeature(JQLayoutDiv layoutDiv)
+	public JQLayoutSlideCloseLayoutDivFeature(JQLayoutDiv<?> layoutDiv)
 	{
 		super("JWLayoutSlideCloseOpenDiv");
 		divToClose = layoutDiv;

@@ -2,6 +2,7 @@ package com.jwebmp.plugins.jqlayout.interfaces;
 
 import com.jwebmp.core.Component;
 import com.jwebmp.core.base.html.HeaderText;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.plugins.jqlayout.JQLayoutContentDiv;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 import com.jwebmp.plugins.jqlayout.JQLayoutFooterDiv;
@@ -38,7 +39,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param footers
 	 */
 	@NotNull
-	@SuppressWarnings("unchecked")
+	
 	J setFooters(List<JQLayoutFooterDiv<?>> footers);
 
 	/**
@@ -46,7 +47,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param headers
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J setHeaders(List<JQLayoutHeaderDiv<?>> headers);
 
@@ -57,7 +58,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param headerDivString
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J addHeader(String headerDivString);
 
@@ -68,7 +69,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param headerDiv
 	 */
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J addHeader(JQLayoutHeaderDiv<?> headerDiv);
 
@@ -79,9 +80,9 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param footerHeaderText
 	 */
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	J addFooter(HeaderText footerHeaderText);
+	J addFooter(HeaderText<?> footerHeaderText);
 
 	/**
 	 * Adds a Pin for this Div
@@ -91,9 +92,9 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @return The original component
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	J addPin(Component component);
+	J addPin(IComponentHierarchyBase<?,?> component);
 
 	/**
 	 * Adds the open event to a component
@@ -102,9 +103,9 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param button
 	 * 		The component to add the open event to
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	J addToggleButton(Component button);
+	J addToggleButton(IComponentHierarchyBase<?,?> button);
 
 	/**
 	 * Adds the close event to the component
@@ -113,9 +114,9 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param button
 	 * 		The button to add a close event to
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	J addCloseButton(Component button);
+	J addCloseButton(IComponentHierarchyBase<?,?> button);
 
 	/**
 	 * Adds the footer to the component
@@ -123,7 +124,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param footerDiv
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J addFooter(JQLayoutFooterDiv<?> footerDiv);
 
@@ -133,7 +134,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param footerDivString
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J addFooter(String footerDivString);
 
@@ -144,9 +145,9 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param headerDivString
 	 */
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	J addHeader(HeaderText headerDivString);
+	J addHeader(HeaderText<?> headerDivString);
 
 	/**
 	 * Adds the open event to a component
@@ -155,9 +156,9 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param button
 	 * 		The component to add the open event to
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
-	J addOpenButton(Component button);
+	J addOpenButton(IComponentHierarchyBase<?,?> button);
 
 	/**
 	 * Removes the footer
@@ -166,7 +167,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 * @param footerDiv
 	 */
 
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J removeFooter(JQLayoutFooterDiv<?> footerDiv);
 
@@ -176,7 +177,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param headerDiv
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J removeHeader(JQLayoutHeaderDiv<?> headerDiv);
 
@@ -212,7 +213,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param layout
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J setLayout(@NotNull BorderLayout<?> layout);
 
@@ -221,7 +222,7 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param contentDiv
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J setContentDiv(JQLayoutContentDiv<?> contentDiv);
 
@@ -231,10 +232,10 @@ public interface IJQLayoutDiv<J extends JQLayoutDiv<J>>
 	 *
 	 * @param area
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@NotNull
 	J setArea(JQLayoutArea area);
 
 	@NotNull
-	JQLayoutDefaultOptions getOptions();
+	JQLayoutDefaultOptions<?> getOptions();
 }

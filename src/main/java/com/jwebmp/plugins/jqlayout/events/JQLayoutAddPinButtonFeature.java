@@ -19,6 +19,7 @@ package com.jwebmp.plugins.jqlayout.events;
 import com.jwebmp.core.Component;
 import com.jwebmp.core.Feature;
 import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 
@@ -30,14 +31,14 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  * @since 23 Sep 2013
  */
 public class JQLayoutAddPinButtonFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutAddPinButtonFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, JQLayoutAddPinButtonFeature>
 {
 
 
 	/**
 	 * The layout div to open
 	 */
-	private final JQLayoutDiv divToOpen;
+	private final JQLayoutDiv<?> divToOpen;
 
 	/**
 	 * Adds a pin button for the layout side to the given component
@@ -45,7 +46,7 @@ public class JQLayoutAddPinButtonFeature
 	 * @param layoutDiv
 	 * @param pinButton
 	 */
-	public JQLayoutAddPinButtonFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	public JQLayoutAddPinButtonFeature(JQLayoutDiv<?> layoutDiv, IComponentHierarchyBase<?,?> pinButton)
 	{
 		super("JWLayoutPinButtonFeature");
 		setComponent(pinButton);
@@ -69,7 +70,7 @@ public class JQLayoutAddPinButtonFeature
 	public void assignFunctionsToComponent()
 	{
 		String openDivFunction = divToOpen.getLayout()
-		                                  .getVariableID() + ".addPinBtn('#" + getComponent().getID() + "','" + divToOpen.getArea()
+		                                  .getVariableID() + ".addPinBtn('#" + getComponent().asBase().getID() + "','" + divToOpen.getArea()
 		                                                                                                                 .toString()
 		                                                                                                                 .toLowerCase() + "');" + getNewLine();
 		addQuery(openDivFunction);

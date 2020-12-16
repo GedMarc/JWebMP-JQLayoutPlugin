@@ -16,7 +16,6 @@
  */
 package com.jwebmp.plugins.jqlayout.components;
 
-import com.jwebmp.core.Component;
 import com.jwebmp.core.base.html.Body;
 import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.exceptions.NullComponentException;
@@ -29,12 +28,10 @@ import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutAttributes;
 import com.jwebmp.plugins.jqlayout.enumerations.JQLayoutCSSThemeBlockNames;
 import com.jwebmp.plugins.jqlayout.events.*;
 import com.jwebmp.plugins.jqlayout.interfaces.IJQLayout;
-
 import jakarta.validation.constraints.NotNull;
 
 import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_DASH;
 import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_UNDERSCORE;
-import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * Another name for the JQuery UI Layout
@@ -47,9 +44,7 @@ public class BorderLayout<J extends BorderLayout<J>>
 		extends JQLayoutContentDiv<J>
 		implements IJQLayout<J>
 {
-
-
-	private JQLayout feature;
+	private final JQLayout<?> feature;
 
 	/**
 	 * The variable associated with this layout
@@ -85,7 +80,7 @@ public class BorderLayout<J extends BorderLayout<J>>
 	public BorderLayout()
 	{
 		super();
-		addFeature(feature = new JQLayout(this));
+		addFeature(feature = new JQLayout<>(this));
 		addAttribute(JQLayoutAttributes.JWType.toString(), "layout");
 		removeClass(JQLayoutCSSThemeBlockNames.UI_Layout_Content);
 	}
@@ -155,13 +150,12 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return A Layout pane on the center div
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	@NotNull
-	public final JQLayoutDiv<? extends IComponentHierarchyBase> getCenter()
+	public final JQLayoutDiv<? extends IComponentHierarchyBase<?,?>> getCenter()
 	{
 		if (center == null)
 		{
-			setCenter(new JQLayoutDiv(this, JQLayoutArea.Center, new JQLayoutContentDiv<>()));
+			setCenter(new JQLayoutDiv<>(this, JQLayoutArea.Center, new JQLayoutContentDiv<>()));
 		}
 		return center;
 	}
@@ -175,12 +169,8 @@ public class BorderLayout<J extends BorderLayout<J>>
 	@Override
 	@SuppressWarnings("unchecked")
 	@NotNull
-	public J setCenter(JQLayoutDiv centerDiv)
+	public J setCenter(JQLayoutDiv<?> centerDiv)
 	{
-		if (getComponent() != null)
-		{
-			getComponent().remove(center);
-		}
 		center = centerDiv;
 		return (J) this;
 	}
@@ -196,9 +186,8 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	@NotNull
-	public JQLayoutAddToggleButtonFeature createToggleButton(Component component, JQLayoutArea pane)
+	public JQLayoutAddToggleButtonFeature createToggleButton(IComponentHierarchyBase<?,?> component, JQLayoutArea pane)
 	{
 		return new JQLayoutAddToggleButtonFeature(getPane(pane), component);
 	}
@@ -211,7 +200,7 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return
 	 */
 	@Override
-	public JQLayoutDiv getPane(JQLayoutArea area)
+	public JQLayoutDiv<?> getPane(JQLayoutArea area)
 	{
 		switch (area)
 		{
@@ -379,7 +368,6 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	@NotNull
 	public JQLayoutSlideToggleLayoutDivFeature createSlideToggleButton(JQLayoutArea pane)
 	{
@@ -396,9 +384,8 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	@NotNull
-	public JQLayoutAddSlideToggleButtonFeature createAddSlideToggleButton(JQLayoutArea pane, Component pinButton)
+	public JQLayoutAddSlideToggleButtonFeature createAddSlideToggleButton(JQLayoutArea pane, IComponentHierarchyBase<?,?> pinButton)
 	{
 		return new JQLayoutAddSlideToggleButtonFeature(getPane(pane), pinButton);
 	}
@@ -413,9 +400,8 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	@NotNull
-	public JQLayoutAddPinButtonFeature createPinButton(Component component, JQLayoutArea pane)
+	public JQLayoutAddPinButtonFeature createPinButton(IComponentHierarchyBase<?,?> component, JQLayoutArea pane)
 	{
 		return new JQLayoutAddPinButtonFeature(getPane(pane), component);
 	}
@@ -430,7 +416,6 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	@NotNull
 	public JQLayoutSlideCloseLayoutDivFeature createSlideCloseFeature(JQLayoutArea pane)
 	{
@@ -447,7 +432,6 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	@NotNull
 	public JQLayoutSlideOpenLayoutDivFeature createSlideOpenFeature(JQLayoutArea pane)
 	{
@@ -465,9 +449,8 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	@NotNull
-	public JQLayoutCloseLayoutDivFeature createCloseButton(Component component, JQLayoutArea pane)
+	public JQLayoutCloseLayoutDivFeature createCloseButton(IComponentHierarchyBase<?,?> component, JQLayoutArea pane)
 	{
 		return new JQLayoutCloseLayoutDivFeature(getPane(pane));
 	}
@@ -483,9 +466,8 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 * @return
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	@NotNull
-	public JQLayoutOpenLayoutDivFeature createOpenButton(Component component, JQLayoutArea pane)
+	public JQLayoutOpenLayoutDivFeature createOpenButton(IComponentHierarchyBase<?,?> component, JQLayoutArea pane)
 	{
 		return new JQLayoutOpenLayoutDivFeature(getPane(pane));
 	}
@@ -539,7 +521,7 @@ public class BorderLayout<J extends BorderLayout<J>>
 	 *
 	 * @return
 	 */
-	public IJQLayout asMe()
+	public IJQLayout<?> asMe()
 	{
 		return this;
 	}

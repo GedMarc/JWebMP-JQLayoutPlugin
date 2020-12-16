@@ -38,7 +38,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
 		description = "?The UI Layout plug-in can create any UI look you want - from simple headers or sidebars, to a complex application with toolbars, menus, help-panels, status bars, sub-forms, etc.",
 		url = "http://layout.jquery-dev.com/")
 public class JQLayout<J extends JQLayout<J>>
-		extends Feature<GlobalFeatures, JQLayoutOptions, J>
+		extends Feature<GlobalFeatures, JQLayoutOptions<?>, J>
 
 {
 	private static final String NAME = "JQLayout";
@@ -103,7 +103,7 @@ public class JQLayout<J extends JQLayout<J>>
 	{
 		String sb = ((BorderLayout) getComponent()).getVariableID() +
 		            STRING_EQUALS +
-		            getComponent().getJQueryID() +
+		            getComponent().asBase().getJQueryID() +
 		            "layout(" +
 		            getNewLine() +
 		            getOptions() +

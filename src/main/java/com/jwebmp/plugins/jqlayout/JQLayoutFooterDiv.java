@@ -7,7 +7,7 @@ import com.jwebmp.plugins.jqlayout.interfaces.JQLayoutDivChildren;
 
 public class JQLayoutFooterDiv<J extends JQLayoutFooterDiv<J>>
 		extends DivSimple<J>
-		implements JQLayoutDivChildren<IComponentHierarchyBase, J>
+		implements JQLayoutDivChildren
 {
 	public JQLayoutFooterDiv()
 	{

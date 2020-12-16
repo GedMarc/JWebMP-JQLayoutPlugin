@@ -19,6 +19,7 @@ package com.jwebmp.plugins.jqlayout.events;
 import com.jwebmp.core.Component;
 import com.jwebmp.core.Feature;
 import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 
@@ -30,36 +31,37 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  * @since 23 Sep 2013
  */
 public class JQLayoutAddToggleButtonFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutAddToggleButtonFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, JQLayoutAddToggleButtonFeature>
 {
-
-
-	private final JQLayoutDiv divToOpen;
-
-	public JQLayoutAddToggleButtonFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	
+	
+	private final JQLayoutDiv<?> divToOpen;
+	
+	public JQLayoutAddToggleButtonFeature(JQLayoutDiv<?> layoutDiv, IComponentHierarchyBase<?, ?> pinButton)
 	{
 		super("JWLayoutToggleButtonFeature");
 		setComponent(pinButton);
 		divToOpen = layoutDiv;
 	}
-
+	
 	@Override
 	public int hashCode()
 	{
 		return super.hashCode();
 	}
-
+	
 	@Override
 	public boolean equals(Object o)
 	{
 		return super.equals(o);
 	}
-
+	
 	@Override
 	public void assignFunctionsToComponent()
 	{
 		String openDivFunction = divToOpen.getLayout()
-		                                  .getVariableID() + ".addToggleBtn('#" + getComponent().getID() + "',\"" + divToOpen.getArea()
+		                                  .getVariableID() + ".addToggleBtn('#" + getComponent().asBase()
+		                                                                                        .getID() + "',\"" + divToOpen.getArea()
 		                                                                                                                     .toString()
 		                                                                                                                     .toLowerCase() + "\");" + getNewLine();
 		addQuery(openDivFunction);

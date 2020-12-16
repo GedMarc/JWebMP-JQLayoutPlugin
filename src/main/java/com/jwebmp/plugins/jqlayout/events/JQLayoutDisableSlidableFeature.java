@@ -19,6 +19,7 @@ package com.jwebmp.plugins.jqlayout.events;
 import com.jwebmp.core.Component;
 import com.jwebmp.core.Feature;
 import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
 
@@ -31,14 +32,14 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  */
 @SuppressWarnings("unused")
 public class JQLayoutDisableSlidableFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutDisableSlidableFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, JQLayoutDisableSlidableFeature>
 {
 
 
 	/**
 	 * The layout div to open
 	 */
-	private final JQLayoutDiv divToOpen;
+	private final JQLayoutDiv<?> divToOpen;
 
 	/**
 	 * Adds a pin button for the layout side to the given component
@@ -46,7 +47,7 @@ public class JQLayoutDisableSlidableFeature
 	 * @param layoutDiv
 	 * @param pinButton
 	 */
-	public JQLayoutDisableSlidableFeature(JQLayoutDiv layoutDiv, Component pinButton)
+	public JQLayoutDisableSlidableFeature(JQLayoutDiv<?> layoutDiv, IComponentHierarchyBase<?,?> pinButton)
 	{
 		super("JQLayoutDisableSlidableFeature");
 		setComponent(pinButton);

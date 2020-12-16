@@ -30,21 +30,21 @@ import com.jwebmp.plugins.jqlayout.JQLayoutDiv;
  */
 @SuppressWarnings("unused")
 public class JQLayoutDisableClosableFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, JQLayoutDisableClosableFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, JQLayoutDisableClosableFeature>
 {
 
 
 	/**
 	 * The layout div to open
 	 */
-	private final JQLayoutDiv divToOpen;
+	private final JQLayoutDiv<?> divToOpen;
 
 	/**
 	 * Adds a pin button for the layout side to the given component
 	 *
 	 * @param layoutDiv
 	 */
-	public JQLayoutDisableClosableFeature(JQLayoutDiv layoutDiv)
+	public JQLayoutDisableClosableFeature(JQLayoutDiv<?> layoutDiv)
 	{
 		super("JQLayoutDisableClosableFeature");
 		divToOpen = layoutDiv;

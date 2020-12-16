@@ -32,8 +32,8 @@ public enum JQLayoutReferencePool
 {
 
 	JQueryLayout(
-			new JavascriptReference("JQUILayoutJS", 1.45, "bower_components/jquery-layout-latest-1-5/jquery.layout_and_plugins.min.js"),
-			new CSSReference("JQUILayoutCSS", 1.45, "bower_components/jquery-layout-latest-1-5/layout-default.min.css")),
+			new JavascriptReference("JQUILayoutJS", 1.63, "bower_components/jquery-layout-latest-1-5/jquery.layout_and_plugins.min.js"),
+			new CSSReference("JQUILayoutCSS", 1.63, "bower_components/jquery-layout-latest-1-5/layout-default.min.css")),
 	JQueryLayoutResizer(
 			new JavascriptReference("layoutResizer", 1.0, "bower_components/jquery-layout-latest-1-5/jquery.layout_customresizer.js"),
 			null);
