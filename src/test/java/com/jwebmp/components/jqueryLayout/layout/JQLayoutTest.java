@@ -49,7 +49,7 @@ public class JQLayoutTest
 	@Test
 	public void testJQLayout()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		BorderLayout layout = new BorderLayout();
 		p.getOptions()
 		 .setDynamicRender(true);
@@ -65,7 +65,7 @@ public class JQLayoutTest
 	@Test
 	public void testResponsive()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		BorderLayout<?> layout = new BorderLayout<>();
 
 		layout.getOptions()
@@ -78,7 +78,7 @@ public class JQLayoutTest
 	@Test
 	public void testResponsiveSizes()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		BorderLayout<?> layout = new BorderLayout<>();
 		layout.getOptions()
 		      .getDefaults()
@@ -92,7 +92,7 @@ public class JQLayoutTest
 	@Test
 	public void testAjaxResponseAdditions()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		BorderLayout<?> layout = new BorderLayout<>();
 
 		Button pin = new Button();
@@ -126,7 +126,7 @@ public class JQLayoutTest
 	@Test
 	public void testLayoutStructure()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		BorderLayout<?> layout = new BorderLayout<>();
 
 		layout.asMe()
@@ -157,7 +157,7 @@ public class JQLayoutTest
 	@Test
 	public void testOptions()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		BorderLayout<?> layout = new BorderLayout<>();
 
 		layout.getOptions()
@@ -226,7 +226,7 @@ public class JQLayoutTest
 	@Test
 	public void testFeatures()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		BorderLayout<?> layout = new BorderLayout<>();
 
 		Div b = new Div();
