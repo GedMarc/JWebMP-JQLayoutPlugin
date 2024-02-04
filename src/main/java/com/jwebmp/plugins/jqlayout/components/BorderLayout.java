@@ -30,8 +30,8 @@ import com.jwebmp.plugins.jqlayout.events.*;
 import com.jwebmp.plugins.jqlayout.interfaces.IJQLayout;
 import jakarta.validation.constraints.NotNull;
 
-import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_DASH;
-import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_UNDERSCORE;
+import static com.guicedee.services.jsonrepresentation.json.StaticStrings.CHAR_DASH;
+import static com.guicedee.services.jsonrepresentation.json.StaticStrings.CHAR_UNDERSCORE;
 
 /**
  * Another name for the JQuery UI Layout

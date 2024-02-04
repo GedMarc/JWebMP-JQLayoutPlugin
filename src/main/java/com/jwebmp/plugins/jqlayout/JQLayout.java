@@ -23,8 +23,8 @@ import com.jwebmp.plugins.jqlayout.components.BorderLayout;
 
 import jakarta.validation.constraints.NotNull;
 
-import static com.guicedee.guicedinjection.json.StaticStrings.STRING_CLOSING_BRACKET_SEMICOLON;
-import static com.guicedee.guicedinjection.json.StaticStrings.STRING_EQUALS;
+import static com.guicedee.services.jsonrepresentation.json.StaticStrings.STRING_CLOSING_BRACKET_SEMICOLON;
+import static com.guicedee.services.jsonrepresentation.json.StaticStrings.STRING_EQUALS;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
